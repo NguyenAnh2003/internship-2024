@@ -10,7 +10,7 @@ req = Request(
     url=URL, 
     headers={'User-Agent': 'Mozilla/5.0'}
 )
-webpage = urlopen(req).read()
+webpage = urlopen(req).read() ####
 
 # def scraping():
 #     page = requests.get(URL)
