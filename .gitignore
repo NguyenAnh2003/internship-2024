@@ -166,3 +166,5 @@ saved_model/
 
 # notebook checkpoints
 **/.ipynb_checkpoints
+
+**/.zip
