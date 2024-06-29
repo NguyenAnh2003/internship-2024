@@ -1,5 +1,5 @@
 from scrapegraphai.graphs import SmartScraperGraph
-from urls import URL
+from urls import QUORA_URL
 from dotenv import load_dotenv
 import os
 
@@ -18,7 +18,7 @@ graph_config = {
 
 smart_scraper_graph = SmartScraperGraph(
     prompt="List all contents of all posts in link below",
-    source=URL[0],
+    source=QUORA_URL[0],
     config=graph_config,
 )
 

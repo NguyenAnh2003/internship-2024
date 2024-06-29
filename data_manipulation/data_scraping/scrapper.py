@@ -10,7 +10,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import requests
 from selenium.webdriver.common.action_chains import ActionChains
 import json
-from urls import URL
+from urls import QUORA_URL
 
 
 
@@ -67,7 +67,7 @@ def quora_scraper():
 
 visited_urls = set()
 
-for i, item in enumerate(URL):
+for i, item in enumerate(QUORA_URL):
     if item not in visited_urls:
         driver.get(url=item)
 
