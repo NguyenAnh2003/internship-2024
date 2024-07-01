@@ -168,3 +168,5 @@ saved_model/
 **/.ipynb_checkpoints
 
 **/.zip
+.python_packages
+*.pdf
