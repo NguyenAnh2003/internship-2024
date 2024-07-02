@@ -1,0 +1,17 @@
+model:
+ # using LLM
+ llm:
+  gemini: True
+  name: ???
+
+ # using pretrained model for fine tuning
+ pretrained:
+  name: ???
+
+ vocab:
+  dir: ???
+
+ train:
+ # train paramters
+  epoch:
+  batch_size:

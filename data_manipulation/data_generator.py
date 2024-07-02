@@ -10,6 +10,11 @@ genai.configure(api_key=os.environ["GEMINI_APIKEY"])
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 
+def prompt_template(example: str) -> str:
+    
+    return
+
+
 def gen_ds():
     jsonfile = open("./data_manipulation/metadata/gen_ds.json", "a", encoding="utf-8")
 
