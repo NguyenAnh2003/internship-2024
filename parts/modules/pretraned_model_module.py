@@ -1,4 +1,4 @@
-from transformers import AutoModel
+from transformers import AutoModel, BertModel, BertTokenizer
 from omegaconf import OmegaConf, DictConfig
 
 
@@ -7,19 +7,33 @@ class ModelModule:
         self.conf = OmegaConf.create(conf)
 
         # get pretrained model
-        self.model = self.get_pretrained_model()
+        self.model, self.tokenizer = self.get_pretrained_model_and_tokenizer()
 
-        # get tokenizer
-        self.tokenizer = self.get_tokenizer()
+    def get_pretrained_model_and_tokenizer(self):
 
-    def get_pretrained_modelntokenizer(self):
         # using transformers package to get pretrained model
-        model = AutoModel.from_pretrained(
-            self.pretrained.name
-        )  # get pretrained model name
-        return model
+        if self.conf.model.pretrained.bert == False:
+            model = AutoModel.from_pretrained(
+                self.conf.model.pretrained.name
+            )  # get pretrained model name
+        else:
+            model = BertModel.from_pretrained(
+                self.conf.model.pretrained.name
+            )
 
-    def get_tokenizer(self):
-        tokenizer = None
+            tokenizer = BertTokenizer.from_pretrained(
+                self.conf.model.pretrained.name
+            )
 
-        return tokenizer
+        model.eval() #
+
+        return model, tokenizer
+
+    def finetuning_pretrained_model(self):
+
+        if self.conf.model.pretrained.freeze == True:
+            for param in self.model.base_model.parameters():
+                param.requires_grad = False
+
+        print(f"Model: {self.model} "
+              f"Tokenizer: {self.tokenizer}")

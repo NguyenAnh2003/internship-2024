@@ -9,6 +9,16 @@ genai.configure(api_key=os.environ["GEMINI_APIKEY"])
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
+class Generator:
+    def __init__(self) -> None:
+        pass
+    
+    def prompt_template(self):
+        pass
+    
+    def generate_ds(self):
+        pass
+
 
 def prompt_template(example: str) -> str:
     

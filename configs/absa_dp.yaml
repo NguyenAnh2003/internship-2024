@@ -6,12 +6,14 @@ model:
 
  # using pretrained model for fine tuning
  pretrained:
+  bert: True
   name: ???
+  freeze: ??? # freeze model for finetuning or training
 
  vocab:
   dir: ???
 
  train:
  # train paramters
-  epoch:
-  batch_size:
+  epoch: 50
+  batch_size: 8

@@ -1,5 +1,8 @@
 from omegaconf import OmegaConf, DictConfig
 import re
+import json
+import spacy
+from google.generativeai import GenerativeModel
 
 
 class DataProcessPipeline:
@@ -7,6 +10,9 @@ class DataProcessPipeline:
     def __init__(self, conf: DictConfig = None) -> None:
         # input as yaml file
         self.conf = OmegaConf.create(conf)
+        # self.llm = GenerativeModel(
+            # self.conf.model.llm.name
+        # )  # name of llm to preprocess data
 
     def processing_step(self, path: str = None, out_path: str = None):
         """
@@ -15,8 +21,16 @@ class DataProcessPipeline:
         """
         # json file
         json_file = open(path, "r", encoding="utf-8")
+        rs = json.load(json_file)
+        print(rs)
 
         # out_file = open(out_path, 'w', encoding='utf-8')
+
+    def remove_unnecessary_cols(self, path: str, out_path: str = None):
+        json_file = open(path, "r", encoding="utf-8")
+        dataset = json.load(json_file)
+        for point in dataset:
+            print(f"Data point: {point}")
 
     def regex_filter(self, sample: str = None) -> None:
         pattern = r"\n([0-9][0-9][0-9])\."  # pattern to filter
@@ -36,4 +50,4 @@ class DataProcessPipeline:
 
 if __name__ == "__main__":
     pipeline = DataProcessPipeline()
-    pipeline.processing_step("./data_manipulation/metadata/gen_ds.json")
+    pipeline.remove_unnecessary_cols("./data_manipulation/metadata/train.json")
