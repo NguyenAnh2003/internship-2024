@@ -4,6 +4,7 @@ import json
 import spacy
 from google.generativeai import GenerativeModel
 from uuid import uuid4
+from langdetect import detect
 
 
 class DataProcessPipeline:
@@ -16,20 +17,21 @@ class DataProcessPipeline:
         # )  # name of llm to preprocess data
 
     def processing_step(self, path: str = None, out_path: str = None):
-        """
-        flow of processing data js format -> filter with regex (punctuation, number and begining)
-        -> trim text
-        """
+        result = []
         # json file
         json_file = open(path, "r", encoding="utf-8")
         dataset = json.load(json_file)
 
-        for point in dataset:
-            self.remove_emoji(point["reviewText"])
-            self.remove_emoji(point["ratingText"])
+        # processing each data point
+        for idx, point in enumerate(dataset):
+            self.remove_emoji(point["reviewText"])  # remove emoji in text
+            self.remove_emoji(point["ratingText"])  # remove emoji in rating text
+            lang = detect(point["reviewText"])
+            if lang == "en":
+                result.append(point)
 
         out_file = open(out_path, "w", encoding="utf-8")
-        json.dump(dataset, out_file, indent=4, ensure_ascii=False)
+        json.dump(result, out_file, indent=4, ensure_ascii=False)
 
     def remove_emoji(self, string):
         emoji_pattern = re.compile(
@@ -84,15 +86,15 @@ class DataProcessPipeline:
         json.dump(dataset, outfile, indent=4, ensure_ascii=False)
 
     def regex_filter(self, sample: str = None) -> None:
-        pattern = r"\n([0-9][0-9][0-9])\."  # pattern to filter
+        pass
 
-        str0 = re.sub(
-            pattern,
-            "",
-            "\n100. The train was a bit slow, but it was still a comfortable way to get around the city.",
-        )
-
-        print(str0.strip())
+    def check_ds_lang(self, path):
+        json_file = open(path, "r", encoding="utf-8")
+        dataset = json.load(json_file)
+        
+        for point in dataset:
+            lang = detect(point["reviewText"])
+            print(lang)
 
     def apsect_extraction(self, sample: str = None):
         aspect = ""
@@ -103,5 +105,5 @@ if __name__ == "__main__":
     pipeline = DataProcessPipeline()
     path = "./data_manipulation/metadata/train.json"
     opath = "./data_manipulation/metadata/processed_train.json"
-    pipeline.processing_step(path=opath, out_path=path)
+    pipeline.processing_step(path=path, out_path=opath)
     print("DONE")
