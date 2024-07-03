@@ -5,3 +5,5 @@ QUORA_URL = [
     "https://www.quora.com/unanswered/What-is-your-opinion-on-the-train-or-subway-system-in-Bangkok-Do-you-think-it-is-worth-using",
     "https://www.quora.com/Does-Bangkok-have-a-metro-system",
 ]
+
+REDDIT_URLS = []
