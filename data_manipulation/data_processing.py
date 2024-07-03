@@ -26,12 +26,27 @@ class DataProcessPipeline:
         for idx, point in enumerate(dataset):
             self.remove_emoji(point["reviewText"])  # remove emoji in text
             self.remove_emoji(point["ratingText"])  # remove emoji in rating text
+
+            # remove html tags
+            point["reviewText"] = point["reviewText"].replace("<br />", " ")
+
+            # remove punctuation
+            point["reviewText"] = self.remove_punctuation(point["reviewText"])
+            # point["reviewTitle"] = self.remove_punctuation(point["reviewTitle"])
+
+            # detect language and group ds
             lang = detect(point["reviewText"])
             if lang == "en":
                 result.append(point)
 
         out_file = open(out_path, "w", encoding="utf-8")
         json.dump(result, out_file, indent=4, ensure_ascii=False)
+
+    def remove_punctuation(self, string):
+        # Replace specific punctuation characters
+        for char in [",", ".", "!", "?", ";", ":"]:
+            string = string.replace(char, "")
+        return string
 
     def remove_emoji(self, string):
         emoji_pattern = re.compile(
@@ -91,7 +106,7 @@ class DataProcessPipeline:
     def check_ds_lang(self, path):
         json_file = open(path, "r", encoding="utf-8")
         dataset = json.load(json_file)
-        
+
         for point in dataset:
             lang = detect(point["reviewText"])
             print(lang)
