@@ -94,15 +94,23 @@ class DataProcessPipeline:
 
         for key in keys:
             for point in dataset:
-                point["id"] = str(uuid4())  # adding id to each sample
                 if key in point:
                     del point[key]
 
         outfile = open(out_path, "w", encoding="utf-8")
         json.dump(dataset, outfile, indent=4, ensure_ascii=False)
 
-    def regex_filter(self, sample: str = None) -> None:
-        pass
+    @staticmethod
+    def get_total_samples(path: str):
+        count = 0
+        file = open(path, "r", encoding="utf-8")
+        ds = json.load(file)
+
+        # counter
+        for _ in ds:
+            count += 1
+
+        print(count)
 
     def check_ds_lang(self, path):
         json_file = open(path, "r", encoding="utf-8")
@@ -119,7 +127,11 @@ class DataProcessPipeline:
 
 if __name__ == "__main__":
     pipeline = DataProcessPipeline()
-    path = "./data_manipulation/metadata/train.json"
+    path = "./data_manipulation/metadata/totalData.json"
     opath = "./data_manipulation/metadata/processed_train.json"
+
+    # remove un cols -> processing_step.
+    pipeline.prepreprocesse_ds(path=path, out_path=opath)
     pipeline.processing_step(path=opath, out_path=opath)
+    pipeline.get_total_samples(path=opath)
     print("DONE")
