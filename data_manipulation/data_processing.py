@@ -33,9 +33,6 @@ class DataProcessPipeline:
             self.remove_emoji(point["reviewText"])  # remove emoji in text
             self.remove_emoji(point["ratingText"])  # remove emoji in rating text
 
-            # demoji.replace(string=point["reviewText"], repl="")
-            # demoji.replace(string=point["ratingText"], repl="")
-
             # remove html tags
             point["reviewText"] = point["reviewText"].replace("<br />", " ")
 

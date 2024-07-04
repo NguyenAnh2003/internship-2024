@@ -1,0 +1,23 @@
+model:
+ model_name: ???
+ # bit and bytes config
+ bitandbytes_config:
+  bnb_4bit_compute_dtype: ???
+  load_in_4bit: True
+  bnb_4bit_quant_type: ???
+  bnb_4bit_use_double_quant: ???
+
+  # peft config
+  peft_config:
+   alpha: ???
+   lora_dropout: ???
+   peft_r: ???
+   peft_bias: ???
+   task_type: ???
+
+ # train parameters
+ train:
+  epoch:
+  batch:
+  lr:
+  optimizer:
