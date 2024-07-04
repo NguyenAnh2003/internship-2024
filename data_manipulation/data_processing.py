@@ -154,10 +154,12 @@ class DataProcessPipeline:
     def split_dataset(
         path: str = None,
         out_path: str = None,
-        train_size: float = 0.8,
-        dev_size: float = 0.2,
-        test_size: float = 0.2,
+        train_size: float = 0.7,
+        dev_size: float = 0.15,
+        test_size: float = 0.15,
     ) -> None:
+        assert train_size + dev_size + test_size == 1.0
+
         # define path
         train_path = out_path + "train-manifest.json"
         dev_path = out_path + "dev-manifest.json"
@@ -165,18 +167,23 @@ class DataProcessPipeline:
 
         # json file
         dataset = json.load(open(path, "r", encoding="utf-8"))  # read
-        # train_file = open(train_path, "w", encoding="utf-8")  # write
-        # dev_file = open(dev_path, "w", encoding="utf-8")  # write
-        # test_file = open(test_path, "w", encoding="utf-8")  # write
+        train_file = open(train_path, "w", encoding="utf-8")  # write
+        dev_file = open(dev_path, "w", encoding="utf-8")  # write
+        test_file = open(test_path, "w", encoding="utf-8")  # write
 
         # dataset len
         length = len(dataset)
 
         train_len = int(train_size * length)
-        dev_len = int(dev_size * length)
-        test_len = int(test_size * length)
+        dev_len = int((train_size + dev_size) * length)
 
-        print(f"Length: {length} t: {train_len} d: {dev_len} t: {test_len}")
+        train_ds = dataset[:train_len]
+        dev_ds = dataset[train_len:dev_len]
+        test_ds = dataset[dev_len:]
+
+        json.dump(train_ds, train_file, ensure_ascii=False, indent=4)
+        json.dump(dev_ds, dev_file, ensure_ascii=False, indent=4)
+        json.dump(test_ds, test_file, ensure_ascii=False, indent=4)
 
     def check_ds_lang(self, path):
         json_file = open(path, "r", encoding="utf-8")
@@ -202,14 +209,14 @@ if __name__ == "__main__":
     # pipeline.get_total_samples(path=opath)
 
     # convert csv2json
-    csv_path = "./data_manipulation/metadata/total.csv"
-    out_json = "./data_manipulation/metadata/manifests/train-manifest.json"
-    pipeline.convert_csv2json(csv_path, out_json)
+    # csv_path = "./data_manipulation/metadata/total.csv"
+    # out_json = "./data_manipulation/metadata/manifests/train-manifest.json"
+    # pipeline.convert_csv2json(csv_path, out_json)
 
     # split ds
-    # pipeline.split_dataset(
-    # "./data_manipulation/metadata/manifests/train-manifest.json",
-    # "./data_manipulation/metadata/manifests/",
-    # )
+    pipeline.split_dataset(
+        "./data_manipulation/metadata/manifests/train-manifest.json",
+        "./data_manipulation/metadata/manifests/",
+    )
 
     print("DONE")
