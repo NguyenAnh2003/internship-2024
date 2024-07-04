@@ -1,9 +1,7 @@
 from omegaconf import OmegaConf, DictConfig
 import re
 import json
-import spacy
 from google.generativeai import GenerativeModel
-from uuid import uuid4
 from langdetect import detect
 
 
@@ -41,6 +39,8 @@ class DataProcessPipeline:
             flags=re.UNICODE,
         )
 
+        self.punctuations = [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]
+
     def processing_step(self, path: str = None, out_path: str = None):
         result = []
         # json file
@@ -70,7 +70,7 @@ class DataProcessPipeline:
 
     def remove_punctuation(self, string):
         # Replace specific punctuation characters
-        for char in [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]:
+        for char in self.punctuations:
             string = string.replace(char, "")
         return string
 
