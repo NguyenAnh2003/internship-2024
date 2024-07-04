@@ -20,18 +20,6 @@ class DataProcessPipeline:
         # self.conf.model.llm.name
         # )  # name of llm to preprocess data
 
-        # self.emoji_pattern = re.compile(
-        #     "["
-        #     "\U0001F600-\U0001F64F"  # emoticons
-        #     "\U0001F300-\U0001F5FF"  # symbols & pictographs
-        #     "\U0001F680-\U0001F6FF"  # transport & map symbols
-        #     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
-        #     "\U00002702-\U000027B0"  # Dingbats
-        #     "\U000024C2-\U0001F251"
-        #     "]+",
-        #     flags=re.UNICODE,
-        # )
-
         self.punctuations = [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]
 
     def processing_step(self, path: str = None, out_path: str = None):
@@ -213,8 +201,8 @@ if __name__ == "__main__":
 
     # split ds
     pipeline.split_dataset(
-    "./data_manipulation/metadata/manifests/train-manifest.json",
-    "./data_manipulation/metadata/manifests/",
+        "./data_manipulation/metadata/manifests/train-manifest.json",
+        "./data_manipulation/metadata/manifests/",
     )
 
     print("DONE")
