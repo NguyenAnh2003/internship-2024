@@ -4,8 +4,11 @@ import json
 from google.generativeai import GenerativeModel
 from langdetect import detect
 import csv
+import demoji
 
 # from data_generator import Generator
+
+demoji.download_codes()  # download code
 
 
 class DataProcessPipeline:
@@ -17,30 +20,17 @@ class DataProcessPipeline:
         # self.conf.model.llm.name
         # )  # name of llm to preprocess data
 
-        self.emoji_pattern = re.compile(
-            "["
-            "\U0001F600-\U0001F64F"  # emoticons
-            "\U0001F300-\U0001F5FF"  # symbols & pictographs
-            "\U0001F680-\U0001F6FF"  # transport & map symbols
-            "\U0001F1E0-\U0001F1FF"  # flags (iOS)
-            "\U00002500-\U00002BEF"  # chinese char
-            "\U00002702-\U000027B0"
-            "\U00002702-\U000027B0"
-            "\U000024C2-\U0001F251"
-            "\U0001f926-\U0001f937"
-            "\U00010000-\U0010ffff"
-            "\u2640-\u2642"
-            "\u2600-\u2B55"
-            "\u200d"
-            "\u23cf"
-            "\u23e9"
-            "\u231a"
-            "\u2022"
-            "\ufe0f"  # dingbats
-            "\u3030"
-            "]+",
-            flags=re.UNICODE,
-        )
+        # self.emoji_pattern = re.compile(
+        #     "["
+        #     "\U0001F600-\U0001F64F"  # emoticons
+        #     "\U0001F300-\U0001F5FF"  # symbols & pictographs
+        #     "\U0001F680-\U0001F6FF"  # transport & map symbols
+        #     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
+        #     "\U00002702-\U000027B0"  # Dingbats
+        #     "\U000024C2-\U0001F251"
+        #     "]+",
+        #     flags=re.UNICODE,
+        # )
 
         self.punctuations = [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]
 
@@ -54,6 +44,9 @@ class DataProcessPipeline:
         for idx, point in enumerate(dataset):
             self.remove_emoji(point["reviewText"])  # remove emoji in text
             self.remove_emoji(point["ratingText"])  # remove emoji in rating text
+
+            # demoji.replace(string=point["reviewText"], repl="")
+            # demoji.replace(string=point["ratingText"], repl="")
 
             # remove html tags
             point["reviewText"] = point["reviewText"].replace("<br />", " ")
@@ -113,7 +106,11 @@ class DataProcessPipeline:
         return string
 
     def remove_emoji(self, string):
-        self.emoji_pattern.sub(r"", string)
+        # self.emoji_pattern.sub(r"", string)
+        dem = demoji.findall(string)
+        for item in dem.keys():
+            string = string.replace(item, "")
+        return string
 
     def prepreprocesse_ds(self, path: str, out_path: str = None):
         json_file = open(path, "r", encoding="utf-8")
@@ -200,13 +197,14 @@ class DataProcessPipeline:
 
 if __name__ == "__main__":
     pipeline = DataProcessPipeline()
-    # path = "./data_manipulation/metadata/totalData.json"
+    path = "./data_manipulation/metadata/manifests/train-manifest.json"
+    path1 = "./data_manipulation/metadata/manifests/temp-ds-metadata.json"
     # opath = "./data_manipulation/metadata/processed_train.json"
 
     # remove un cols -> processing_step.
     # pipeline.prepreprocesse_ds(path=path, out_path=opath)
-    # pipeline.processing_step(path=opath, out_path=opath)
-    # pipeline.get_total_samples(path=opath)
+    # pipeline.processing_step(path=path1, out_path=path)
+    # pipeline.get_total_samples(path=path)
 
     # convert csv2json
     # csv_path = "./data_manipulation/metadata/total.csv"
@@ -215,8 +213,8 @@ if __name__ == "__main__":
 
     # split ds
     pipeline.split_dataset(
-        "./data_manipulation/metadata/manifests/train-manifest.json",
-        "./data_manipulation/metadata/manifests/",
+    "./data_manipulation/metadata/manifests/train-manifest.json",
+    "./data_manipulation/metadata/manifests/",
     )
 
     print("DONE")
