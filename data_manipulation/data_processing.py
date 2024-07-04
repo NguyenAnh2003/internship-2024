@@ -81,6 +81,8 @@ class DataProcessPipeline:
         reader = csv.reader(csv_file)
         next(reader)  # skip the header
 
+        package_list = []
+
         for line in reader:
             try:
                 # define data dict
@@ -93,13 +95,16 @@ class DataProcessPipeline:
                     "polarity": line[6],
                     "month": line[8],
                     "year": line[9],
+                    # "social": line[-1],
                 }
 
-                # dump file
-                json.dump(data_package, json_file, ensure_ascii=False)
-                json_file.write("\n")
+                package_list.append(data_package)
             except Exception as e:
                 raise ValueError(e)
+
+        json.dump(package_list, json_file, ensure_ascii=False)
+        json_file.write("\n")
+        package_list.clear()  # clear list to remove from memory
 
     def remove_punctuation(self, string):
         # Replace specific punctuation characters
@@ -145,6 +150,34 @@ class DataProcessPipeline:
 
         print(count)
 
+    @staticmethod
+    def split_dataset(
+        path: str = None,
+        out_path: str = None,
+        train_size: float = 0.8,
+        dev_size: float = 0.2,
+        test_size: float = 0.2,
+    ) -> None:
+        # define path
+        train_path = out_path + "train-manifest.json"
+        dev_path = out_path + "dev-manifest.json"
+        test_path = out_path + "test-manifest.json"
+
+        # json file
+        dataset = json.load(open(path, "r", encoding="utf-8"))  # read
+        # train_file = open(train_path, "w", encoding="utf-8")  # write
+        # dev_file = open(dev_path, "w", encoding="utf-8")  # write
+        # test_file = open(test_path, "w", encoding="utf-8")  # write
+
+        # dataset len
+        length = len(dataset)
+
+        train_len = int(train_size * length)
+        dev_len = int(dev_size * length)
+        test_len = int(test_size * length)
+
+        print(f"Length: {length} t: {train_len} d: {dev_len} t: {test_len}")
+
     def check_ds_lang(self, path):
         json_file = open(path, "r", encoding="utf-8")
         dataset = json.load(json_file)
@@ -169,8 +202,14 @@ if __name__ == "__main__":
     # pipeline.get_total_samples(path=opath)
 
     # convert csv2json
-    # csv_path = "./data_manipulation/metadata/total.csv"
-    # out_json = "./data_manipulation/metadata/train-manifest.json"
-    # pipeline.convert_csv2json(csv_path, out_json)
-    
+    csv_path = "./data_manipulation/metadata/total.csv"
+    out_json = "./data_manipulation/metadata/manifests/train-manifest.json"
+    pipeline.convert_csv2json(csv_path, out_json)
+
+    # split ds
+    # pipeline.split_dataset(
+    # "./data_manipulation/metadata/manifests/train-manifest.json",
+    # "./data_manipulation/metadata/manifests/",
+    # )
+
     print("DONE")
