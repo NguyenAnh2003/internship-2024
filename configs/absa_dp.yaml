@@ -1,7 +1,7 @@
 model:
  # using LLM
  llm:
-  gemini: True
+  type: ???
   name: ???
 
  # using pretrained model for fine tuning

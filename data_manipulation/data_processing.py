@@ -3,6 +3,9 @@ import re
 import json
 from google.generativeai import GenerativeModel
 from langdetect import detect
+import csv
+
+# from data_generator import Generator
 
 
 class DataProcessPipeline:
@@ -68,6 +71,36 @@ class DataProcessPipeline:
         out_file = open(out_path, "w", encoding="utf-8")
         json.dump(result, out_file, indent=4, ensure_ascii=False)
 
+    @staticmethod
+    def convert_csv2json(path: str, out_path: str):
+        # csv file
+        csv_file = open(path, "r", encoding="utf-8")
+        # json file
+        json_file = open(out_path, "w", encoding="utf-8")
+        # csv reader
+        reader = csv.reader(csv_file)
+        next(reader)  # skip the header
+
+        for line in reader:
+            try:
+                # define data dict
+                data_package = {
+                    "id": line[1],
+                    "title": line[2],
+                    "review": line[3],
+                    "rating": line[4],
+                    "country": line[5],
+                    "polarity": line[6],
+                    "month": line[8],
+                    "year": line[9],
+                }
+
+                # dump file
+                json.dump(data_package, json_file, ensure_ascii=False)
+                json_file.write("\n")
+            except Exception as e:
+                raise ValueError(e)
+
     def remove_punctuation(self, string):
         # Replace specific punctuation characters
         for char in self.punctuations:
@@ -127,11 +160,17 @@ class DataProcessPipeline:
 
 if __name__ == "__main__":
     pipeline = DataProcessPipeline()
-    path = "./data_manipulation/metadata/totalData.json"
-    opath = "./data_manipulation/metadata/processed_train.json"
+    # path = "./data_manipulation/metadata/totalData.json"
+    # opath = "./data_manipulation/metadata/processed_train.json"
 
     # remove un cols -> processing_step.
-    pipeline.prepreprocesse_ds(path=path, out_path=opath)
-    pipeline.processing_step(path=opath, out_path=opath)
-    pipeline.get_total_samples(path=opath)
+    # pipeline.prepreprocesse_ds(path=path, out_path=opath)
+    # pipeline.processing_step(path=opath, out_path=opath)
+    # pipeline.get_total_samples(path=opath)
+
+    # convert csv2json
+    # csv_path = "./data_manipulation/metadata/total.csv"
+    # out_json = "./data_manipulation/metadata/train-manifest.json"
+    # pipeline.convert_csv2json(csv_path, out_json)
+    
     print("DONE")

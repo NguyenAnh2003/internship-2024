@@ -14,7 +14,7 @@ class Generator:
 
         # api key for llm
         api_key = api_key = os.environ["GEMINI_APIKEY"]
-        if self.conf.model.llm.gemini == True:
+        if self.conf.model.llm.type == "gemini":
             # config gemini
             # call with model name
             genai.configure(api_key=api_key)
