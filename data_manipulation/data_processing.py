@@ -16,40 +16,7 @@ class DataProcessPipeline:
         # self.conf.model.llm.name
         # )  # name of llm to preprocess data
 
-    def processing_step(self, path: str = None, out_path: str = None):
-        result = []
-        # json file
-        json_file = open(path, "r", encoding="utf-8")
-        dataset = json.load(json_file)
-
-        # processing each data point
-        for idx, point in enumerate(dataset):
-            self.remove_emoji(point["reviewText"])  # remove emoji in text
-            self.remove_emoji(point["ratingText"])  # remove emoji in rating text
-
-            # remove html tags
-            point["reviewText"] = point["reviewText"].replace("<br />", " ")
-
-            # remove punctuation
-            point["reviewText"] = self.remove_punctuation(point["reviewText"])
-            # point["reviewTitle"] = self.remove_punctuation(point["reviewTitle"])
-
-            # detect language and group ds
-            lang = detect(point["reviewText"])
-            if lang == "en":
-                result.append(point)
-
-        out_file = open(out_path, "w", encoding="utf-8")
-        json.dump(result, out_file, indent=4, ensure_ascii=False)
-
-    def remove_punctuation(self, string):
-        # Replace specific punctuation characters
-        for char in [",", ".", "!", "?", ";", ":"]:
-            string = string.replace(char, "")
-        return string
-
-    def remove_emoji(self, string):
-        emoji_pattern = re.compile(
+        self.emoji_pattern = re.compile(
             "["
             "\U0001F600-\U0001F64F"  # emoticons
             "\U0001F300-\U0001F5FF"  # symbols & pictographs
@@ -74,7 +41,41 @@ class DataProcessPipeline:
             flags=re.UNICODE,
         )
 
-        emoji_pattern.sub(r"", string)
+    def processing_step(self, path: str = None, out_path: str = None):
+        result = []
+        # json file
+        json_file = open(path, "r", encoding="utf-8")
+        dataset = json.load(json_file)
+
+        # processing each data point
+        for idx, point in enumerate(dataset):
+            self.remove_emoji(point["reviewText"])  # remove emoji in text
+            self.remove_emoji(point["ratingText"])  # remove emoji in rating text
+
+            # remove html tags
+            point["reviewText"] = point["reviewText"].replace("<br />", " ")
+
+            # remove punctuation
+            point["reviewText"] = self.remove_punctuation(point["reviewText"])
+            # point["reviewTitle"] = self.remove_punctuation(point["reviewTitle"])
+
+            # detect language and group ds
+            lang = detect(point["reviewText"])
+            if lang == "en":
+                result.append(point)
+
+        # write data to out file
+        out_file = open(out_path, "w", encoding="utf-8")
+        json.dump(result, out_file, indent=4, ensure_ascii=False)
+
+    def remove_punctuation(self, string):
+        # Replace specific punctuation characters
+        for char in [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]:
+            string = string.replace(char, "")
+        return string
+
+    def remove_emoji(self, string):
+        self.emoji_pattern.sub(r"", string)
 
     def prepreprocesse_ds(self, path: str, out_path: str = None):
         json_file = open(path, "r", encoding="utf-8")
@@ -120,5 +121,5 @@ if __name__ == "__main__":
     pipeline = DataProcessPipeline()
     path = "./data_manipulation/metadata/train.json"
     opath = "./data_manipulation/metadata/processed_train.json"
-    pipeline.processing_step(path=path, out_path=opath)
+    pipeline.processing_step(path=opath, out_path=opath)
     print("DONE")
