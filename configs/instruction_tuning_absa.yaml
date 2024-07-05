@@ -16,7 +16,7 @@ model:
  "Accidents", "Others"]
  
  # label polarity
- label_polarity: ["positive", "negative", "neutral"]
+ label_polarities: ["positive", "negative", "neutral"]
 
  # bit and bytes config
  bitandbytes_config:

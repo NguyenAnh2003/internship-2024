@@ -20,6 +20,10 @@ class Generator:
             genai.configure(api_key=api_key)
             self.llm = genai.GenerativeModel(self.conf.model.llm.name)
 
+    def llm_task_prediction(self, prompt_template):
+        response = self.llm.generate_content(prompt_template)
+        return response.text
+
     def generate_ds(self, out_path: str = None) -> None:
         # out file format is json
         # jsonfile = open(out_path, "a", encoding="utf-8")
@@ -41,5 +45,6 @@ class Generator:
 
 
 if __name__ == "__main__":
+
     generator = Generator()
     print("DONE")

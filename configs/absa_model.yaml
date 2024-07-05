@@ -20,9 +20,6 @@ model:
   name: ???
   freeze: ??? # freeze model for finetuning or training
 
- vocab:
-  dir: ???
-
  train:
  # train paramters
   epoch: 50

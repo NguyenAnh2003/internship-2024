@@ -1,7 +1,7 @@
 from omegaconf import OmegaConf, DictConfig
 import re
 import json
-from google.generativeai import GenerativeModel
+from data_generator import Generator
 from langdetect import detect
 import csv
 import demoji
@@ -16,9 +16,7 @@ class DataProcessPipeline:
     def __init__(self, conf: DictConfig = None) -> None:
         # input as yaml file
         self.conf = OmegaConf.create(conf)
-        # self.llm = GenerativeModel(
-        # self.conf.model.llm.name
-        # )  # name of llm to preprocess data
+        self.generator = Generator(self.conf)  # passing conf to Generator class
 
         self.punctuations = [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]
 
@@ -175,8 +173,26 @@ class DataProcessPipeline:
             lang = detect(point["reviewText"])
             print(lang)
 
-    def apsect_extraction(self, sample: str = None):
-        aspect = ""
+    def apsect_extraction(self, path: str = None):
+        # review
+        review = """ I last used the AirRail link back in 2013 bacause 
+        it shuts down at midnight It was cheap around B40 to the main 
+        station in Makkasan The express line was not running only the 
+        city line which stops at every station  Be aware that they 
+        sometimes don't go to the end of the line at Phayathai where 
+        you can walk to the BTS Skytrain  The station at Makkasan was 
+        not wellattended at night and there were no taxis I had to walk
+        about 3 city blocks to an intersection to get a cab """
+
+        # prompt
+        prompt = f""" Follow the given review and extract the aspects 
+        that user try to express in the given review, 
+        the aspects must be included in the list 
+        {self.conf.model.label_aspects} 
+        ###Review: {review}"""
+
+        aspect = self.generator.llm_task_prediction(prompt)
+
         return aspect
 
 
