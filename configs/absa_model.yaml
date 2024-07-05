@@ -1,0 +1,29 @@
+model:
+ # label aspects
+ label_aspects: ["Safety", "Cleanliness", "Data availability", "Price fairness", 
+ "User-friendly payment system", "Handling complaints", "Satisfactions", "Facilities at station", 
+ "Facilities within train", "Accessibility for disabilities", "Maintenance", 
+ "Punctuality", "Ease of connections between lines", "Reliability equipment", 
+ "Accidents", "Others"]
+ 
+ # label polarity
+ label_polarity: ["positive", "negative", "neutral"]
+ 
+ # using LLM
+ llm:
+  type: ???
+  name: ???
+
+ # using pretrained model for fine tuning
+ pretrained:
+  bert: True
+  name: ???
+  freeze: ??? # freeze model for finetuning or training
+
+ vocab:
+  dir: ???
+
+ train:
+ # train paramters
+  epoch: 50
+  batch_size: 8

@@ -30,18 +30,18 @@ class DataProcessPipeline:
 
         # processing each data point
         for idx, point in enumerate(dataset):
-            self.remove_emoji(point["reviewText"])  # remove emoji in text
-            self.remove_emoji(point["ratingText"])  # remove emoji in rating text
+            self.remove_emoji(point["review"])  # remove emoji in text
+            self.remove_emoji(point["rating"])  # remove emoji in rating text
 
             # remove html tags
-            point["reviewText"] = point["reviewText"].replace("<br />", " ")
+            point["review"] = point["review"].replace("<br />", " ")
 
             # remove punctuation
-            point["reviewText"] = self.remove_punctuation(point["reviewText"])
+            point["review"] = self.remove_punctuation(point["review"])
             # point["reviewTitle"] = self.remove_punctuation(point["reviewTitle"])
 
             # detect language and group ds
-            lang = detect(point["reviewText"])
+            lang = detect(point["review"])
             if lang == "en":
                 result.append(point)
 
@@ -65,15 +65,15 @@ class DataProcessPipeline:
             try:
                 # define data dict
                 data_package = {
-                    "id": line[1],
+                    "id": int(line[1]),
                     "title": line[2],
                     "review": line[3],
-                    "rating": line[4],
+                    "rating": int(line[4]),
                     "country": line[5],
                     "polarity": line[6],
                     "month": line[8],
                     "year": line[9],
-                    # "social": line[-1],
+                    "social": line[-1],
                 }
 
                 package_list.append(data_package)
@@ -188,7 +188,7 @@ if __name__ == "__main__":
 
     # remove un cols -> processing_step.
     # pipeline.prepreprocesse_ds(path=path, out_path=opath)
-    # pipeline.processing_step(path=path1, out_path=path)
+    # pipeline.processing_step(path=path, out_path=path)
     # pipeline.get_total_samples(path=path)
 
     # convert csv2json
@@ -197,9 +197,9 @@ if __name__ == "__main__":
     # pipeline.convert_csv2json(csv_path, out_json)
 
     # split ds
-    pipeline.split_dataset(
-        "./data_manipulation/metadata/manifests/train-manifest.json",
-        "./data_manipulation/metadata/manifests/",
-    )
+    # pipeline.split_dataset(
+    #     "./data_manipulation/metadata/manifests/train-manifest.json",
+    #     "./data_manipulation/metadata/manifests/",
+    # )
 
     print("DONE")

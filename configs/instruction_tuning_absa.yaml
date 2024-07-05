@@ -1,9 +1,26 @@
 model:
+ # common config
+ common:
+  load_in_4bit: True
+  torch_dtype: ??? # float16 || bfloat16
+  use_cache: False
+  
+ # model config
  model_name: ???
+
+ # label aspects
+ label_aspects: ["Safety", "Cleanliness", "Data availability", "Price fairness", 
+ "User-friendly payment system", "Handling complaints", "Satisfactions", "Facilities at station", 
+ "Facilities within train", "Accessibility for disabilities", "Maintenance", 
+ "Punctuality", "Ease of connections between lines", "Reliability equipment", 
+ "Accidents", "Others"]
+ 
+ # label polarity
+ label_polarity: ["positive", "negative", "neutral"]
+
  # bit and bytes config
  bitandbytes_config:
   bnb_4bit_compute_dtype: ???
-  load_in_4bit: True
   bnb_4bit_quant_type: ???
   bnb_4bit_use_double_quant: ???
 
