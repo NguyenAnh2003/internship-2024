@@ -184,12 +184,16 @@ class DataProcessPipeline:
         not wellattended at night and there were no taxis I had to walk
         about 3 city blocks to an intersection to get a cab """
 
+        review2 = """ The train usually late, It's crowded at 
+        the peak hour """
+
         # prompt
         prompt = f""" Follow the given review and extract the aspects 
         that user try to express in the given review, 
         the aspects must be included in the list 
         {self.conf.model.label_aspects} 
-        ###Review: {review}"""
+        if the aspect not included in given list just define Other
+        ###Review: {review2}"""
 
         aspect = self.generator.llm_task_prediction(prompt)
 
