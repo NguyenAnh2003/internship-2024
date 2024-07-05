@@ -188,12 +188,13 @@ class DataProcessPipeline:
         the peak hour """
 
         # prompt
-        prompt = f""" Follow the given review and extract the aspects 
+        prompt = f"""
+        ###Instruct: Follow the given review and extract the aspects 
         that user try to express in the given review, 
         the aspects must be included in the list 
         {self.conf.model.label_aspects} 
         if the aspect not included in given list just define Other
-        ###Review: {review2}"""
+        ###Review: {review2} """
 
         aspect = self.generator.llm_task_prediction(prompt)
 
