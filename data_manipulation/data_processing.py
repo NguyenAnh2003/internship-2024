@@ -1,3 +1,5 @@
+import time
+
 from omegaconf import OmegaConf, DictConfig
 import re
 import json
@@ -5,7 +7,8 @@ from data_generator import Generator
 from langdetect import detect
 import csv
 import demoji
-
+import random
+from libs.helper_functions import get_configs
 # from data_generator import Generator
 
 demoji.download_codes()  # download code
@@ -32,7 +35,8 @@ class DataProcessPipeline:
             self.remove_emoji(point["rating"])  # remove emoji in rating text
 
             # remove html tags
-            point["review"] = point["review"].replace("<br />", " ")
+            if "<br />" in point["review"]:
+                point["review"] = point["review"].replace("<br />", " ")
 
             # remove punctuation
             point["review"] = self.remove_punctuation(point["review"])
@@ -141,9 +145,12 @@ class DataProcessPipeline:
         assert train_size + dev_size + test_size == 1.0
 
         # define path
-        train_path = out_path + "train-manifest.json"
-        dev_path = out_path + "dev-manifest.json"
-        test_path = out_path + "test-manifest.json"
+        # train_path = out_path + "train-manifest1.3.1.json"
+        train_path = out_path + ".1.json"
+        # dev_path = out_path + "train-manifest1.3.2.json"
+        dev_path = out_path + ".2.json"
+        # test_path = out_path + "train-manifest1.3.3.json"
+        test_path = out_path + ".3.json"
 
         # json file
         dataset = json.load(open(path, "r", encoding="utf-8"))  # read
@@ -153,6 +160,8 @@ class DataProcessPipeline:
 
         # dataset len
         length = len(dataset)
+        random.shuffle(dataset) # shuffle the ds
+
 
         train_len = int(train_size * length)
         dev_len = int((train_size + dev_size) * length)
@@ -173,36 +182,48 @@ class DataProcessPipeline:
             lang = detect(point["reviewText"])
             print(lang)
 
-    def apsect_extraction(self, path: str = None):
-        # review
-        review = """ I last used the AirRail link back in 2013 bacause 
-        it shuts down at midnight It was cheap around B40 to the main 
-        station in Makkasan The express line was not running only the 
-        city line which stops at every station  Be aware that they 
-        sometimes don't go to the end of the line at Phayathai where 
-        you can walk to the BTS Skytrain  The station at Makkasan was 
-        not wellattended at night and there were no taxis I had to walk
-        about 3 city blocks to an intersection to get a cab """
+    def apsect_extraction(self,
+                          path: str = None,
+                          out_path: str = None):
+        dataset = json.load(open(path, 'r', encoding='utf-8'))
+        outfile = open(out_path, 'a', encoding='utf-8')
+        result = [] # temporary results
+        count = 0
 
-        review2 = """ The train usually late, It's crowded at 
-        the peak hour """
+        for idx, point in enumerate(dataset):
+            review = point["review"]
 
-        # prompt
-        prompt = f"""
-        ###Instruct: Follow the given review and extract the aspects 
-        that user try to express in the given review, 
-        the aspects must be included in the list 
-        {self.conf.model.label_aspects} 
-        if the aspect not included in given list just define Other
-        ###Review: {review2} """
+            # prompt
+            prompt = f"""
+            ###Instruct: Follow the given review analyze the review 
+            in detail and extract the aspects that user try to express in 
+            the given review, the aspects must be included in the list 
+            {self.conf.model.label_aspects} if the aspect not included 
+            in given list just define Other, if review does not mention
+            mention about any aspect in the list don't give any result
+            Result template must be in json format: 
+            aspect: opinion, polarity (must have aspect and opinion and polarity)
+            ###Review: {review} """
 
-        aspect = self.generator.llm_task_prediction(prompt)
+            aspect = self.generator.llm_task_prediction(prompt)
+            aspect = aspect.replace("```", "") # remove str
+            aspect = aspect.replace("json", "") # remove str
+            point["labels"] = aspect
+            count += 1
+            print(f"count: {count} aspect: {aspect}")
+            result.append(point)
+            time.sleep(4)
 
-        return aspect
+        result.clear() # clear after added
+        json.dump(result, outfile, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
-    pipeline = DataProcessPipeline()
+    conf = get_configs("../configs/absa_model.yaml")
+    conf["model"]["llm"]["type"] = "gemini"
+    conf["model"]["llm"]["name"] = "gemini-1.5-flash"
+
+    pipeline = DataProcessPipeline(conf)
     path = "./data_manipulation/metadata/manifests/train-manifest.json"
     path1 = "./data_manipulation/metadata/manifests/temp-ds-metadata.json"
     # opath = "./data_manipulation/metadata/processed_train.json"
@@ -218,9 +239,12 @@ if __name__ == "__main__":
     # pipeline.convert_csv2json(csv_path, out_json)
 
     # split ds
-    # pipeline.split_dataset(
-    #     "./data_manipulation/metadata/manifests/train-manifest.json",
-    #     "./data_manipulation/metadata/manifests/",
-    # )
+    pipeline.split_dataset(
+        "./metadata/manifests/subs/train-manifest1.2.2.3.json",
+        "./metadata/manifests/subs/train-manifest1.2.2.3",
+        train_size=0.4,
+        dev_size=0.3,
+        test_size=0.3
+    )
 
     print("DONE")

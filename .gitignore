@@ -161,6 +161,10 @@ cython_debug/
 # saved_model
 saved_model/
 
+# temps & sub
+data_manipulation/metadata/manifests/subs
+data_manipulation/metadata/manifests/temps
+
 # caching python file
 **/__pycache__/
 
