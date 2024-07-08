@@ -8,7 +8,10 @@ from langdetect import detect
 import csv
 import demoji
 import random
+import os
+import ast
 from libs.helper_functions import get_configs
+
 # from data_generator import Generator
 
 demoji.download_codes()  # download code
@@ -160,8 +163,7 @@ class DataProcessPipeline:
 
         # dataset len
         length = len(dataset)
-        random.shuffle(dataset) # shuffle the ds
-
+        random.shuffle(dataset)  # shuffle the ds
 
         train_len = int(train_size * length)
         dev_len = int((train_size + dev_size) * length)
@@ -182,15 +184,13 @@ class DataProcessPipeline:
             lang = detect(point["reviewText"])
             print(lang)
 
-    def apsect_extraction(self,
-                          path: str = None,
-                          out_path: str = None):
-        dataset = json.load(open(path, 'r', encoding='utf-8'))
-        outfile = open(out_path, 'a', encoding='utf-8')
-        result = [] # temporary results
+    def apsect_extraction(self, path: str = None, out_path: str = None):
+        dataset = json.load(open(path, "r", encoding="utf-8"))
+        outfile = open(out_path, "a", encoding="utf-8")
+        result = []  # temporary results
         count = 0
 
-        for idx, point in enumerate(dataset):
+        for idx, point in enumerate(dataset[650:1000]):
             review = point["review"]
 
             # prompt
@@ -206,16 +206,58 @@ class DataProcessPipeline:
             ###Review: {review} """
 
             aspect = self.generator.llm_task_prediction(prompt)
-            aspect = aspect.replace("```", "") # remove str
-            aspect = aspect.replace("json", "") # remove str
-            point["labels"] = aspect
+            aspect = aspect.replace("```", "")  # remove str
+            aspect = aspect.replace("json", "")  # remove str
+            point["labels"] = aspect  # convert 2 list
             count += 1
             print(f"count: {count} aspect: {aspect}")
             result.append(point)
             time.sleep(4)
 
-        result.clear() # clear after added
         json.dump(result, outfile, ensure_ascii=False, indent=4)
+        result.clear()  # clear after added
+
+    # bind json file
+    @staticmethod
+    def bind_jsonfile(outpath: str = None) -> None:
+        outfile = open(outpath, "a", encoding="utf-8")
+
+        dir = "./metadata/manifests/pp/"
+        package_list = []
+
+        for item in os.listdir(dir):
+            filepath = os.path.join(dir, item)
+            if filepath.endswith(".json"):
+                infile = open(filepath, "r", encoding="utf-8")
+                dataset = json.load(infile)
+                for idx, point in enumerate(dataset):
+                    package_list.append(point)
+
+        json.dump(package_list, outfile, ensure_ascii=False, indent=4)
+        package_list.clear()
+
+    # preprocessing after labeling
+    @staticmethod
+    def preprocessing_af_labeling(path: str, out_path: str):
+        infile = open(path, "r", encoding="utf-8")
+        outfile = open(out_path, "w", encoding="utf-8")
+
+        dataset = json.load(infile)
+        rs = []
+        for point in dataset:
+            len_labels = len(point["labels"])
+            if len_labels == 1:
+                data = {**point, "labels": point["labels"][0]}
+                rs.append(data)
+            if len_labels > 1:
+                for item in point["labels"]:
+                    data = {**point, "labels": item}
+                    rs.append(data)
+
+        json.dump(rs, outfile, ensure_ascii=False, indent=4)
+        rs.clear()
+
+
 
 
 if __name__ == "__main__":
@@ -239,12 +281,19 @@ if __name__ == "__main__":
     # pipeline.convert_csv2json(csv_path, out_json)
 
     # split ds
-    pipeline.split_dataset(
-        "./metadata/manifests/subs/train-manifest1.2.2.3.json",
-        "./metadata/manifests/subs/train-manifest1.2.2.3",
-        train_size=0.4,
-        dev_size=0.3,
-        test_size=0.3
-    )
+    # pipeline.split_dataset(
+    #     "./metadata/manifests/subs/train-manifest1.2.2.3.json",
+    #     "./metadata/manifests/subs/train-manifest1.2.2.3",
+    #     train_size=0.4,
+    #     dev_size=0.3,
+    #     test_size=0.3,
+    # )
+    
+    # bind json file
+    pipeline.bind_jsonfile(outpath="./metadata/manifests/train-clean-manifest.json")
+
+    # duplicate ds based on labels quantity
+    # pipeline.preprocessing_af_labeling(path="./metadata/manifests/temp/ds-0.json",
+    #                                    out_path="./metadata/manifests/temp/temp1-manifest.json")
 
     print("DONE")

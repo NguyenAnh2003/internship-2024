@@ -18,7 +18,26 @@ class Generator:
             # config gemini
             # call with model name
             genai.configure(api_key=api_key)
-            self.llm = genai.GenerativeModel(self.conf.model.llm.name)
+            safety_setting = [
+                {
+                    "category": "HARM_CATEGORY_HARASSMENT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_HATE_SPEECH",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    "threshold": "BLOCK_NONE"
+                },
+                {
+                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    "threshold": "BLOCK_NONE"
+                },
+            ]
+            self.llm = genai.GenerativeModel(self.conf.model.llm.name,
+                                             safety_settings=safety_setting)
 
     def llm_task_prediction(self, prompt_template):
         response = self.llm.generate_content(prompt_template)
