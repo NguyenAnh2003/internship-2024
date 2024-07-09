@@ -266,6 +266,7 @@ if __name__ == "__main__":
     conf["model"]["llm"]["name"] = "gemini-1.5-flash"
 
     pipeline = DataProcessPipeline(conf)
+    temp_path = "metadata/manifests/temp-manifest.json"
     path = "./data_manipulation/metadata/manifests/train-manifest.json"
     path1 = "./data_manipulation/metadata/manifests/temp-ds-metadata.json"
     # opath = "./data_manipulation/metadata/processed_train.json"
@@ -293,7 +294,24 @@ if __name__ == "__main__":
     pipeline.bind_jsonfile(outpath="./metadata/manifests/train-clean-manifest.json")
 
     # duplicate ds based on labels quantity
-    # pipeline.preprocessing_af_labeling(path="./metadata/manifests/temp/ds-0.json",
-    #                                    out_path="./metadata/manifests/temp/temp1-manifest.json")
+    # pipeline.preprocessing_af_labeling(path="./metadata/manifests/temp/ds-6.json",
+    #                                    out_path="./metadata/manifests/pp/temp1-manifest.json")
+
+    rs = []
+    ds = json.load(open(temp_path, 'r', encoding='utf-8'))
+    # for idx, point in enumerate(ds):
+    #     data = {**point, "aspect": point["labels"]["aspect"],
+    #             "opinion": point["labels"]["opinion"],
+    #             "polarity": point["labels"]["polarity"]}
+    #     rs.append(data)
+
+    # outfile = open("metadata/manifests/temp0-manifest.json", 'w', encoding='utf-8')
+    # for point in ds:
+    #     del point["labels"]
+    #     point["polarity"] = point["polarity"].lower()
+    #     del point["rating"]
+    #     rs.append(point)
+    #
+    # json.dump(rs, outfile, ensure_ascii=False, indent=4)
 
     print("DONE")

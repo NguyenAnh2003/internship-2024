@@ -2,7 +2,7 @@ from transformers import AutoModel, BertModel, BertTokenizer
 from omegaconf import OmegaConf, DictConfig
 
 
-class ModelModule:
+class PModelModule:
     def __init__(self, conf: DictConfig = None) -> None:
         self.conf = OmegaConf.create(conf)
 

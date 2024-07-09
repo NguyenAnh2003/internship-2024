@@ -1,7 +1,7 @@
 model:
  # label aspects
  label_aspects: ["Safety", "Cleanliness", "Data availability", "Price fairness", 
- "User-friendly payment system", "Handling complaints", "Satisfactions", "Facilities at station", 
+ "User-friendly payment system", "Satisfactions", "Facilities at station", 
  "Facilities within train", "Accessibility for disabilities", "Maintenance", 
  "Punctuality", "Ease of connections between lines", "Reliability equipment", 
  "Accidents", "Others"]

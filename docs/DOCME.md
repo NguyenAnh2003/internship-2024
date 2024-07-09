@@ -7,3 +7,5 @@
 6. finetuning bert with absa: [link](https://arxiv.org/abs/1903.09588)
 7. instruction tuning: [link](https://medium.com/@veer15/the-hitchhikers-guide-to-instruction-tuning-large-language-models-d6441dbf1413)
 8. iabsa: [link](https://github.com/kevinscaria/InstructABSA/blob/main/instructions.py)
+9. multi-task: [link](https://arxiv.org/pdf/1912.07976)
+10. multi-task2: [link](https://github.com/ScalaConsultants/Aspect-Based-Sentiment-Analysis)
