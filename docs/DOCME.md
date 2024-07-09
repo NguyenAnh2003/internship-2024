@@ -9,3 +9,7 @@
 8. iabsa: [link](https://github.com/kevinscaria/InstructABSA/blob/main/instructions.py)
 9. multi-task: [link](https://arxiv.org/pdf/1912.07976)
 10. multi-task2: [link](https://github.com/ScalaConsultants/Aspect-Based-Sentiment-Analysis)
+11. finetuning deberta: [link](https://github.com/huberemanuel/DeBERTa/blob/master/ABSA-DeBERTa/DeBERTa_Experiment.ipynb)
+12. ff: [link](https://github.com/nicolezattarin/BERT-Aspect-Based-Sentiment-Analysis)
+13. pretrained absa: [link](https://huggingface.co/yangheng/deberta-v3-base-absa-v1.1)
+14. simple-finetuning: [link](https://github.com/1tangerine1day/Aspect-Term-Extraction-and-Analysis)

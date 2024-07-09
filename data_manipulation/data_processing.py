@@ -26,7 +26,7 @@ class DataProcessPipeline:
 
         self.punctuations = [",", ".", "!", "?", ";", ":", "<", ">", "/", "-"]
 
-    def processing_step(self, path: str = None, out_path: str = None):
+    def processing_step(self, path: str = None, outpath: str = None):
         result = []
         # json file
         json_file = open(path, "r", encoding="utf-8")
@@ -51,15 +51,26 @@ class DataProcessPipeline:
                 result.append(point)
 
         # write data to out file
-        out_file = open(out_path, "w", encoding="utf-8")
+        out_file = open(outpath, "w", encoding="utf-8")
         json.dump(result, out_file, indent=4, ensure_ascii=False)
 
     @staticmethod
-    def convert_csv2json(path: str, out_path: str):
+    def convert_json2csv(path: str = None, outpath: str = None) -> None:
+        json_ds = json.load(open(path, 'r', encoding='utf-8'))
+        csv_file = open(outpath, 'w', encoding='utf-8')
+        writer = csv.writer(csvfile=csv_file)
+        writer.writerow(json_ds[0].keys()) # write header
+        
+        for idx, point in enumerate(json_ds):
+            writer.writerow(point.values())
+        
+
+    @staticmethod
+    def convert_csv2json(path: str, outpath: str):
         # csv file
         csv_file = open(path, "r", encoding="utf-8")
         # json file
-        json_file = open(out_path, "w", encoding="utf-8")
+        json_file = open(outpath, "w", encoding="utf-8")
         # csv reader
         reader = csv.reader(csv_file)
         next(reader)  # skip the header
@@ -102,7 +113,7 @@ class DataProcessPipeline:
             string = string.replace(item, "")
         return string
 
-    def prepreprocesse_ds(self, path: str, out_path: str = None):
+    def prepreprocesse_ds(self, path: str, outpath: str = None):
         json_file = open(path, "r", encoding="utf-8")
         dataset = json.load(json_file)
 
@@ -122,7 +133,7 @@ class DataProcessPipeline:
                 if key in point:
                     del point[key]
 
-        outfile = open(out_path, "w", encoding="utf-8")
+        outfile = open(outpath, "w", encoding="utf-8")
         json.dump(dataset, outfile, indent=4, ensure_ascii=False)
 
     @staticmethod
@@ -140,7 +151,7 @@ class DataProcessPipeline:
     @staticmethod
     def split_dataset(
         path: str = None,
-        out_path: str = None,
+        outpath: str = None,
         train_size: float = 0.7,
         dev_size: float = 0.15,
         test_size: float = 0.15,
@@ -148,12 +159,12 @@ class DataProcessPipeline:
         assert train_size + dev_size + test_size == 1.0
 
         # define path
-        # train_path = out_path + "train-manifest1.3.1.json"
-        train_path = out_path + ".1.json"
-        # dev_path = out_path + "train-manifest1.3.2.json"
-        dev_path = out_path + ".2.json"
-        # test_path = out_path + "train-manifest1.3.3.json"
-        test_path = out_path + ".3.json"
+        # train_path = outpath + "train-manifest1.3.1.json"
+        train_path = outpath + ".1.json"
+        # dev_path = outpath + "train-manifest1.3.2.json"
+        dev_path = outpath + ".2.json"
+        # test_path = outpath + "train-manifest1.3.3.json"
+        test_path = outpath + ".3.json"
 
         # json file
         dataset = json.load(open(path, "r", encoding="utf-8"))  # read
@@ -184,9 +195,9 @@ class DataProcessPipeline:
             lang = detect(point["reviewText"])
             print(lang)
 
-    def apsect_extraction(self, path: str = None, out_path: str = None):
+    def apsect_extraction(self, path: str = None, outpath: str = None):
         dataset = json.load(open(path, "r", encoding="utf-8"))
-        outfile = open(out_path, "a", encoding="utf-8")
+        outfile = open(outpath, "a", encoding="utf-8")
         result = []  # temporary results
         count = 0
 
@@ -238,9 +249,9 @@ class DataProcessPipeline:
 
     # preprocessing after labeling
     @staticmethod
-    def preprocessing_af_labeling(path: str, out_path: str):
+    def preprocessing_af_labeling(path: str, outpath: str):
         infile = open(path, "r", encoding="utf-8")
-        outfile = open(out_path, "w", encoding="utf-8")
+        outfile = open(outpath, "w", encoding="utf-8")
 
         dataset = json.load(infile)
         rs = []
@@ -272,8 +283,8 @@ if __name__ == "__main__":
     # opath = "./data_manipulation/metadata/processed_train.json"
 
     # remove un cols -> processing_step.
-    # pipeline.prepreprocesse_ds(path=path, out_path=opath)
-    # pipeline.processing_step(path=path, out_path=path)
+    # pipeline.prepreprocesse_ds(path=path, outpath=opath)
+    # pipeline.processing_step(path=path, outpath=path)
     # pipeline.get_total_samples(path=path)
 
     # convert csv2json
@@ -295,7 +306,7 @@ if __name__ == "__main__":
 
     # duplicate ds based on labels quantity
     # pipeline.preprocessing_af_labeling(path="./metadata/manifests/temp/ds-6.json",
-    #                                    out_path="./metadata/manifests/pp/temp1-manifest.json")
+    #                                    outpath="./metadata/manifests/pp/temp1-manifest.json")
 
     rs = []
     ds = json.load(open(temp_path, 'r', encoding='utf-8'))
