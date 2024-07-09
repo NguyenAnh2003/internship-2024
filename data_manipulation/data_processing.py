@@ -57,8 +57,9 @@ class DataProcessPipeline:
     @staticmethod
     def convert_json2csv(path: str = None, outpath: str = None) -> None:
         json_ds = json.load(open(path, 'r', encoding='utf-8'))
-        csv_file = open(outpath, 'w', encoding='utf-8')
-        writer = csv.writer(csvfile=csv_file)
+        csv_file = open(outpath, mode='w', encoding='utf-8', newline='')
+        writer = csv.writer(csv_file)
+
         writer.writerow(json_ds[0].keys()) # write header
         
         for idx, point in enumerate(json_ds):
@@ -302,14 +303,14 @@ if __name__ == "__main__":
     # )
     
     # bind json file
-    pipeline.bind_jsonfile(outpath="./metadata/manifests/train-clean-manifest.json")
+    # pipeline.bind_jsonfile(outpath="./metadata/manifests/train-clean-manifest.json")
 
     # duplicate ds based on labels quantity
     # pipeline.preprocessing_af_labeling(path="./metadata/manifests/temp/ds-6.json",
     #                                    outpath="./metadata/manifests/pp/temp1-manifest.json")
 
-    rs = []
-    ds = json.load(open(temp_path, 'r', encoding='utf-8'))
+    # rs = []
+    # ds = json.load(open(temp_path, 'r', encoding='utf-8'))
     # for idx, point in enumerate(ds):
     #     data = {**point, "aspect": point["labels"]["aspect"],
     #             "opinion": point["labels"]["opinion"],
@@ -324,5 +325,10 @@ if __name__ == "__main__":
     #     rs.append(point)
     #
     # json.dump(rs, outfile, ensure_ascii=False, indent=4)
+
+    # convert json2csv
+    path = "metadata/manifests/train-clean-manifest.json"
+    outpath = "metadata/train-clean-manifest.csv"
+    pipeline.convert_json2csv(path=path, outpath=outpath)
 
     print("DONE")
