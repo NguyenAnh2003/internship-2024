@@ -126,9 +126,11 @@ class InstructionTuningLLM:
         encoding = self.tokenizer(prompt, return_tensors="pt").to("")
         
         with torch.inference_mode():
-            # outputs = self.model.generate(
-            #     input_ids
-            #     attention_mask
-            #     generation_config
-            # )
-            pass
+            prediction = self.model.generate(
+                input_ids=encoding.input_ids,
+                attention_mask=encoding.attention_mask,
+                # generation_config=self.conf
+            )
+            
+        output = self.tokenizer.decode(prediction[0], skip_special_tokens=True)
+        return output
