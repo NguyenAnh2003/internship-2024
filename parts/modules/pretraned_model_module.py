@@ -1,6 +1,9 @@
 from transformers import AutoModel, BertModel, BertTokenizer, AutoTokenizer
 from omegaconf import OmegaConf, DictConfig
-
+import torch.nn.functional as F
+from torch.utils.data import Dataset, DataLoader
+from data_manipulation.dataloader import ABSAloader, ABSADataset
+from libs.helper_functions import get_configs
 
 class PModelModule:
     def __init__(self, conf: DictConfig = None) -> None:
@@ -20,6 +23,12 @@ class PModelModule:
 
         return model, tokenizer
 
+
+    def _setup_train_dataloader(self, path):
+        dataset = ABSADataset(tokenizer=self.tokenizer, csv_path=path)
+
+        dataloader = ABSAloader(dataset,)
+
     def finetuning_pretrained_model(self):
 
         if self.conf.model.pretrained.freeze == True:
@@ -27,3 +36,10 @@ class PModelModule:
                 param.requires_grad = False
 
         print(f"Model: {self.model} " f"Tokenizer: {self.tokenizer}")
+
+if __name__ == "__main__":
+    conf = get_configs("../../configs/absa_model.yaml")
+    conf["model"]["pretrained"]["name"] = "google-bert/bert-base-multilingual-cased"
+
+    module = PModelModule(conf)
+    module._setup_train_dataloader("../../data_manipulation/metadata/train-clean-manifest.csv")

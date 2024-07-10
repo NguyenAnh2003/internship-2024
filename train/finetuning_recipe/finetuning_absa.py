@@ -1,6 +1,5 @@
 from parts.modules.pretraned_model_module import PModelModule
 from libs.helper_functions import get_configs
-from transformers import Trainer, TrainingArguments
 
 
 if __name__ == "__main__":

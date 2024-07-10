@@ -97,7 +97,7 @@ class InstructionTuningLLM:
     def _instruction_template(self, data_point):
         return f""
 
-    def instruction_tuning():
+    def instruction_tuning(self):
         train_args = TrainingArguments()
         trainer = Trainer()
         trainer.train()  # train !!!
