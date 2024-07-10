@@ -1,9 +1,7 @@
 model:
- common:
-  load_in_4bit: True
-  torch_dtype: ???
-  use_cache: False
-  
+ load_in_4bit: True
+ use_cache: False
+
  # model config
  model_name: ???
 
@@ -22,17 +20,17 @@ model:
 
  # bit and bytes config
  bitandbytes_config:
-  bnb_4bit_compute_dtype: ???
-  bnb_4bit_quant_type: ???
-  bnb_4bit_use_double_quant: ???
+   # bnb_4bit_compute_dtype: ???
+   bnb_4bit_quant_type: 'nf4'
+   bnb_4bit_use_double_quant: True
 
   # peft config
-  peft_config:
-   alpha: ???
-   lora_dropout: ???
-   peft_r: ???
-   peft_bias: ???
-   task_type: ???
+ peft_config:
+   alpha: 16
+   lora_dropout: 0.1
+   peft_r: 64
+   peft_bias: 'none'
+   task_type: "CAUSAL_LM"
 
  # train parameters
  train:

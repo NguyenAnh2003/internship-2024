@@ -24,19 +24,19 @@ from trl import SFTTrainer, DataCollatorForCompletionOnlyLM
 class InstructionTuningLLM:
     def __init__(self, conf: DictConfig = None):
         self.conf = OmegaConf.create(conf)
-        self.model, self.tokenizer = self._init_pretrained_llm()
         self.peft_config = self._setup_peft_config()
-        self.bnb_config = self._setup_4bit_quant_config()  # setup bit and byte config
+        self.bnb_conf = self._setup_4bit_quant_config()  # setup bit and byte config
+        self.model, self.tokenizer = self._init_pretrained_llm()
 
     def _setup_4bit_quant_config(self):
-        self.conf.model.bitandbytes_config.bnb_4bit_compute_dtype = (
-            torch.float16
-        )  # float 16 or bfloat 16
+        # self.conf.model.bitandbytes_config.bnb_4bit_compute_dtype = (
+        #     torch.float16
+        # )  # float 16 or bfloat 16
 
         config = BitsAndBytesConfig(
-            load_in_4bit=self.conf.model.common.load_in_4bit,  # common config load 4 bit
+            load_in_4bit=self.conf.model.load_in_4bit,  # config load 4 bit
             bnb_4bit_quant_type=self.conf.model.bitandbytes_config.bnb_4bit_quant_type,
-            bnb_4bit_compute_dtype=self.conf.model.bitandbytes_config.bnb_4bit_compute_dtype,
+            bnb_4bit_compute_dtype=torch.bfloat16,
             bnb_4bit_use_double_quant=self.conf.model.bitandbytes_config.bnb_4bit_use_double_quant,
         )
 
@@ -60,11 +60,11 @@ class InstructionTuningLLM:
         return peft_model
 
     def _init_pretrained_llm(self):
-
+        model = None #
         tokenizer = AutoTokenizer.from_pretrained(
             self.conf.model.model_name,
             trust_remote_code=True,
-            torch_dtype=self.conf.model.common.torch_dtype,
+            torch_dtype=torch.bfloat16,
         )  # tokenizer
 
         # if tokenizer.pad_token is None:
@@ -73,21 +73,14 @@ class InstructionTuningLLM:
         # tokenizer.add_eos_token = True
 
         # config use_cache: False -> don't use old params
-        model = AutoModelForCausalLM.from_pretrained(
-            self.conf.model.model_name,
-            use_cache=self.conf.model.common.use_cache,
-            torch_dtype=self.conf.model.common.torch_dtype,
-            load_in_4bit=self.conf.model.common.load_in_4bit,
-            quantization_config=self.bnb_config,  # inited on constructor
-            trust_remote_code=True,
-        )
-
-        """ getting model for kbit quantization
-		Casts all the non kbit modules to full precision(fp32) for stability
-		Adds a forward hook to the input embedding layer to calculate the
-		gradients of the input hidden states
-		Enables gradient checkpointing for more memory-efficient training
-		"""
+        if self.bnb_conf:
+            model = AutoModelForCausalLM.from_pretrained(
+                self.conf.model.model_name,
+                use_cache=self.conf.model.use_cache,
+                torch_dtype=torch.bfloat16,
+                quantization_config=self.bnb_conf,  # inited on constructor
+                trust_remote_code=True,
+            )
 
         model.config.use_cache = False  # avoid caching params
         model.gradient_checkpointing_enable()  # enable grad check point for not memorize the length chain
@@ -131,6 +124,6 @@ class InstructionTuningLLM:
 if __name__ == "__main__":
     conf = get_configs("../../configs/instruction_tuning_absa.yaml")
     conf["model"]["model_name"] = "google-bert/bert-base-multilingual-cased"
-    conf["model"]["common"]["torch_dtype"] = torch.float16
+    print(conf)
     iabsa = InstructionTuningLLM(conf=conf)
-    iabsa.setup_train_dataset(path="../../data_manipulation/metadata/generated-manifest.csv")
+    # iabsa.setup_train_dataset(path="../../data_manipulation/metadata/generated-manifest.csv")
