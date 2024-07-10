@@ -94,23 +94,11 @@ class InstructionTuningLLM:
 
         return model, tokenizer
 
-    def _instruction_template4train(self, data_point):
-        # take review as input and aspect, polarity as output
-        if self.conf.model.instruction_style == "simple":
-            instruction_style = f""" 
-            ###Instruct: Follow the given review and the corresponded output
-            try to brainstorm and predict the aspect and polarity of that aspect in the review
-            ###Input: {data_point["review"]}
-            ###Output: aspect: {data_point["aspect"]} polarity: {data_point["polarity"]}
-            """
-        
-        return instruction_style
-
     def instruction_tuning(self):
         train_args = TrainingArguments()
         trainer = Trainer()
         trainer.train()  # train !!!
-        
+
     def inference(self, data_point):
         # prompt template
         def _instruction_template4inference(point):
@@ -119,18 +107,18 @@ class InstructionTuningLLM:
         (the aspect and corresponded polarity must be belongs to train service) 
         ###Input: {point["review"]}
         """
-        
+
         # calling model
-        prompt = _instruction_template4inference(data_point) # get prompt
-        
+        prompt = _instruction_template4inference(data_point)  # get prompt
+
         encoding = self.tokenizer(prompt, return_tensors="pt").to("")
-        
+
         with torch.inference_mode():
             prediction = self.model.generate(
                 input_ids=encoding.input_ids,
                 attention_mask=encoding.attention_mask,
                 # generation_config=self.conf
             )
-            
+
         output = self.tokenizer.decode(prediction[0], skip_special_tokens=True)
         return output

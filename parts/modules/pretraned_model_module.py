@@ -32,10 +32,4 @@ class PModelModule:
                 param.requires_grad = False
 
         print(f"Model: {self.model} " f"Tokenizer: {self.tokenizer}")
-
-if __name__ == "__main__":
-    conf = get_configs("../../configs/absa_model.yaml")
-    conf["model"]["pretrained"]["name"] = "google-bert/bert-base-multilingual-cased"
-
-    module = PModelModule(conf)
-    module._setup_train_dataloader("../../data_manipulation/metadata/train-clean-manifest.csv")
+        
