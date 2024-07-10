@@ -15,13 +15,14 @@ from peft import (
     # get_peft_model_state_dict,
     get_peft_model,
 )
-
+from libs.helper_functions import get_configs
+from data_manipulation.dataloader import ABSADataset
 from datasets import load_dataset
 from trl import SFTTrainer, DataCollatorForCompletionOnlyLM
 
 
 class InstructionTuningLLM:
-    def __init__(self, conf: DictConfig = None) -> None:
+    def __init__(self, conf: DictConfig = None):
         self.conf = OmegaConf.create(conf)
         self.model, self.tokenizer = self._init_pretrained_llm()
         self.peft_config = self._setup_peft_config()
@@ -94,6 +95,10 @@ class InstructionTuningLLM:
 
         return model, tokenizer
 
+    def setup_train_dataset(self, path):
+        dataset = ABSADataset(self.tokenizer, self.conf, path)
+        dataset.show_metadata() # showing metadata first
+
     def instruction_tuning(self):
         train_args = TrainingArguments()
         trainer = Trainer()
@@ -122,3 +127,10 @@ class InstructionTuningLLM:
 
         output = self.tokenizer.decode(prediction[0], skip_special_tokens=True)
         return output
+
+if __name__ == "__main__":
+    conf = get_configs("../../configs/instruction_tuning_absa.yaml")
+    conf["model"]["model_name"] = "google-bert/bert-base-multilingual-cased"
+    conf["model"]["common"]["torch_dtype"] = torch.float16
+    iabsa = InstructionTuningLLM(conf=conf)
+    iabsa.setup_train_dataset(path="../../data_manipulation/metadata/generated-manifest.csv")

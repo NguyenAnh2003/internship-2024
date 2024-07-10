@@ -32,6 +32,7 @@ class ABSADataset(Dataset):
             and polarity of that aspect in the review
             ###Input: {review}
             ###Output: aspect: {aspect} polarity: {polarity} opinion: {opinion}
+            
             """
         special_symbol = "\n            " # do not change "\n            "
         batch["prompt"] = prompt.replace(special_symbol, " ").strip()
