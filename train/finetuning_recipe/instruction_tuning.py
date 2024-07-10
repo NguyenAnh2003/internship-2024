@@ -95,7 +95,14 @@ class InstructionTuningLLM:
         return model, tokenizer
 
     def _instruction_template(self, data_point):
-        return f""
+        # take review as input and aspect, polarity as output
+        return f""" 
+            ###Instruct: Follow the given review and the corresponded output
+            try to brainstorm and predict the aspect and polarity of that aspect in the review
+            ###Input: {data_point["review"]}
+            ###Output: aspect: {data_point["aspect"]} 
+            polarity: {data_point["polarity"]}
+            """
 
     def instruction_tuning(self):
         train_args = TrainingArguments()
