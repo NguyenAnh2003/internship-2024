@@ -13,3 +13,4 @@
 12. ff: [link](https://github.com/nicolezattarin/BERT-Aspect-Based-Sentiment-Analysis)
 13. pretrained absa: [link](https://huggingface.co/yangheng/deberta-v3-base-absa-v1.1)
 14. simple-finetuning: [link](https://github.com/1tangerine1day/Aspect-Term-Extraction-and-Analysis)
+15. LLM finetuning: [link](https://www.datacamp.com/tutorial/fine-tuning-large-language-models)

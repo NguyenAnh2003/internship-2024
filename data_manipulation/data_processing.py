@@ -82,15 +82,15 @@ class DataProcessPipeline:
             try:
                 # define data dict
                 data_package = {
-                    "id": int(line[1]),
-                    "title": line[2],
-                    "review": line[3],
-                    "rating": int(line[4]),
-                    "country": line[5],
-                    "polarity": line[6],
-                    "month": line[8],
-                    "year": line[9],
-                    "social": line[-1],
+                    "title": line[0],
+                    "review": line[-3],
+                    "country": line[-2],
+                    "aspect": line[4],
+                    "opinion": line[5],
+                    "polarity": line[-1],
+                    "month": line[1],
+                    "year": int(line[2]),
+                    "social": line[3],
                 }
 
                 package_list.append(data_package)
@@ -279,7 +279,7 @@ if __name__ == "__main__":
 
     pipeline = DataProcessPipeline(conf)
     temp_path = "metadata/manifests/temp-manifest.json"
-    path = "./data_manipulation/metadata/manifests/train-manifest.json"
+    path = "./data_manipulation/metadata/manifests/gen-manifest.json"
     path1 = "./data_manipulation/metadata/manifests/temp-ds-metadata.json"
     # opath = "./data_manipulation/metadata/processed_train.json"
 
@@ -289,9 +289,9 @@ if __name__ == "__main__":
     # pipeline.get_total_samples(path=path)
 
     # convert csv2json
-    # csv_path = "./data_manipulation/metadata/total.csv"
-    # out_json = "./data_manipulation/metadata/manifests/train-manifest.json"
-    # pipeline.convert_csv2json(csv_path, out_json)
+    csv_path = "metadata/generated-manifest.csv"
+    out_json = "metadata/manifests/train-manifest.json"
+    pipeline.convert_csv2json(csv_path, out_json)
 
     # split ds
     # pipeline.split_dataset(
@@ -327,8 +327,8 @@ if __name__ == "__main__":
     # json.dump(rs, outfile, ensure_ascii=False, indent=4)
 
     # convert json2csv
-    path = "metadata/manifests/train-clean-manifest.json"
-    outpath = "metadata/train-clean-manifest.csv"
-    pipeline.convert_json2csv(path=path, outpath=outpath)
+    # path = "metadata/manifests/train-clean-manifest.json"
+    # outpath = "metadata/train-clean-manifest.csv"
+    # pipeline.convert_json2csv(path=path, outpath=outpath)
 
     print("DONE")
