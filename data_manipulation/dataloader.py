@@ -27,13 +27,14 @@ class ABSADataset(Dataset):
         prompt = ""
         # take review as input and aspect, polarity as output
         if self.conf.model.instruction_style == "simple":
-            prompt = f"""###Instruct: Follow the given review and the 
+            prompt = f"""###Instruct: Follow the given review and the
             corresponded output try to brainstorm and predict the aspect
-            and polarity of that aspect in the review 
-            ###Input: {review} 
-            ###Output: aspect: {aspect} polarity: {polarity} opinion: {opinion} 
+            and polarity of that aspect in the review
+            ###Input: {review}
+            ###Output: aspect: {aspect} polarity: {polarity} opinion: {opinion}
             """
-        batch["prompt"] = prompt
+        special_symbol = "\n            " # do not change \n
+        batch["prompt"] = prompt.replace(special_symbol, " ").strip()
 
         return batch
 
