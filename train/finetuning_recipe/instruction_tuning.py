@@ -29,10 +29,6 @@ class InstructionTuningLLM:
         self.model, self.tokenizer = self._init_pretrained_llm()
 
     def _setup_4bit_quant_config(self):
-        # self.conf.model.bitandbytes_config.bnb_4bit_compute_dtype = (
-        #     torch.float16
-        # )  # float 16 or bfloat 16
-
         config = BitsAndBytesConfig(
             load_in_4bit=self.conf.model.load_in_4bit,  # config load 4 bit
             bnb_4bit_quant_type=self.conf.model.bitandbytes_config.bnb_4bit_quant_type,
