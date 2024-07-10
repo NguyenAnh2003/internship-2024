@@ -18,6 +18,9 @@ model:
  # label polarity
  label_polarities: ["positive", "negative", "neutral"]
 
+ # instruction style
+ instruction_style: simple # multi-task or simple
+
  # bit and bytes config
  bitandbytes_config:
   bnb_4bit_compute_dtype: ???

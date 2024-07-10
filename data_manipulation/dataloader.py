@@ -13,7 +13,6 @@ class ABSADataset(Dataset):
         # attention_mask =
         return {"tokens": tokens, "ids": ids}
 
-w
     def __len__(self):
         return len(self.dataset)
 
