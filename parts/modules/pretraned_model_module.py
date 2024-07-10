@@ -1,8 +1,6 @@
 from transformers import AutoModel, BertModel, BertTokenizer, AutoTokenizer
 from omegaconf import OmegaConf, DictConfig
 import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
-from data_manipulation.dataloader import ABSAloader, ABSADataset
 from libs.helper_functions import get_configs
 
 class PModelModule:
@@ -25,9 +23,7 @@ class PModelModule:
 
 
     def _setup_train_dataloader(self, path):
-        dataset = ABSADataset(tokenizer=self.tokenizer, csv_path=path)
-
-        dataloader = ABSAloader(dataset,)
+        pass
 
     def finetuning_pretrained_model(self):
 

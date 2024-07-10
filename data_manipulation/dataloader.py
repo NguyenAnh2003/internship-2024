@@ -1,5 +1,6 @@
 from torch.utils.data import Dataset, DataLoader
 import pandas as pd
+from datasets import Dataset as HFDataset
 
 class ABSADataset(Dataset):
     def __init__(self, tokenizer, csv_path) -> None:
