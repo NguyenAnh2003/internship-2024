@@ -1,4 +1,4 @@
-from parts.modules.pretraned_model_module import ModelModule
+from parts.modules.pretraned_model_module import PModelModule
 from omegaconf import DictConfig, OmegaConf
 from torch.nn import Module, Sequential
 import torch
@@ -9,7 +9,7 @@ class ABSAModel(Module):
         self.conf = OmegaConf.create(conf)
 
         # define pretrained model module
-        self.module = ModelModule(conf) # define pretrained model module
+        self.module = PModelModule(conf) # define pretrained model module
         self.pretrained_model = self.module.model # pretrained model
 
         if self.conf.model.pretrained.freeze == True:

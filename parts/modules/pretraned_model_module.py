@@ -1,4 +1,4 @@
-from transformers import AutoModel, BertModel, BertTokenizer, AutoTokenizer
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from omegaconf import OmegaConf, DictConfig
 import torch.nn.functional as F
 from libs.helper_functions import get_configs
@@ -12,7 +12,7 @@ class PModelModule:
 
     def get_pretrained_model_and_tokenizer(self):
         # using transformers package to get pretrained model
-        model = AutoModel.from_pretrained(
+        model = AutoModelForSequenceClassification.from_pretrained(
             self.conf.model.pretrained.name
         )  # get pretrained model name
 

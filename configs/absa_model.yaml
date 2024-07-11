@@ -1,23 +1,23 @@
 model:
  # label aspects
- label_aspects: ["Safety", "Cleanliness", "Data availability", "Price fairness", 
- "User-friendly payment system", "Satisfactions", "Facilities at station", 
- "Facilities within train", "Accessibility for disabilities", "Maintenance", 
- "Punctuality", "Ease of connections between lines", "Reliability equipment", 
- "Accidents", "Others"]
+ label_aspects: ["Safety", "Cleanliness", "Data availability",
+                 "Price fairness", "Satisfactions",
+                 "Facilities", "Maintenance",
+                 "Punctuality", "Accessibility",
+                 "Others", "Staff service"]
  
  # label polarity
  label_polarity: ["positive", "negative", "neutral"]
- 
+
  # using LLM
  llm:
   type: ???
   name: ???
-
+ style: "ate"
  # using pretrained model for fine tuning
  pretrained:
   bert: True
-  name: ???
+  name: "yangheng/deberta-v3-base-absa-v1.1"
   freeze: ??? # freeze model for finetuning or training
 
  train:

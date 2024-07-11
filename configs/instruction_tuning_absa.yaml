@@ -4,6 +4,10 @@ model:
 
  # model config
  model_name: ???
+ # device config
+ device: "cuda"
+ # output dir for saved model
+ output_dir: ???
 
  # label aspects
  label_aspects: ["Safety", "Cleanliness", "Data availability", "Price fairness", 
@@ -34,7 +38,21 @@ model:
 
  # train parameters
  train:
-  epoch:
-  batch:
-  lr:
-  optimizer:
+  # SFTTrainer
+  train_dir: ???
+  epoch: 2
+  batch: 8
+  lr: 2e-4
+  optimizer: "adamw_torch_fused"
+  max_seq_len: 3072
+  packing: True
+  gradient_accumulation_steps: 2
+  gradient_checkpointing: True
+  logging_steps: 100
+  bf16: True
+  tf32: False
+  max_grad_norm: 0.3
+  warmup_ratio: 0.3
+  lr_scheduler_type: "constant"
+  push_to_hub: False
+  report_to: "wandb"

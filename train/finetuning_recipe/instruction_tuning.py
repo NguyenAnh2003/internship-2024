@@ -86,7 +86,6 @@ class InstructionTuningLLM:
 
     def setup_train_dataset(self, path):
         dataset = ABSADataset(self.tokenizer, self.conf, path)
-        dataset.show_metadata() # showing metadata first
 
     def instruction_tuning(self):
         train_args = TrainingArguments()

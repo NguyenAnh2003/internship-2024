@@ -11,14 +11,17 @@ class ABSADataset(Dataset):
         self.conf = OmegaConf.create(conf)
         self.tokenizer = tokenizer  # tokenizer as transform
         self.dataset = self._create_hf_ds(csv_path=csv_path)  # create HF dataset
-        self.dataset = self.dataset.map(
-            self._instruction_template4train
-        )  # mapping data
+        if self.conf.model.style == "ate":
+            self.dataset = self.dataset.map(
+                self._process_hf_ds
+            )  # mapping data
+        elif self.conf.model.style == "instruction_tuning":
+            self.dataset = self.dataset.map(self._processw_instruction_tuning_ds)
 
     def __getitem__(self, index):
         pass
 
-    def _instruction_template4train(self, batch):
+    def _processw_instruction_tuning_ds(self, batch):
         # prepare HF dataset
         review = batch["review"]
         aspect = batch["aspect"]  # label2index
@@ -32,10 +35,17 @@ class ABSADataset(Dataset):
             and polarity of that aspect in the review
             ###Input: {review}
             ###Output: aspect: {aspect} polarity: {polarity} opinion: {opinion}
-            
+
             """
-        special_symbol = "\n            " # do not change "\n            "
+        special_symbol = "\n            "  # do not change "\n            "
         batch["prompt"] = prompt.replace(special_symbol, " ").strip()
+
+        return batch
+
+    def _process_hf_ds(self, batch):
+        # prepare HF dataset
+        review = batch["review"]
+        aspect = batch["aspect"]
 
         return batch
 
@@ -44,16 +54,6 @@ class ABSADataset(Dataset):
         train_csv = pd.read_csv(csv_path)
         ds = HFDataset.from_pandas(train_csv)
         return ds
-
-    def show_metadata(self):
-        for i, row in enumerate(self.dataset):
-            review = row["review"]
-            aspect = row["aspect"]
-            opinion = row["opinion"]
-            polarity = row["polarity"]
-            prompt = row["prompt"]
-            result = {review, prompt, aspect, opinion, polarity}
-            print(f"Point: {i} dict: {result}")
 
     def __len__(self):
         return len(self.dataset)
@@ -65,4 +65,3 @@ if __name__ == "__main__":
 
     ds = ABSADataset(conf=conf, csv_path="metadata/generated-manifest.csv")
 
-    ds.show_metadata()

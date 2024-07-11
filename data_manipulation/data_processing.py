@@ -278,57 +278,15 @@ if __name__ == "__main__":
     conf["model"]["llm"]["name"] = "gemini-1.5-flash"
 
     pipeline = DataProcessPipeline(conf)
-    temp_path = "metadata/manifests/temp-manifest.json"
-    path = "./data_manipulation/metadata/manifests/gen-manifest.json"
-    path1 = "./data_manipulation/metadata/manifests/temp-ds-metadata.json"
-    # opath = "./data_manipulation/metadata/processed_train.json"
-
-    # remove un cols -> processing_step.
-    # pipeline.prepreprocesse_ds(path=path, outpath=opath)
-    # pipeline.processing_step(path=path, outpath=path)
-    # pipeline.get_total_samples(path=path)
-
-    # convert csv2json
-    csv_path = "metadata/generated-manifest.csv"
-    out_json = "metadata/manifests/train-manifest.json"
-    pipeline.convert_csv2json(csv_path, out_json)
-
-    # split ds
-    # pipeline.split_dataset(
-    #     "./metadata/manifests/subs/train-manifest1.2.2.3.json",
-    #     "./metadata/manifests/subs/train-manifest1.2.2.3",
-    #     train_size=0.4,
-    #     dev_size=0.3,
-    #     test_size=0.3,
-    # )
-    
-    # bind json file
-    # pipeline.bind_jsonfile(outpath="./metadata/manifests/train-clean-manifest.json")
-
-    # duplicate ds based on labels quantity
-    # pipeline.preprocessing_af_labeling(path="./metadata/manifests/temp/ds-6.json",
-    #                                    outpath="./metadata/manifests/pp/temp1-manifest.json")
-
-    # rs = []
-    # ds = json.load(open(temp_path, 'r', encoding='utf-8'))
-    # for idx, point in enumerate(ds):
-    #     data = {**point, "aspect": point["labels"]["aspect"],
-    #             "opinion": point["labels"]["opinion"],
-    #             "polarity": point["labels"]["polarity"]}
-    #     rs.append(data)
-
-    # outfile = open("metadata/manifests/temp0-manifest.json", 'w', encoding='utf-8')
-    # for point in ds:
-    #     del point["labels"]
-    #     point["polarity"] = point["polarity"].lower()
-    #     del point["rating"]
-    #     rs.append(point)
-    #
-    # json.dump(rs, outfile, ensure_ascii=False, indent=4)
-
-    # convert json2csv
-    # path = "metadata/manifests/train-clean-manifest.json"
-    # outpath = "metadata/train-clean-manifest.csv"
-    # pipeline.convert_json2csv(path=path, outpath=outpath)
-
+    path = "metadata/manifests/gen-manifest.json"
+    outpath = "metadata/manifests/ds-processed-manifest.json"
+    file = open(path, 'r', encoding="utf-8")
+    outfile = open(outpath, 'w', encoding='utf-8')
+    ds = json.load(file)
+    rs = []
+    for point in ds:
+        point["polarity"] = point["polarity"].lower()
+        rs.append(point)
+    json.dump(rs, outfile, ensure_ascii=False, indent=4)
+    rs.clear()
     print("DONE")
