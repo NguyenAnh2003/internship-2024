@@ -13,7 +13,9 @@ model:
  llm:
   type: ???
   name: ???
+
  style: "ate"
+
  # using pretrained model for fine tuning
  pretrained:
   bert: True

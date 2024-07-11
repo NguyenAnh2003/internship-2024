@@ -18,8 +18,25 @@ class ABSADataset(Dataset):
         elif self.conf.model.style == "instruction_tuning":
             self.dataset = self.dataset.map(self._processw_instruction_tuning_ds)
 
+        self.dataset = self.dataset.train_test_split(test_size=0.2)
+
     def __getitem__(self, index):
         pass
+
+    def setup_absa_hf_dataset(self):
+
+        def _tokenize(batch):
+            return self.tokenizer(batch["review"], padding=True, truncation=True, max_length=3000)
+
+        train_dataset = self.dataset["train"]
+        dev_dataset = self.dataset["test"].shard(num_shards=2, index=0)
+        test_dataset = self.dataset["test"].shard(num_shards=2, index=0)
+
+        train_dataset = train_dataset.map(_tokenize, batched=True, batch_size=8)
+        dev_dataset = dev_dataset.map(_tokenize, batched=True, batch_size=8)
+        test_dataset = test_dataset.map(_tokenize, batched=True, batch_size=8)
+
+        return train_dataset, dev_dataset, test_dataset
 
     def _processw_instruction_tuning_ds(self, batch):
         # prepare HF dataset

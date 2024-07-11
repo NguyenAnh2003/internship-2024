@@ -30,15 +30,31 @@ class PModelModule:
 
     def setup_dataset(self, path):
         absa = ABSADataset(tokenizer=self.tokenizer, csv_path=path, conf=self.conf)
-        dataset = absa.dataset # HF dataset
+        train_set, dev_set, test_set = absa.setup_absa_hf_dataset()
 
-        return dataset
+        return train_set, dev_set, test_set
 
     def finetuning_pretrained_model(self):
-
         if self.conf.model.pretrained.freeze == True:
             for param in self.model.base_model.parameters():
                 param.requires_grad = False
 
-        print(f"Model: {self.model} " f"Tokenizer: {self.tokenizer}")
+        train_args = TrainingArguments(
 
+        )
+
+        train_set, dev_set, test_set = self.setup_dataset(self.conf.model.train.train_dir)
+
+        trainer = Trainer(model=self.model, tokenizer=self.tokenizer,
+                          args=train_args, train_dataset=train_set,
+                          eval_dataset=dev_set)
+
+        # trainer.train() #
+
+if __name__ == "__main__":
+    conf = get_configs("../../configs/absa_model.yaml")
+    conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
+    conf["model"]["train"]["train_dir"] = "../../data_manipulation/metadata/manifests/ate/ate-manifest.json"
+    conf["model"]["pretrained"]["freeze"] = True
+    ab = PModelModule(conf)
+    print(f"cac: {ab.get_model_parameters()}")
