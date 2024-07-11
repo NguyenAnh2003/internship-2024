@@ -14,3 +14,5 @@
 13. pretrained absa: [link](https://huggingface.co/yangheng/deberta-v3-base-absa-v1.1)
 14. simple-finetuning: [link](https://github.com/1tangerine1day/Aspect-Term-Extraction-and-Analysis)
 15. LLM finetuning: [link](https://www.datacamp.com/tutorial/fine-tuning-large-language-models)
+16. dataset for seqclassification: [link](https://huggingface.co/datasets/fancyzhx/ag_news?row=99)
+17. code template for seqclassification: [link](https://medium.com/@achillesmoraites/fine-tuning-roberta-for-topic-classification-with-hugging-face-transformers-and-datasets-library-c6f8432d0820)
