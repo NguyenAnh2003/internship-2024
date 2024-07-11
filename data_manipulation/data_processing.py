@@ -269,6 +269,25 @@ class DataProcessPipeline:
         json.dump(rs, outfile, ensure_ascii=False, indent=4)
         rs.clear()
 
+    @staticmethod
+    def process_ate_dataset(path, outpath):
+        # raw dataset must have (title, country, opinion, polarity, month, year, social)
+        # these needed to be removed
+        file = open(path, 'r', encoding="utf-8")
+        outfile = open(outpath, 'w', encoding='utf-8')
+        ds = json.load(file)
+        rs = []
+        for point in ds:
+            del point["title"]
+            del point["country"]
+            del point["opinion"]
+            del point["polarity"]
+            del point["month"]
+            del point["year"]
+            del point["social"]
+            rs.append(point)
+        json.dump(rs, outfile, ensure_ascii=False, indent=4)
+        rs.clear()
 
 
 
@@ -278,15 +297,8 @@ if __name__ == "__main__":
     conf["model"]["llm"]["name"] = "gemini-1.5-flash"
 
     pipeline = DataProcessPipeline(conf)
-    path = "metadata/manifests/gen-manifest.json"
-    outpath = "metadata/manifests/ds-processed-manifest.json"
-    file = open(path, 'r', encoding="utf-8")
-    outfile = open(outpath, 'w', encoding='utf-8')
-    ds = json.load(file)
-    rs = []
-    for point in ds:
-        point["polarity"] = point["polarity"].lower()
-        rs.append(point)
-    json.dump(rs, outfile, ensure_ascii=False, indent=4)
-    rs.clear()
+    path = "metadata/manifests/ds-processed-manifest.json"
+    outpath = "metadata/manifests/ate/ate-manifest.json"
+    outpath_csv = "metadata/manifests/ate/ate-manifest.csv"
+    pipeline.convert_json2csv(outpath, outpath_csv)
     print("DONE")

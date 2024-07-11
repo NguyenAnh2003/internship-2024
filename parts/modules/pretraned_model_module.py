@@ -1,5 +1,8 @@
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, \
+    pipeline
 from omegaconf import OmegaConf, DictConfig
+from transformers import Trainer, TrainingArguments
+from data_manipulation.dataloader import ABSADataset
 import torch.nn.functional as F
 from libs.helper_functions import get_configs
 
@@ -21,9 +24,15 @@ class PModelModule:
 
         return model, tokenizer
 
+    def get_model_parameters(self):
+        params = sum([i for i in self.model.parameters()])
+        return params # sum of parameters
 
-    def _setup_train_dataloader(self, path):
-        pass
+    def setup_dataset(self, path):
+        absa = ABSADataset(tokenizer=self.tokenizer, csv_path=path, conf=self.conf)
+        dataset = absa.dataset # HF dataset
+
+        return dataset
 
     def finetuning_pretrained_model(self):
 
@@ -32,4 +41,4 @@ class PModelModule:
                 param.requires_grad = False
 
         print(f"Model: {self.model} " f"Tokenizer: {self.tokenizer}")
-        
+

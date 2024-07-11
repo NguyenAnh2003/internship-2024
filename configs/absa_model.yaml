@@ -24,3 +24,4 @@ model:
  # train paramters
   epoch: 50
   batch_size: 8
+  train_dir: ???
