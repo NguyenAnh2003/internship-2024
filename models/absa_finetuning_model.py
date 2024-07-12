@@ -56,7 +56,7 @@ class PretrainedModelABSA:
 
         return train_set, dev_set, test_set
 
-    def finetuning_pretrained_model(self):
+    def prepare_trainer4finetuning(self):
         if self.conf.model.pretrained.freeze == True:
             for param in self.model.base_model.parameters():
                 param.requires_grad = False
