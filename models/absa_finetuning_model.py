@@ -110,5 +110,5 @@ if __name__ == "__main__":
         "train_dir"
     ] = "../../data_manipulation/metadata/manifests/ate/ate-manifest.json"
     conf["model"]["pretrained"]["freeze"] = True
-    ab = PretrainedModelABSA(conf)
+    ab = ABSAFineTuningModel(conf)
     print(f"cac: {ab.get_model_parameters()}")
