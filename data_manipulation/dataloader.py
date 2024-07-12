@@ -6,15 +6,15 @@ from libs.helper_functions import get_configs
 
 
 class ABSADataset(Dataset):
-    def __init__(self, tokenizer=None, csv_path="", conf: DictConfig = None) -> None:
+    def __init__(self, tokenizer=None, conf: DictConfig = None) -> None:
         super().__init__()
         self.conf = OmegaConf.create(conf)
         self.tokenizer = tokenizer  # tokenizer as transform
-        self.dataset = self._create_hf_ds(csv_path=csv_path)  # create HF dataset
+        self.dataset = self._create_hf_ds(
+            csv_path=self.conf.model.train.train_dir
+        )  # create HF dataset
         if self.conf.model.style == "ate":
-            self.dataset = self.dataset.map(
-                self._process_hf_ds
-            )  # mapping data
+            self.dataset = self.dataset.map(self._process_hf_ds)  # mapping data
         elif self.conf.model.style == "instruction_tuning":
             self.dataset = self.dataset.map(self._processw_instruction_tuning_ds)
 
@@ -26,15 +26,35 @@ class ABSADataset(Dataset):
     def setup_absa_hf_dataset(self):
 
         def _tokenize(batch):
-            return self.tokenizer(batch["review"], padding=True, truncation=True, max_length=3000)
+            return self.tokenizer(
+                batch["review"], padding=True, truncation=True, max_length=3000
+            )
 
         train_dataset = self.dataset["train"]
         dev_dataset = self.dataset["test"].shard(num_shards=2, index=0)
         test_dataset = self.dataset["test"].shard(num_shards=2, index=0)
 
-        train_dataset = train_dataset.map(_tokenize, batched=True, batch_size=8)
-        dev_dataset = dev_dataset.map(_tokenize, batched=True, batch_size=8)
-        test_dataset = test_dataset.map(_tokenize, batched=True, batch_size=8)
+        train_dataset = train_dataset.map(
+            lambda x: _tokenize(x), batched=True, batch_size=8
+        )
+
+        dev_dataset = dev_dataset.map(
+            lambda x: _tokenize(x), batched=True, batch_size=8
+        )
+
+        test_dataset = test_dataset.map(
+            lambda x: _tokenize(x), batched=True, batch_size=8
+        )
+
+        train_dataset.set_format(
+            "torch", columns=["input_ids", "attention_mask", "label"]
+        )
+        dev_dataset.set_format(
+            "torch", columns=["input_ids", "attention_mask", "label"]
+        )
+        test_dataset.set_format(
+            "torch", columns=["input_ids", "attention_mask", "label"]
+        )
 
         return train_dataset, dev_dataset, test_dataset
 
@@ -74,11 +94,3 @@ class ABSADataset(Dataset):
 
     def __len__(self):
         return len(self.dataset)
-
-
-if __name__ == "__main__":
-    conf = get_configs("../configs/instruction_tuning_absa.yaml")
-    # conf["model"]["pretrained"]["name"] = "google-bert/bert-base-multilingual-cased"
-
-    ds = ABSADataset(conf=conf, csv_path="metadata/generated-manifest.csv")
-

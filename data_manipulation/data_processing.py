@@ -297,8 +297,52 @@ if __name__ == "__main__":
     conf["model"]["llm"]["name"] = "gemini-1.5-flash"
 
     pipeline = DataProcessPipeline(conf)
-    path = "metadata/manifests/ds-processed-manifest.json"
-    outpath = "metadata/manifests/ate/ate-manifest.json"
-    outpath_csv = "metadata/manifests/ate/ate-manifest.csv"
-    pipeline.convert_json2csv(outpath, outpath_csv)
+    outpath = "metadata/manifests/ate/ate-processed-manifest.csv"
+    path = "metadata/manifests/ate/ate-processed-1-manifest.json"
+    pipeline.convert_json2csv(path, outpath)
+    # file = open(path, 'r', encoding='utf-8')
+    # outfile = open(outpath, 'w', encoding='utf-8')
+    # ds = json.load(file)
+    # rs = []
+    # for point in ds:
+    #     if point["aspect"] == "Reliability equipment":
+    #         del point
+    #     elif point["aspect"] == "Cleaniness":
+    #         del point
+    #     elif point["aspect"] == "Handling Complaints":
+    #         del point
+    #     elif point["aspect"] == "Puncuality":
+    #         del point
+    #     else:
+    #         rs.append(point)
+
+    # for point in ds:
+    #     if point["aspect"] == "Price":
+    #         point["label"] = int(0)
+    #     elif point["aspect"] == "Data availability":
+    #         point["label"] = int(1)
+    #     elif point["aspect"] == "Cleanliness":
+    #         point["label"] = int(2)
+    #     elif point["aspect"] == "Punctuality":
+    #         point["label"] = int(3)
+    #     elif point["aspect"] == "Reliability":
+    #         point["label"] = int(4)
+    #     elif point["aspect"] == "Accidents":
+    #         point["label"] = int(5)
+    #     elif point["aspect"] == "Maintenance":
+    #         point["label"] = int(6)
+    #     elif point["aspect"] == "Handling complaints":
+    #         point["label"] = int(7)
+    #     elif point["aspect"] == "Satisfactions":
+    #         point["label"] = int(8)
+    #     elif point["aspect"] == "User-friendly payment system":
+    #         point["label"] = int(9)
+    #     else:
+    #         point["label"] = int(10)
+    #     rs.append(point)
+    #
+    # json.dump(rs, outfile, ensure_ascii=False, indent=4)
+
+
+
     print("DONE")
