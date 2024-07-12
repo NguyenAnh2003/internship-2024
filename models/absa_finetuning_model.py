@@ -13,7 +13,7 @@ import numpy as np
 import evaluate
 
 
-class PretrainedModelABSA:
+class ABSAFineTuningModel:
     def __init__(self, conf: DictConfig = None) -> None:
         self.conf = OmegaConf.create(conf)
 
