@@ -16,3 +16,4 @@
 15. LLM finetuning: [link](https://www.datacamp.com/tutorial/fine-tuning-large-language-models)
 16. dataset for seqclassification: [link](https://huggingface.co/datasets/fancyzhx/ag_news?row=99)
 17. code template for seqclassification: [link](https://medium.com/@achillesmoraites/fine-tuning-roberta-for-topic-classification-with-hugging-face-transformers-and-datasets-library-c6f8432d0820)
+18. code finetuning; [link](https://github.com/achimoraites/machine-learning-playground/blob/main/NLP/Text%20classification/RoBERTa_Finetuning.ipynb)
