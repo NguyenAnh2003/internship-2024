@@ -14,7 +14,6 @@ class PretrainedModelABSA:
         self.auto_conf = AutoConfig.from_pretrained(self.conf.model.pretrained.name)
         self.auto_conf.id2label = {i: label for i, label in enumerate(self.conf.model.label_aspects)}
         self.auto_conf.label2id = {label: i for i, label in enumerate(self.conf.model.label_aspects)}
-        print(self.auto_conf.label2id)
         self.auto_conf.update({"label2id": self.auto_conf.label2id})
         self.auto_conf.update({"id2label": self.auto_conf.id2label})
         self.auto_conf.num_labels = 11
