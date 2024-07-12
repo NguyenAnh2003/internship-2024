@@ -9,6 +9,8 @@ from transformers import Trainer, TrainingArguments
 from data_manipulation.dataloader import ABSADataset
 import torch.nn.functional as F
 from libs.helper_functions import get_configs
+import numpy as np
+import evaluate
 
 
 class PretrainedModelABSA:
@@ -27,6 +29,7 @@ class PretrainedModelABSA:
         self.auto_conf.update({"id2label": self.auto_conf.id2label})
         self.auto_conf.num_labels = 11
         self.model, self.tokenizer = self.get_pretrained_model_and_tokenizer()
+        self.metric = evaluate.load("accuracy")
 
     def get_pretrained_model_and_tokenizer(self):
         # using transformers package to get pretrained model
@@ -61,6 +64,11 @@ class PretrainedModelABSA:
             for param in self.model.base_model.parameters():
                 param.requires_grad = False
 
+        def compute_metrics(eval_pred):
+            logits, labels = eval_pred
+            predictions = np.argmax(logits, axis=-1)
+            return self.metric.compute(predictions=predictions, references=labels)
+
         # init dataset
         train_set, dev_set, test_set = self.setup_dataset()
 
@@ -80,7 +88,7 @@ class PretrainedModelABSA:
             push_to_hub=self.conf.model.train.push_to_hub,  # hub
             hub_strategy=self.conf.model.train.hub_strategy,  # hub
             hub_model_id=self.conf.model.train.hub_model_id,  # hub
-            hub_token=self.conf.model.train.train.hub_token,  # hub
+            hub_token=self.conf.model.train.hub_token,  # hub
         )
 
         trainer = Trainer(
@@ -89,6 +97,7 @@ class PretrainedModelABSA:
             args=train_args,
             train_dataset=train_set,
             eval_dataset=dev_set,
+            compute_metrics=compute_metrics,
         )
 
         return trainer
