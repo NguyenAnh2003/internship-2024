@@ -29,7 +29,7 @@ class ABSAFineTuningModel:
         self.auto_conf.update({"id2label": self.auto_conf.id2label})
         self.auto_conf.num_labels = 11
         self.model, self.tokenizer = self.get_pretrained_model_and_tokenizer()
-        self.metric = evaluate.load("accuracy")
+        self.accucracy_metric, self.precision_metric, self.recall_metric = evaluate.load("accuracy"), evaluate.load("precision"), evaluate.load("recall")
 
     def get_pretrained_model_and_tokenizer(self):
         # using transformers package to get pretrained model
@@ -52,7 +52,6 @@ class ABSAFineTuningModel:
     def setup_dataset(self):
         absa = ABSADataset(
             tokenizer=self.tokenizer,
-            csv_path=self.conf.model.train.train_dir,
             conf=self.conf,
         )
         train_set, dev_set, test_set = absa.setup_absa_hf_dataset()
@@ -67,7 +66,10 @@ class ABSAFineTuningModel:
         def compute_metrics(eval_pred):
             logits, labels = eval_pred
             predictions = np.argmax(logits, axis=-1)
-            return self.metric.compute(predictions=predictions, references=labels)
+            acc = self.accucracy_metric.compute(predictions=predictions, references=labels)
+            precision = self.precision_metric.compute(predictions=predictions, references=labels)
+            recall = self.recall_metric.compute(predictions=predictions, references=labels)
+            return acc, precision, recall
 
         # init dataset
         train_set, dev_set, test_set = self.setup_dataset()
@@ -102,13 +104,21 @@ class ABSAFineTuningModel:
 
         return trainer
 
+    def model_inference(self, text: str):
+        # model name must be pretrained model
+        pipe = pipeline("text-classification", model=self.model, tokenizer=self.tokenizer)
+        result = pipe(text)
+        predicted_label = result[0]["label"]
+        print(predicted_label)
+
 
 if __name__ == "__main__":
-    conf = get_configs("../../configs/absa_model.yaml")
-    conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
+    conf = get_configs("../configs/absa_model.yaml")
+    conf["model"]["pretrained"]["name"] = "nguyenanh2803/absa-train-service"
     conf["model"]["train"][
         "train_dir"
-    ] = "../../data_manipulation/metadata/manifests/ate/ate-manifest.json"
+    ] = "metadata/manifests/ate/ate-manifest.json"
+
     conf["model"]["pretrained"]["freeze"] = True
     ab = ABSAFineTuningModel(conf)
-    print(f"cac: {ab.get_model_parameters()}")
+    ab.model_inference("Very clean")
