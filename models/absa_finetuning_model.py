@@ -76,12 +76,12 @@ class ABSAFineTuningModel:
                 predictions=predictions, references=labels
             )
             precision = self.precision_metric.compute(
-                predictions=predictions, references=labels
+                predictions=predictions, references=labels, average="macro"
             )
             recall = self.recall_metric.compute(
-                predictions=predictions, references=labels
+                predictions=predictions, references=labels, average="macro"
             )
-            return acc, precision, recall
+            return {"acc": acc, "precision": precision, "recall": recall}
 
         # init dataset
         train_set, dev_set = self.setup_dataset()

@@ -1,9 +1,7 @@
 model:
- label_aspects: ["Price", "Data availability", 
- "Cleanliness", "Punctuality", "Reliability", 
- "Accidents", "Maintenance", "Handling complaints", 
- "Satisfactions", "User-friendly payment system", 
- "Safety"]
+ label_aspects: ["Price fairness", "Data availability", 
+ "Cleanliness", "Punctuality", "Facilities", "Accessibility", 
+ "Satisfactions", "Staff service", "Safety", "Others"]
  
  # label polarity
  label_polarity: ["positive", "negative", "neutral"]
