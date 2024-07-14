@@ -3,6 +3,7 @@ from transformers import (
     AutoTokenizer,
     pipeline,
     AutoConfig,
+    TextClassificationPipeline,
 )
 from omegaconf import OmegaConf, DictConfig
 from transformers import Trainer, TrainingArguments
@@ -29,18 +30,23 @@ class ABSAFineTuningModel:
         self.auto_conf.update({"id2label": self.auto_conf.id2label})
         self.auto_conf.num_labels = 11
         self.model, self.tokenizer = self.get_pretrained_model_and_tokenizer()
-        self.accucracy_metric, self.precision_metric, self.recall_metric = evaluate.load("accuracy"), evaluate.load("precision"), evaluate.load("recall")
+        self.accucracy_metric, self.precision_metric, self.recall_metric = (
+            evaluate.load("accuracy"),
+            evaluate.load("precision"),
+            evaluate.load("recall"),
+        )
 
     def get_pretrained_model_and_tokenizer(self):
         # using transformers package to get pretrained model
         model = AutoModelForSequenceClassification.from_pretrained(
             self.conf.model.pretrained.name,
-            # id2label=self.auto_conf.id2label,
-            # label2id=self.auto_conf.label2id,
             config=self.auto_conf,
+            force_download=True,
         )  # get pretrained model name
 
-        tokenizer = AutoTokenizer.from_pretrained(self.conf.model.pretrained.name)
+        tokenizer = AutoTokenizer.from_pretrained(
+            self.conf.model.pretrained.name, force_download=True
+        )
         model.eval()  #
 
         return model, tokenizer
@@ -54,9 +60,9 @@ class ABSAFineTuningModel:
             tokenizer=self.tokenizer,
             conf=self.conf,
         )
-        train_set, dev_set, test_set = absa.setup_absa_hf_dataset()
+        train_set, dev_set, _ = absa.setup_absa_hf_dataset()
 
-        return train_set, dev_set, test_set
+        return train_set, dev_set
 
     def prepare_trainer4finetuning(self):
         if self.conf.model.pretrained.freeze == True:
@@ -66,13 +72,19 @@ class ABSAFineTuningModel:
         def compute_metrics(eval_pred):
             logits, labels = eval_pred
             predictions = np.argmax(logits, axis=-1)
-            acc = self.accucracy_metric.compute(predictions=predictions, references=labels)
-            precision = self.precision_metric.compute(predictions=predictions, references=labels)
-            recall = self.recall_metric.compute(predictions=predictions, references=labels)
+            acc = self.accucracy_metric.compute(
+                predictions=predictions, references=labels
+            )
+            precision = self.precision_metric.compute(
+                predictions=predictions, references=labels
+            )
+            recall = self.recall_metric.compute(
+                predictions=predictions, references=labels
+            )
             return acc, precision, recall
 
         # init dataset
-        train_set, dev_set, test_set = self.setup_dataset()
+        train_set, dev_set = self.setup_dataset()
 
         train_args = TrainingArguments(
             output_dir=self.conf.model.train.out_dir,
@@ -104,21 +116,27 @@ class ABSAFineTuningModel:
 
         return trainer
 
-    def model_inference(self, text: str):
+    def model_inference(self, text: str, model_name):
         # model name must be pretrained model
-        pipe = pipeline("text-classification", model=self.model, tokenizer=self.tokenizer)
+        tokenizer = AutoTokenizer.from_pretrained(model_name, force_download=True)
+        pipe = pipeline(
+            "text-classification", model=model_name, tokenizer=tokenizer, device=0
+        )
         result = pipe(text)
         predicted_label = result[0]["label"]
         print(predicted_label)
 
 
+class PredictPipeline(TextClassificationPipeline):
+    pass
+
+
 if __name__ == "__main__":
     conf = get_configs("../configs/absa_model.yaml")
     conf["model"]["pretrained"]["name"] = "nguyenanh2803/absa-train-service"
-    conf["model"]["train"][
-        "train_dir"
-    ] = "metadata/manifests/ate/ate-manifest.json"
+    conf["model"]["train"]["train_dir"] = "metadata/manifests/ate/ate-manifest.json"
 
     conf["model"]["pretrained"]["freeze"] = True
     ab = ABSAFineTuningModel(conf)
-    ab.model_inference("Very clean")
+    text = "The train was delayed without explanation."
+    ab.model_inference(text)
