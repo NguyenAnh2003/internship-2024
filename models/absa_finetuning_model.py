@@ -116,7 +116,8 @@ class ABSAFineTuningModel:
 
         return trainer
 
-    def model_inference(self, text: str, model_name):
+    @staticmethod
+    def model_inference(text: str, model_name):
         # model name must be pretrained model
         tokenizer = AutoTokenizer.from_pretrained(model_name, force_download=True)
         pipe = pipeline(
