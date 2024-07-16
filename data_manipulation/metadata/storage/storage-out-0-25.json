@@ -1,0 +1,458 @@
+[
+    {
+        "id": 0,
+        "title": "Long Queues and Slow Service",
+        "review": "The queues were incredibly long, and it took ages to get my ticket. The staff weren't very helpful either.",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Feb",
+        "year": 2017,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Negative",
+                "opinion": "The staff weren't very helpful."
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "title": "Noisy and Chaotic",
+        "review": "The station was incredibly noisy and chaotic, making it difficult to relax or focus. It was overwhelming.",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2019,
+        "social": "X",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 2,
+        "title": "Lack of Security",
+        "review": "I felt unsafe at the station. There didn't seem to be much security present, and it was easy for people to wander around unsupervised.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Nov",
+        "year": 2022,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Negative",
+                "opinion": "Felt unsafe at the station"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Poor Wifi Connection",
+        "review": "The Wi-Fi at the station was unreliable and slow. It was impossible to use for work or even basic browsing.",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2024,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Data availability",
+                "sentiment": "Negative",
+                "opinion": "The Wi-Fi was unreliable and slow."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Uncomfortable Seating",
+        "review": "The seating at the station was uncomfortable and worn out. It wasn't a pleasant place to wait for a train.",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Aug",
+        "year": 2015,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "Uncomfortable and worn out seating"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "No Lost and Found",
+        "review": "I lost my phone at the station, and there was no lost and found service. It was very frustrating.",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Apr",
+        "year": 2018,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Data availability",
+                "sentiment": "Negative",
+                "opinion": "No opinion on data availability."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Unpleasant Odors",
+        "review": "The station had a strong, unpleasant odor. It wasn't a pleasant experience.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Oct",
+        "year": 2023,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Neutral",
+                "opinion": "The review does not express an opinion about staff quality."
+            },
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "Unpleasant odor"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Expensive Tickets",
+        "review": "The train tickets were expensive for the quality of service offered. It didn't seem worth the price.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Dec",
+        "year": 2015,
+        "social": "instagram",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 8,
+        "title": "Noisy Passengers",
+        "review": "The station was filled with noisy passengers talking loudly and making a lot of commotion.",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Feb",
+        "year": 2022,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "The station was filled with noisy passengers talking loudly and making a lot of commotion."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Poor Lighting",
+        "review": "The lighting at the station was dim and uneven. It was hard to see where you were going.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Mar",
+        "year": 2023,
+        "social": "X",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 10,
+        "title": "No Baggage Storage",
+        "review": "There was no baggage storage available at the station. I had to carry my luggage around with me.",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Apr",
+        "year": 2015,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Data availability",
+                "sentiment": "Negative",
+                "opinion": "No baggage storage available at the station."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Lack of Information Screens",
+        "review": "There weren't enough information screens displaying train arrival and departure times.",
+        "country": "Austria",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2022,
+        "social": "google review",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Data availability",
+                "sentiment": "Negative",
+                "opinion": "Not enough information screens displaying train arrival and departure times"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Poor Customer Service",
+        "review": "The customer service at the station was terrible. The staff were rude and unhelpful.",
+        "country": "Sweden",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Nov",
+        "year": 2021,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Negative",
+                "opinion": "The staff were rude and unhelpful."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Unorganized Ticketing System",
+        "review": "The ticketing system was confusing and disorganized. It took a long time to purchase tickets.",
+        "country": "Iceland",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Dec",
+        "year": 2022,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 14,
+        "title": "Insufficient Security Measures",
+        "review": "I was worried about security at the station. There weren't enough security personnel present.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jan",
+        "year": 2023,
+        "social": "google review",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Negative",
+                "opinion": "Worried about security at the station"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "No Restrooms for Passengers",
+        "review": "There were no restrooms available for passengers at the station, which was a major inconvenience.",
+        "country": "Pakistan",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Mar",
+        "year": 2015,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "No restrooms available, a major inconvenience"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Unclean Seating Areas",
+        "review": "The seating areas were dirty and messy. There was trash everywhere.",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Apr",
+        "year": 2021,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "The seating areas were dirty and messy. There was trash everywhere."
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "Limited Information Available",
+        "review": "There wasn't enough information available about train schedules and routes.",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2022,
+        "social": "google review",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Data availability",
+                "sentiment": "Negative",
+                "opinion": "Not enough information about train schedules and routes"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "title": "No Waiting Areas",
+        "review": "There weren't any designated waiting areas for passengers. It was uncomfortable to wait for a train.",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Mar",
+        "year": 2017,
+        "social": "X",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 19,
+        "title": "Noisy Environment",
+        "review": "The station was noisy and chaotic, making it difficult to relax or concentrate.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Aug",
+        "year": 2022,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 20,
+        "title": "Lack of Amenities",
+        "review": "There weren't any amenities available at the station, such as a coffee shop or a convenience store.",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Sep",
+        "year": 2021,
+        "social": "google review",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "No amenities available at the station"
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Negative",
+                "opinion": "Lack of convenience amenities"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "title": "Unpleasant Experience",
+        "review": "The entire experience at the station was unpleasant. It was dirty, crowded, and uncomfortable.",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Nov",
+        "year": 2023,
+        "social": "X",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 22,
+        "title": "Disorganized Station",
+        "review": "The station was disorganized and chaotic. It was hard to find your way around.",
+        "country": "Brazil",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jan",
+        "year": 2017,
+        "social": "instagram",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 23,
+        "title": "No Assistance for Luggage",
+        "review": "There was no assistance available for carrying luggage. It was difficult to manage heavy bags.",
+        "country": "Iran",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jan",
+        "year": 2022,
+        "social": "google review",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 24,
+        "title": "Unpleasant Smell",
+        "review": "The station had an unpleasant smell. It wasn't a pleasant experience.",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2015,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "Unpleasant smell"
+            }
+        ]
+    }
+]

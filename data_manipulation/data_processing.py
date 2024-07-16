@@ -82,15 +82,17 @@ class DataProcessPipeline:
             try:
                 # define data dict
                 data_package = {
-                    "title": line[0],
-                    "review": line[-3],
-                    "country": line[-2],
+                    "id": int(line[0]),
+                    "title": line[1],
+                    "review": line[2],
+                    "country": line[3],
                     "aspect": line[4],
-                    "opinion": line[5],
-                    "polarity": line[-1],
-                    "month": line[1],
-                    "year": int(line[2]),
-                    "social": line[3],
+                    "sentiment": line[5],
+                    "opinion": line[6],
+                    "month": line[7],
+                    "year": int(line[8]),
+                    "social": line[9],
+                    "original_text": line[-1]
                 }
 
                 package_list.append(data_package)
@@ -98,7 +100,7 @@ class DataProcessPipeline:
                 raise ValueError(e)
 
         json.dump(package_list, json_file, ensure_ascii=False)
-        json_file.write("\n")
+        # json_file.write("\n")
         package_list.clear()  # clear list to remove from memory
 
     def remove_punctuation(self, string):
@@ -289,15 +291,13 @@ class DataProcessPipeline:
         json.dump(rs, outfile, ensure_ascii=False, indent=4)
         rs.clear()
 
-
-
 if __name__ == "__main__":
     conf = get_configs("../configs/absa_model.yaml")
     conf["model"]["llm"]["type"] = "gemini"
     conf["model"]["llm"]["name"] = "gemini-1.5-flash"
 
     pipeline = DataProcessPipeline(conf)
-    outpath = "metadata/manifests/ate/ate-processed-manifest.csv"
-    path = "metadata/manifests/ate/ate-processed-1-manifest.json"
+    path = "metadata/ds-storage.csv"
+    outpath = "metadata/manifest/ate/ate-manifest.json"
     pipeline.convert_json2csv(path, outpath)
     print("DONE")
