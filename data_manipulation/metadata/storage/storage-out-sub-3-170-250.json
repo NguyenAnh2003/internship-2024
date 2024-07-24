@@ -1,0 +1,1592 @@
+[
+    {
+        "id": 30170,
+        "title": "Super fast and good price",
+        "review": "The Bangkok trafic is big messWith it you will avoided loos time and moneyIt's new and cleanTicket cost 45Bh and from last stop it will be max 150Bh to principal hotels(with taxi from airport it will be min 1500)",
+        "country": "Japan",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Negative",
+                "opinion": "Avoided loos time and money"
+            },
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "The Bangkok trafic is big messWith it you will avoided loos time and moneyIt's new and cleanTicket cost 45Bh and from last stop it will be max 150Bh to principal hotels(with taxi from airport it will be min 1500) that corresponded to aspect: Cleanliness   It's new and clean"
+            }
+        ]
+    },
+    {
+        "id": 30171,
+        "title": "Quick",
+        "review": "This is probably the fastest way to get around Bangkok    Once you get the hang of the coin system and people will help you  Both BTS staff or Some Thai commuters it becomes easy  I usually move  around to near where i want to be and then Cab or motorcycle taxi   It is faster than a car",
+        "country": "New Zealand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Mar",
+        "year": 2017,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "It is faster than a car"
+            }
+        ]
+    },
+    {
+        "id": 30172,
+        "title": "Very steep steps and no escalator",
+        "review": "It was not convenient for my mother who has Osteoporosis and knee cap problems There is only escalator that either goes up or down at all stations There were no stations with both up and down escalators This is difficult for elderly people to travel with",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Accessibility",
+                "sentiment": "Negative",
+                "opinion": "Difficult for elderly people to travel"
+            },
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "Not convenient for elderly people with Osteoporosis and knee cap problems"
+            }
+        ]
+    },
+    {
+        "id": 30173,
+        "title": "Make daily life in bkk easier, Tourist-Unfriendly, terrible ticket system",
+        "review": "BTS skytrain has 2 main lines Sukhumvit line and Silom line It helps Bangkokian and tourists to commute easier in Bangkok I found the ticket system is pretty terrible You need to change into coins at counter then bring those coins to add in machine for ticket Only a few big stations you can use banknotes at the machine Siam station (interchange station) is over crowded during peak hour Saladaeng station is too much packed on the platform during peak hour Silom line is often delayed or stopped running without any notice You can connect to subway at Asoke station Saladaeng station Mochit station with some walking distance Subway and BTS skytrain do not share the same ticket so you need to buy a new ticket",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Feb",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30174,
+        "title": "Expensive but best way to get around",
+        "review": "Considering you can train from city to city 4 hour train rides for less than 50B and this will cost 42B for a 15 min drive into the city its quite expensive   But it is the most efficient way to get around the centre of Bangkok If you are planning on being there for more than 7 days I'd suggest getting a BTS card (warning in peak times you will literally be standing up spooning people for at least 20 min) very packed",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30175,
+        "title": "Easy and chip access to anywhere",
+        "review": "I used several times BTS it was very chip and easy to connect famous places including lots of shopping mall You can buy ticket on vending machine very easy Free for kids under 100 cm Very cool inside and very kind passenger for kids",
+        "country": "Oman",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Very chip and easy to connect famous places including lots of shopping mall You can buy ticket on vending machine very easy Free for kids under 100 cm Very cool inside and very kind passenger for kids"
+            },
+            {
+                "aspect": "Accessibility",
+                "sentiment": "Positive",
+                "opinion": "Easy to connect to famous places, including lots of shopping malls"
+            }
+        ]
+    },
+    {
+        "id": 30176,
+        "title": "Transport",
+        "review": "Easy to use and very clean         Around 15 usd the trip quite expensive but quick and clean Alternative is tuk tuk but need to bargain each time",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Very clean"
+            }
+        ]
+    },
+    {
+        "id": 30177,
+        "title": "Overcrowded",
+        "review": "The bts is a good way to get around certain parts of Bangkok but you are like a sardine most of the time   The traffic in Bangkok has gotten significantly worse since when I was last here  so whatever form or transport you take it all has some issues",
+        "country": "Myanmar",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30178,
+        "title": "Good. Could be better.",
+        "review": "The train is very easy to use It's new and air conditioned You don't have to wait long time because there is a train every few minutes The only problem is that in MOST stations there is no escalators or elevators It might not be a big deal for young people but if You are with an old People or young kids babies it could be s real torture   When I am taking about torture (climbing the stairs) I am not talking about few steps but manyyyy You see all these stairs and hope that Someone some day will improve things and make it easier for everybody",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "instagram",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "No escalators or elevators in most stations, making it difficult for older people, young children, and babies."
+            }
+        ]
+    },
+    {
+        "id": 30179,
+        "title": "Easiest / Fastest / Convenient /",
+        "review": "Best way of Travel specially to tourist locations  Hop in and out at ease and very cheap and economical and convenient  Big Thumbs up",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Very cheap and economical and convenient"
+            }
+        ]
+    },
+    {
+        "id": 30180,
+        "title": "Efficient people mover in Bangkok",
+        "review": "The Skytrain in Bangkok is the most efficient form of land transport  considering the traffic condition most of the time However it is not friendly at all to older people and people with handicaps  In most stations it requires climbing up and down stairs Escalators are provided in some stations only",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Accessibility",
+                "sentiment": "Negative",
+                "opinion": "Not friendly to older people and people with handicaps"
+            }
+        ]
+    },
+    {
+        "id": 30181,
+        "title": "VACATION",
+        "review": "Very nice and comfortable It is safe here I thought it was gonna be like a dark subway system where it was feted with bad company I was wrong This train is very clean comfortable and safe",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "It is safe here"
+            },
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "This train is very clean comfortable and safe"
+            }
+        ]
+    },
+    {
+        "id": 30182,
+        "title": "Need improvement",
+        "review": "Most of the BTS station require passenger to climb up the stairs for their services This is not friendly to travellers who need to carry pram or elderly passenger having walking difficulty I acknowledge that there are a few BTS station with access to buildings thus allowing passenger to use the building elevator to get to and out of BTS station But it is too few  Suggest to install escalator or elevator at majority of BTS station",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Negative",
+                "opinion": "Not friendly to travellers who need to carry prams or elderly passengers having walking difficulty."
+            },
+            {
+                "aspect": "Accessibility",
+                "sentiment": "Negative",
+                "opinion": "BTS stations should have more escalators or elevators for accessibility."
+            }
+        ]
+    },
+    {
+        "id": 30183,
+        "title": "BTS system superb!",
+        "review": "Great transit system  Fully air conditioned with easy on  off stations Get's you wherever you need to go  And very reasonable Recommend loading a card in the amount 100 Bahts at first station you plan to use",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Easy on off stations,  Gets you wherever you need to go, And very reasonable"
+            }
+        ]
+    },
+    {
+        "id": 30184,
+        "title": "The best transportation to get lost in Bangkok",
+        "review": "BTS is the answer if you want to avoid Bangkok's traffic They have two lines Sukhumvit line (light green color on maps) & Silom line (dark green color on maps) and Siam station is the crossplatform interchange This station is always busy everryytime  You can get the ticket directly at the station using vending machine (most of stations only can accept coins but you can change at the counter) Or if you're planning to stay longer at Bangkok you can get the Rabbit Card at the counter They provide several package StudentAdultsSeniors or even pertrips as you needed  Get your direction from Google Maps and ensure which line you need to go But again there are rush hours in BTS too 79AM and 69PM on weekdays",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "reddit",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30185,
+        "title": "The most convenient",
+        "review": "We totally recommend the rabbit card We spend a few days in Bangkok and it's clearly the best choice",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Positive",
+                "opinion": "Totally recommend the rabbit card"
+            }
+        ]
+    },
+    {
+        "id": 30186,
+        "title": "Oh yeah",
+        "review": "BTS is my only way of transport during traffic jam hours Buy a rabbit card so you dont need to queue up during peak hours Yes they retain 100 baht deposit which is not refundable but you can use it for 5 yearsI usually hand it down to friends who wanna go Bangkok or simply borrow it from others BTS is quite expensive around 30+ Baht per trip depending on the distance When it's not peak hours I choose grabcar or uber which is much more cheaper and you save a lot if you travel by 4 persons If you stay on Pratunam area BTS is quite far",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2017,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30187,
+        "title": "Well working train system",
+        "review": "The BTS well working with good frequency clean and nice air conditioned and reasonable priced You can buy a day pass for 140 bat  4 $",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "instagram",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Positive",
+                "opinion": "The BTS is well working"
+            }
+        ]
+    },
+    {
+        "id": 30188,
+        "title": "Great way to beat the traffic",
+        "review": "Take the BTS skytrain everywhere it is better than taking taxi which they will overcharge tourist Good air conditioning on the train as well",
+        "country": "Cuba",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2017,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Skytrain is more convenient than taxis."
+            }
+        ]
+    },
+    {
+        "id": 30189,
+        "title": "BTS",
+        "review": "Useful and convenient and links up the other lines and transport to airportRoads are congested so better than using the taxi",
+        "country": "Croatia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Useful and convenient"
+            }
+        ]
+    },
+    {
+        "id": 30190,
+        "title": "Getting around it easy",
+        "review": "As first time users of the Skytrain we found the system to ver very easy to u der stand and made two trips with interconnecting links quite easily Recommend you try it  There's also an airport service",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "The Skytrain system is easy to understand and use."
+            }
+        ]
+    },
+    {
+        "id": 30191,
+        "title": "Easy",
+        "review": "The cheapest easiest safest and most convenient  way to get round Bangkok bar none All signs translated into English and ticketing easy to understand",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Aug",
+        "year": 2015,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "Safest"
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Ticketing easy to understand"
+            }
+        ]
+    },
+    {
+        "id": 30192,
+        "title": "Great means of transportation in Bangkok",
+        "review": "Skytrain gives you a great mode of transportation convering some important shopping centers of Bangkok and major attractionsIt has dual benefits you escape the traffic jams of Bangkok and that too it is way cheaper than the taxi",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Skytrain is a great mode of transportation, a cheap way to escape Bangkok traffic jams."
+            }
+        ]
+    },
+    {
+        "id": 30193,
+        "title": "One of the best mode for transport in Bangkok,",
+        "review": "I could only wish that they build all the remaining land transport in Bangkok and suburbs faster It's one of the two modes of transportation in Bangkok that you can control you time schedule It's very convenient for those who need to move to any place along its routes At the moment the connections with MRT (underground subway) make public transportation in Bangkok a much better choice You absolutely avoid all the traffic on any Bangkok street",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Very convenient for those who need to move to any place along its routes"
+            }
+        ]
+    },
+    {
+        "id": 30194,
+        "title": "Good connectivity",
+        "review": "I am staying at sukhumvit area near to asok station During the travel i use the train everyday Its cheap and efficient To don mueng airport we only pay 42baht from asok to mo mo chit station And then use bus with label A1 or A2 to airport Fee is 30 baht Less than an hour you can reach the airport",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "reddit",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Cheap and efficient."
+            }
+        ]
+    },
+    {
+        "id": 30195,
+        "title": "Excellent and cheap service",
+        "review": "Bangkok shows us how it's done we paid £1 to go approx 8 stops   Trains are clean regular and worth using to get around Bangkok Far cheaper than any other mode of transport",
+        "country": "Jamaica",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "instagram",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Bangkok shows us how it's done  we paid £1 to go approx 8 stops   Trains are clean regular and worth using to get around Bangkok Far cheaper than any other mode of transport"
+            }
+        ]
+    },
+    {
+        "id": 30196,
+        "title": "Brilliant and cool way to travel across Bangkok",
+        "review": "We love the Skytrain even when it's packed with commuters and you find yourself hanging on to stay upright as the train accelerates leaving and slows approaching stations But you are not alone and everyone takes it in their stride The speed with which the trains travel never means you are on your feet for long The trains are clean and they have air conditioning With TripAdvisor as a guide you can always find something worthwhile visiting at most stops",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "The trains are clean and they have air conditioning."
+            }
+        ]
+    },
+    {
+        "id": 30197,
+        "title": "very punctual",
+        "review": "The BTS service is excellent to know BKK Tip find a hotel close to the BTS station so you can go around the city very cheap",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Excellent to know"
+            }
+        ]
+    },
+    {
+        "id": 30198,
+        "title": "Best way to and from the airport",
+        "review": "With frequent business trips to Bangkok the trouble with taxi and shuttles make the 25 km trip to town expensive (relatively) and something of a hassle with long taxi lines and an uncertainty whether the driver smells cash For less than one US dollar and 15 minutes I am at my hotel and ready to use my time much more efficiently  Traveling during the week saves the hassle of long queues and crowded trains on these smooth fast conveyances  Security is everywhere and there's ample space on board for light luggage For the past year the Skylink has been a trusted way to get to and from the international airport without a fuss",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30199,
+        "title": "The best public transport in the world?",
+        "review": "We used the Skytrain every day since we arrived four days ago It's a brilliant system Easy to purchase tickets clean as a whistle fast Everyone is respectful No food allowed so no soiled carriages People stand up for our children to sit down (despite protestations) It's really an amazing experience when you're used to Melbourne's comparatively filthy trains and regular scheduling issues (every Skytrain comes at 7 minute intervals) And there's an orderly line for each arriving train Unbelievable",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Clean as a whistle"
+            }
+        ]
+    },
+    {
+        "id": 30200,
+        "title": "Best way around.",
+        "review": "Fast clean and safe the best way to reach most of the city without the traffic hassle  Connects easily with the subway and the airport link and when used together with motorbike taxis makes moving around a breathe  Although the latter is not for everybody",
+        "country": "Finland",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "Safe"
+            },
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Fast, clean and safe"
+            }
+        ]
+    },
+    {
+        "id": 30201,
+        "title": "What would Bangkok travel be like without it!?",
+        "review": "Cheap and direct access to useful places such as on nut for tesco shopping and ekamai for kids stuff Can't buy return tickets so try to buy a ticket as soon as disembark for return Not many stations take notes but change queues not too bad Rush hour is pretty jammed but better than London Central line Always move away from doors it's expected People give up seats for young children to sit Politeness is essential Soon to be extended down near Bang Poo which will be fortuitous",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Facilities",
+                "sentiment": "Positive",
+                "opinion": "Cheap and direct access to useful places"
+            }
+        ]
+    },
+    {
+        "id": 30202,
+        "title": "Brilliantly efficient and simple.",
+        "review": "If you are used to using the London Underground this urban system is pretty straightforward to get to grips with  Take a free map look at the end station on the coloured line to make sure you head in the right direction and off you go  Find a ticket machine which accepts notes and deals in English and things couldn't get much simpler  Remember that the key station for the river is Saphun Taksin (not sure of the correct spelling) where  you can pick up tourist boats that will take you into the older parts of town",
+        "country": "Cambodia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30203,
+        "title": "Clean, climatised, secure and easy",
+        "review": "While often the taximeters can be less expensive if you travel in family the BTS is a secure and quicker way to move in an often trafficjam'd city",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "BTS is a secure way to move."
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "BTS is a secure and quicker way to move in an often traffic-jammed city"
+            }
+        ]
+    },
+    {
+        "id": 30204,
+        "title": "Always running on time",
+        "review": "The Bts or the above ground Train service runs regularly  It connects to the Mrt (underground train) at Asok Bts You can buy the tickets from the ticket machine which requires change and they only give one ticket at a time one way In some train stations there are ticket machines that takes paper money and can buy more then one ticket The people serving at the station counter don't sell tickets only give you change so don't line up thinking you can purchase a ticket from them The pricing starts at 15 baht The trains are very clean When waiting you have to line up and if it's full you have to wait for the next train The Thai's are very courteous using the trains there is no hustling",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "The trains are very clean"
+            }
+        ]
+    },
+    {
+        "id": 30205,
+        "title": "World-class commuting experience!",
+        "review": "The best and fastest way to go around Bangkok at most affordable prices If you're planning on taking any more than 3 or 4 rides in a day better to go for a full day pass costing 140 Baht  which is excellent value for money You can easily find change of money at the station counters and its very easy to find your way around the station and buying the tickets is indeed very easy The trains are worldclass in every way  punctual spotlessly clean and very comfortable Please help keep it that way please don't litter and please be polite to the amazing people of Thailand",
+        "country": "Cambodia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Punctuality",
+                "sentiment": "Positive",
+                "opinion": "The trains are punctual"
+            }
+        ]
+    },
+    {
+        "id": 30206,
+        "title": "Bangkok's best mode of transportation",
+        "review": "I don't know why this is reviewable as an attraction but sure why not Whether you're in Bangkok for a day or a year there's virtually no way to get from place to place without taking this The major roads are far too clogged to make getting around via taxi viable It's extremely clean on par with Singapore's MRT and well airconditioned And trains come very frequently I don't think I've ever had to wait more than 58 minutes for one  It's also very easy to navigate There are only two different lines and there are signs and displays everywhere within the train and outside of it to clearly mark which station you're at at any given time  The only negative is that it can get very crowded during peak hours but that's true of public transit in any major city Much better to take this than a car unless you want to sit stuck in traffic forever",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2016,
+        "social": "instagram",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "It's extremely clean on par with Singapore's MRT"
+            }
+        ]
+    },
+    {
+        "id": 30207,
+        "title": "convenient, fast,cheap and clean.",
+        "review": "I chose to stay at a hotel which near BTS and it made my life in Bangkok much easier to move around and do my business and errands Great transportation for travelers to use BTS instead of Taxi safe fast and convenient",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Nov",
+        "year": 2015,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "Great transportation for travelers to use BTS instead of Taxi safe fast and convenient"
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "The hotel's proximity to the BTS made it very convenient for getting around Bangkok."
+            }
+        ]
+    },
+    {
+        "id": 30208,
+        "title": "Amazing way to connect",
+        "review": "The service of the BTS Skytrain is amazing on time and frequent and the best part is its connection every big market places",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Punctuality",
+                "sentiment": "Positive",
+                "opinion": "Amazing on time and frequent"
+            }
+        ]
+    },
+    {
+        "id": 30209,
+        "title": "Great way to get around",
+        "review": "The BTS is a great way to get around Bangkok fast It's cheap and you'll love it as you go sailing by the gridlock far below",
+        "country": "Germany",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "The BTS is a great way to get around Bangkok fast"
+            }
+        ]
+    },
+    {
+        "id": 30210,
+        "title": "Great for what and where it is",
+        "review": "You have to realize where you are and look around generally Then you realize that it is pretty amazing they have this thing running around at all The train the service of the personnel is very good  The locals still need to learn a few things about etiquette on mass transportation",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Positive",
+                "opinion": "The service of the personnel is very good"
+            }
+        ]
+    },
+    {
+        "id": 30211,
+        "title": "The Perfect way to Shopping around center of Bangkok",
+        "review": "BTS was easiest way for traveller to go around center of Bangkok areaThe skytrain has skywalk that good for traveller can walk though siam station to chidlom station The skywalk is clean and safe way to walk in that area Recommend to use skywalk",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Recommend to use skywalk that corresponded to aspect: Cleanliness"
+            },
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "Skywalk is clean and safe way to walk"
+            }
+        ]
+    },
+    {
+        "id": 30212,
+        "title": "The BTS Skytrain, Bangkok",
+        "review": "Safe reliable cheap and frequent    Easy to use although I'd recommend getting an addvalue Smart Pass though  takes all the stress of getting the right tickets every time you travel away and any value you add seems to stay valid indefinitely   I bought one years ago and didn't go back for maybe a couple of years after buying the pass and the value was still there and it worked perfectly    There are stations at frequent intervals along all the main routes and it's a pretty good system     It's always very crowded so be prepared for that    And being a Skytrain the platforms are high up and involve a lot of stairs    There aren't always escalators or lifts going both up and down so you need to be fairly fit to use the service",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "Safe and reliable"
+            }
+        ]
+    },
+    {
+        "id": 30213,
+        "title": "Great way to get around BKK",
+        "review": "Very inexpensive and the cars are airconditioned so that is a big plus The stations are very clean and have snack stands and atm machines There are always security on site and I have never had any issues riding regardless of the hour The system runs from 6am to midnite   This is an elevated system and not all have elevators yet for the disabled Currently elevators are available at the following 16 stations last trip Mo Chit  Siam  Asok  On Nut Bang Chak  Punnawithi  Udom Suk  Bang Na  Bearing Chong Nonsi  Krung Thon Buri  Wongwian Yai  Pho Nimit Talat Phlu wutthakat and Bang Wa  If you are taking the Airport Rail train you can transfer to the BTS system at the Phaya Thai Station",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2016,
+        "social": "instagram",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30214,
+        "title": "Best and Fastest Way to Get Around Bangkok!",
+        "review": "The BTS Skytrain is one of the best mass transit systems I have encountered throughout the world  It's fast comfortable (if it's not rush hour) and very inexpensive  It doesn't cover all the areas of Bangkok but it does get to some of the most popular shopping and entertainment areas  I use it very regularly",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "It's fast, comfortable (if it's not rush hour), and very inexpensive. I use it very regularly."
+            }
+        ]
+    },
+    {
+        "id": 30215,
+        "title": "Very easy way to get around",
+        "review": "It's cheap efficient super clean and highly preferred to being stuck in Bangkok's traffic jams Highly recommended",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Oct",
+        "year": 2015,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Super clean"
+            }
+        ]
+    },
+    {
+        "id": 30216,
+        "title": "Best way to see Bangkok, but needs upgrade to accommodate handicapped",
+        "review": "Puts you within doorsteps of most city attractions in uptown Bangkok No wheelchair access however",
+        "country": "Switzerland",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "facebook",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Accessibility",
+                "sentiment": "Negative",
+                "opinion": "No wheelchair access"
+            }
+        ]
+    },
+    {
+        "id": 30217,
+        "title": "Beats the traffic",
+        "review": "Best way to get around Bangkok Cheap and cleanBangkok traffic is terribly bad so if you take a taxi or a tuk tuk expect to be stuck in a traffic jam",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Negative",
+                "opinion": "Traffic is terribly bad"
+            },
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Clean and cheap"
+            }
+        ]
+    },
+    {
+        "id": 30218,
+        "title": "Convenient",
+        "review": "The sky train is pretty much an elevated above ground metrosubway  The stations are close by so the train stop regularly  There are only two lines the Sukhumvit line runs along Sukhumvit road and connects to the Airport Rail Link  The other line is  the Silom line  The water taxi and river is serviced by this line  Interchange transfer between the lines at the Siam station  The sky train system is easy and clear to use and understand  Good for one or two persons but when you're more than 2 use a taxi and insist on them using the meter  The taxi will cost you less",
+        "country": "Kenya",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30219,
+        "title": "Best A/C in Bangkok",
+        "review": "Be prepared for the crowds especially during rush hour but I'd ride the train just for the AC after walking around Bangkok on a steamy day The train was clean fast and on time",
+        "country": "Saudi Arabia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "The train was clean"
+            }
+        ]
+    },
+    {
+        "id": 30220,
+        "title": "What a treat!",
+        "review": "The traffic in Bangkok can be horrible  Especially when it rains  It was such a pleasure to travel quickly and efficiently in this air conditioned train  Ok sometimes it can be busy and crowded but it sure beats getting to your destination quickly than being stuck for hours in a cab",
+        "country": "France",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "It was such a pleasure to travel quickly and efficiently in this air conditioned train"
+            },
+            {
+                "aspect": "Safety",
+                "sentiment": "Positive",
+                "opinion": "It was such a pleasure to travel quickly and efficiently in this air conditioned train"
+            }
+        ]
+    },
+    {
+        "id": 30221,
+        "title": "Great for getting around if a station is near your hotel!",
+        "review": "This Skytrain was great at each station they will have desks to give you coins and you go to the machines and select what zone you want to go to and you pay and it prints the ticket  Very easy to know where you are and was probably the quickest way to get into the city center It was clean and had an English speaking voice to tell you each stop   I do recommend it if a station marked with BTS is near your hotel although you will still need a taxi from Phrya Thai stop to get to Khao San Road etc",
+        "country": "Tanzania",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "It was clean"
+            }
+        ]
+    },
+    {
+        "id": 30222,
+        "title": "Convenience mode of transport",
+        "review": "BTS Skytrain is the good transportation to move around in places where you like to go It helps and it's easy to move around You can easily purchase your ticket on the vending machine or buy it at the counter No small change don't worry you can change it at the counter All signage are written in Thai and English You can buy a one day unlimited ride ticket at the counter  ie if you know you will be traveling the whole day It's 140 thai batts",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Easy to move around, easy to purchase tickets"
+            }
+        ]
+    },
+    {
+        "id": 30223,
+        "title": "Easy to use and air conditioned",
+        "review": "This is a very easy way to get around Bangkok and air conditioned There's so much traffic in this city it's far more reliable to use this to and from the airport as well People will help you understand how to buy tickets but you must find your final destination on the ticket machine the number next to it is how much you need to pay You can only use coins if you don't have them you can get them from the staff at the ticket booths (but oddly enough you can't always buy your tickets from them)",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Apr",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Very easy way to get around Bangkok"
+            }
+        ]
+    },
+    {
+        "id": 30224,
+        "title": "Easy way to get around the city",
+        "review": "Easy way to get around the city   Connect to SRT  Monorail    Prepare lots of coins to buy ticket   Ticket machine accepts note up to 100bhat only   Otherwise go and break change at the change station",
+        "country": "India",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Easy way to get around the city"
+            }
+        ]
+    },
+    {
+        "id": 30225,
+        "title": "Just a metro.",
+        "review": "It does not go fast It's quite slow The good side is that you see the city because it's a sky train and not underground Also it's clean and people queue",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Clean and people queue"
+            }
+        ]
+    },
+    {
+        "id": 30226,
+        "title": "Fast and Easy to access",
+        "review": "Connected to all the places of interest in Bangkok Will get you to your destinations by bypassing all the traffic jams during peak hours",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Dec",
+        "year": 2015,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Connected to all the places of interest in Bangkok Will get you to your destinations by bypassing all the traffic jams during peak hours"
+            }
+        ]
+    },
+    {
+        "id": 30227,
+        "title": "great way to get around",
+        "review": "Bangkok has many transpiration options that one can chose from the BTS is one of them its a train that is traveling on top of the roads and is a great way to see BangkokIt has extended its routs and one way to experience Bangkok is to get of at each station and just walk around Bangkok is full of surprises and you never know what you might find in one of the little soi\"s",
+        "country": "Macau",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Nov",
+        "year": 2015,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30228,
+        "title": "fast affordable and clean",
+        "review": "my kids loved the train it was clean quick and the ac worked wonderfully beware of rush hour it get hectic and squashed though",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jun",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "The train was clean."
+            }
+        ]
+    },
+    {
+        "id": 30229,
+        "title": "Connects to most of the places.",
+        "review": "Can be quite packed during peak hours Can say it quite normal about it Waiting times aren't that long either Around 35 mins depending on what time is it",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Mar",
+        "year": 2016,
+        "social": "reddit",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30230,
+        "title": "Bts Train",
+        "review": "Extremely clean and very easy to get round bangkok city I always use it to get around Next time you are there try it as you will be impressed with the helpful service",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Sep",
+        "year": 2015,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Extremely clean"
+            },
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Positive",
+                "opinion": "Impressed with the helpful service"
+            }
+        ]
+    },
+    {
+        "id": 30231,
+        "title": "a train in the air",
+        "review": "It's one of the better monorails that's for sure Even beats the one in Shelbyville Clean reliable and comfortable and very cheap for a farung",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Sep",
+        "year": 2015,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Clean and reliable"
+            }
+        ]
+    },
+    {
+        "id": 30232,
+        "title": "Clean, safe, and frequent.",
+        "review": "Easy to use The attendants are really helpful It would be perfect if it had indication of how much time for the next train",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "X",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Positive",
+                "opinion": "The attendants are really helpful"
+            }
+        ]
+    },
+    {
+        "id": 30233,
+        "title": "Bts experienced",
+        "review": "From airport to downtown city of bangkok bts is the most convenient means of transportation I teally love taking bts as we roam the city",
+        "country": "Pakistan",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Feb",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "BTS is the most convenient means of transportation"
+            }
+        ]
+    },
+    {
+        "id": 30234,
+        "title": "Clean, fast and good public transportation.",
+        "review": "Clean fast and good public transportation Buy daily pass if you travel alot worth the pay than paying each trip every time",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Aug",
+        "year": 2015,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Clean"
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Clean fast and good public transportation Buy daily pass if you travel alot worth the pay than paying each trip every time Good public transportation Buy daily pass if you travel alot Worth the pay"
+            }
+        ]
+    },
+    {
+        "id": 30235,
+        "title": "Fast and convenient way to travel through Bangkok",
+        "review": "It is a very convenient and fast way to travel through Bangkok as the city is pretty much congested",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Very convenient and fast"
+            }
+        ]
+    },
+    {
+        "id": 30236,
+        "title": "Should add more trains.",
+        "review": "I don't know if they have fixed this problem or not The train was so crowded that I could barely breathe or even move my body parts They should add more train frequency in the morning and evening rush hours The worst station is Siam where both BTS lines join together for interchange Good thing is that Thai people queue very well but the lines are so long that I could not find the end   Some day the BTS is broken and it happens in the morning rush hour Make sure you tell your boss that you will be late for work due to the train problem",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30237,
+        "title": "Think before you buy a rabbit card",
+        "review": "Rabbit card wont refund you 80baht and there is no discount for trips Besides you can't use it in other place like MRT system",
+        "country": "USA",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30238,
+        "title": "Near by hotel",
+        "review": "Sky train near by hotel Just few minute walk and can travel by skytrain BTS for shopping or dinning around the hotel",
+        "country": "Venezuela",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "reddit",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Accessibility",
+                "sentiment": "Positive",
+                "opinion": "Sky train near by hotel Just few minute walk and can travel by skytrain BTS for shopping or dinning"
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Sky train near by hotel Just few minute walk and can travel by skytrain BTS for shopping or dinning around the hotel"
+            }
+        ]
+    },
+    {
+        "id": 30239,
+        "title": "Great way to avoid traffic jams",
+        "review": "Having read a number of reviews we decided to give the train a go We bought a day ticket at the kiosk which was quick and easy and we didn't need to find coins The train system is very easy to understand and follow  there are only 2 lines which makes it very straight forward It is really quick compared to using the roads where you sit in traffic jam after traffic jam The carriages are very crowded but they are air conditioned we never had a problem getting on even at the busiest times but we always had to stand but as it is for a relatively short space of time it's really not a problem The all day ticket is 140 bhat about £3 at the current exchange rate",
+        "country": "Peru",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30240,
+        "title": "Great Way of Transportation Around Bangkok",
+        "review": "Cheap fast easy What more can one ask for  The BTS Skytrain and MRT trains are a great way to travel through Bangkok but you'll have to make do with walking or grabbing a taxituk tuk if you want to travel around the Old City    I found the MRT to be the easiest to travel around when it came to hauling luggage to and from the airport but the BTS and Skytrain are good as well Just take note that some stations have escalators going up but no escalators going down so you may have to drag your luggage down the stairs (hence why I preferred the MRT they have escalators going in both directions at every station) Also take note that the Skytrain carriages are fewer in number so it gets more crowded (and hence a bit more difficult to travel with luggage) especially at Siam station and during rush hour (5PM to 8PM)   A phenomenon that you may be interested in takes place at 8AM and 6PM everyday Siam is a good place to witness it )",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Cheap fast easy"
+            }
+        ]
+    },
+    {
+        "id": 30241,
+        "title": "Efficient anf fast, but limited reach",
+        "review": "Best way to get around in Bangkok since roads are usually too much congested Use the trains or water transport if you don't want to waste your holiday on the road BTS is very efficient good frequency neat and fast Only problem is that the line does not reach attractions on the West so you have to change to a bus or cab or boat or walk if you are coming from the Sukhumvit side and want to go to Wat Arun area",
+        "country": "Australia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "May",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "BTS is very efficient, good frequency, neat and fast"
+            }
+        ]
+    },
+    {
+        "id": 30242,
+        "title": "Easy and convenient to use",
+        "review": "If you're staying in sukumvit area BTS sky train is your best way of going round Bangkok very easy to use and cheap fares Air conditioned as well )",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Apr",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "BTS sky train is very easy to use and cheap"
+            }
+        ]
+    },
+    {
+        "id": 30243,
+        "title": "Best way to get around Bangkok and other parts",
+        "review": "I always use the BTS whenever I am in Bangkok It's cheap convenient and saves you a lot of time as Bangkok is notorious for its traffic jam If you couple BTS with MRT you can pretty much cover most of Bangkok by train alone  all you need to know is which station you need to get down One note though  the train starts at 630  and the last one leaves between 2330 and 2350 Fares start at 15 baht for one stop  that's pretty cheap",
+        "country": "Thailand",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Apr",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Cheap, convenient, saves time."
+            }
+        ]
+    },
+    {
+        "id": 30244,
+        "title": "Lofesaver in Bangkok",
+        "review": "Reliable service even if its become overcrowded Routes expanding every year Makes living in Bangkok possible comoared to even 15 years ago Easy to use and inexoensive",
+        "country": "Kazakhstan",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Easy to use and inexpensive"
+            }
+        ]
+    },
+    {
+        "id": 30245,
+        "title": "Easy to use,",
+        "review": "Cost of ticket marked by the no and the station  Frequent Be aware of rush hour from 430 am to 10 30 am and from 6 to 830 Its like sardines in there   AC was nice and cold )",
+        "country": "Canada",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tiktok",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Safety",
+                "sentiment": "Negative",
+                "opinion": "Its like sardines in there"
+            }
+        ]
+    },
+    {
+        "id": 30246,
+        "title": "Fast, economical, convenient",
+        "review": "Used it a few times and saved lots of money and time  The signage was in english and there were plenty of people willing to assist us  We spent 25hours in a cab from DMK airport going to the hotel  Could have used the subway and saved 15 hours",
+        "country": "Bahrain",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Staff quality",
+                "sentiment": "Positive",
+                "opinion": "Plenty of people willing to assist us"
+            }
+        ]
+    },
+    {
+        "id": 30247,
+        "title": "Efficient",
+        "review": "Great way to get around once you figure out the tickets Can get very crowded at certain times Very clean and efficient I liked using it",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Cleanliness",
+                "sentiment": "Positive",
+                "opinion": "Very clean and efficient"
+            },
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "Great way to get around once you figure out the tickets"
+            }
+        ]
+    },
+    {
+        "id": 30248,
+        "title": "Cheap & Cheerful!",
+        "review": "Taxis are very cheap but decided to use the sky train just for the experience and was not disappointed  It is always crowded but it is air conditioned and very clean as food and drink are not allowed at all It is exteemely cheap as well and is very convenient especially during the rush hour or traffic jams",
+        "country": "Tunisia",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Jul",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": []
+    },
+    {
+        "id": 30249,
+        "title": "Easy to use and get around Bangkok",
+        "review": "We used this service a few times it is very user friendly modern and gets you around quicker then the road at peak times",
+        "country": "UK",
+        "aspect": "",
+        "sentiment": "",
+        "opinion": "",
+        "month": "Feb",
+        "year": 2016,
+        "social": "tripadvisor",
+        "original_text": "",
+        "result": [
+            {
+                "aspect": "Convenience",
+                "sentiment": "Positive",
+                "opinion": "User friendly, modern, gets you around quicker"
+            }
+        ]
+    }
+]
