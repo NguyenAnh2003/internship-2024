@@ -74,8 +74,8 @@ class ABSADataset(Dataset):
             ###Output: aspect: {aspect} polarity: {polarity} opinion: {opinion}
 
             """
-        special_symbol = "\n            "  # do not change "\n            "
-        batch["prompt"] = prompt.replace(special_symbol, " ").strip()
+        # special_symbol = "\n            "  # do not change "\n            "
+        # batch["prompt"] = prompt.replace(special_symbol, " ").strip()
 
         return batch
 
