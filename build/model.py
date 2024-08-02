@@ -1,4 +1,4 @@
-from models.absa_finetuning_model import PretrainedModelABSA
+from build.absa_finetuning_model import PretrainedModelABSA
 from omegaconf import DictConfig, OmegaConf
 from torch.nn import Module, Sequential
 import torch
