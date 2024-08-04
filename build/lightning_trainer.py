@@ -4,7 +4,7 @@ from modules.absa_light_module import ABSALightningModule
 from libs.helper_functions import get_configs
 from build.model import ABSAModel
 from pytorch_lightning import Trainer
-
+from torch.nn import CrossEntropyLoss
 
 if __name__ == "__main__":
 
@@ -26,11 +26,14 @@ if __name__ == "__main__":
   # TRAIN, DEV SET
   train_ds, dev_ds = module_absa.setup_train_dataloader()
 
+  loss_fn = CrossEntropyLoss()
   sample = next(iter(train_ds))
   input_ids = sample["input_ids"]
   attention_mask = sample["attention_mask"]
+  labels = sample["labels"]
   logits = model(input_ids=input_ids, attention_mask=attention_mask)
-  print(logits.shape)
+  loss = loss_fn(logits, labels)
+  print(loss)
 
   # TEST SET
   # test_ds = module_absa.setup_test_dataloader()

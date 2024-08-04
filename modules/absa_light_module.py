@@ -20,7 +20,7 @@ class ABSALightningModule(LightningModule):
     input_ids = batch["input_ids"]
     attention_mask = batch["attention_mask"]
     labels = batch["labels"]
-    logits = self.model(input_ids, attention_mask=attention_mask)
+    logits = self.model(input_ids=input_ids, attention_mask=attention_mask)
 
     # metric
     loss = self.loss(logits, labels)

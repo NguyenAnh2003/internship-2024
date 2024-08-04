@@ -59,9 +59,10 @@ class ABSAModel(Module):
 
     def forward(self, input_ids, attention_mask):
         rep = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
-        last_hidden_state = rep.last_hidden_state
-        rnn_out = self.rnn_block(last_hidden_state)
-        out = self.classifier(rnn_out)
+        last_hidden_state = rep.last_hidden_state # B, L, D
+        rnn_out = self.rnn_block(last_hidden_state) # B, L, D
+        # https://github.com/diya-he/bert_rnn/blob/main/model.py
+        out = self.classifier(rnn_out[:, -1, :])
         logtis = self.log_softmax(out)
         return logtis
 
