@@ -40,6 +40,8 @@ model:
  train:
   # SFTTrainer
   train_dir: ???
+  dev_dir: ???
+  test_dir: ???
   epoch: 2
   batch: 8
   lr: 2e-4

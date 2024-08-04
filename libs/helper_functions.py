@@ -10,7 +10,6 @@ def get_configs(path: str):
     params = yaml.safe_load(open(path, "r", encoding="utf-8"))
     return params
 
-
 def get_executing_time(start_time):
     """
     start time as param passing with time.time()
