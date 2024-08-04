@@ -9,7 +9,7 @@ from torch.nn import CrossEntropyLoss
 if __name__ == "__main__":
 
   # init Trainer
-  trainer = Trainer()
+  trainer = Trainer(default_root_dir="../checkpoints")
 
   conf = get_configs("../configs/absa_model.yaml")
 

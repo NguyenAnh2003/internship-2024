@@ -14,25 +14,45 @@ class ABSALightningModule(LightningModule):
     self.tokenizer = tokenizer
     self.model = model
     self.loss = CrossEntropyLoss()
-    self.acc_metric = MulticlassAccuracy(num_classes=10)
+
+    # https://lightning.ai/docs/torchmetrics/stable/classification/accuracy.html
+    self.acc_metric = MulticlassAccuracy(num_classes=10, average="macro")
 
   def training_step(self, batch, batch_idx):
     input_ids = batch["input_ids"]
     attention_mask = batch["attention_mask"]
     labels = batch["labels"]
+
+    # logits
     logits = self.model(input_ids=input_ids, attention_mask=attention_mask)
-
-    # metric
     loss = self.loss(logits, labels)
-    acc = self.acc_metric()
 
-    self.log_dict({'train_loss': loss})
+    # take argmax index from each sample
+    # distribution on each label so have to take argmax
+    predictions = logits.argmax(dim=-1)
+    acc = self.acc_metric(predictions, labels)
+
+    # logging result
+    self.log_dict({'train/loss': loss, "train/acc": acc})
     return loss
 
   def validation_step(self, batch, batch_idx):
-    input_ids, attention_mask, labels = batch
-    logits = self.model(input_ids, attention_mask)
-    print(logits.shape)
+    input_ids = batch["input_ids"]
+    attention_mask = batch["attention_mask"]
+    labels = batch["labels"]
+
+    # logits
+    logits = self.model(input_ids=input_ids, attention_mask=attention_mask)
+    loss = self.loss(logits, labels)
+
+    # take argmax index from each sample
+    # distribution on each label so have to take argmax
+    predictions = logits.argmax(dim=-1)
+    acc = self.acc_metric(predictions, labels)
+
+    # logging result
+    self.log_dict({'val/loss': loss, "val/acc": acc})
+    return loss
 
   def configure_optimizers(self) -> OptimizerLRScheduler:
     optimizer = AdamW(self.model.parameters(), lr=self.conf.model.train.lr)
