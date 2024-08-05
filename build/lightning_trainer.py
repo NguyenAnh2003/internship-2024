@@ -12,6 +12,7 @@ if __name__ == "__main__":
 
     conf = get_configs("../configs/absa_model.yaml")
     conf["model"]["train"]["lr"] = 2e-4
+
     conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
     conf["model"]["pretrained"]["freeze"] = True
     conf["model"]["train"][
