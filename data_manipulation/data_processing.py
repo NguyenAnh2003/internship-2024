@@ -4,9 +4,7 @@ from omegaconf import OmegaConf, DictConfig
 import re
 import json
 from data_generator import Generator
-from langdetect import detect
 import csv
-import demoji
 import random
 import os
 import ast
@@ -14,7 +12,6 @@ from libs.helper_functions import get_configs
 
 # from data_generator import Generator
 
-demoji.download_codes()  # download code
 
 
 class DataProcessPipeline:
@@ -41,15 +38,6 @@ class DataProcessPipeline:
             if "<br />" in point["review"]:
                 point["review"] = point["review"].replace("<br />", " ")
 
-            # remove punctuation
-            point["review"] = self.remove_punctuation(point["review"])
-            # point["reviewTitle"] = self.remove_punctuation(point["reviewTitle"])
-
-            # detect language and group ds
-            lang = detect(point["review"])
-            if lang == "en":
-                result.append(point)
-
         # write data to out file
         out_file = open(outpath, "w", encoding="utf-8")
         json.dump(result, out_file, indent=4, ensure_ascii=False)
@@ -64,57 +52,6 @@ class DataProcessPipeline:
         
         for idx, point in enumerate(json_ds):
             writer.writerow(point.values())
-        
-
-    @staticmethod
-    def convert_csv2json(path: str, outpath: str):
-        # csv file
-        csv_file = open(path, "r", encoding="utf-8")
-        # json file
-        json_file = open(outpath, "w", encoding="utf-8")
-        # csv reader
-        reader = csv.reader(csv_file)
-        next(reader)  # skip the header
-
-        package_list = []
-
-        for line in reader:
-            try:
-                # define data dict
-                data_package = {
-                    "id": int(line[0]),
-                    "title": line[1],
-                    "review": line[2],
-                    "country": line[3],
-                    "aspect": line[4],
-                    "sentiment": line[5],
-                    "opinion": line[6],
-                    "month": line[7],
-                    "year": int(line[8]),
-                    "social": line[9],
-                    "original_text": line[-1]
-                }
-
-                package_list.append(data_package)
-            except Exception as e:
-                raise ValueError(e)
-
-        json.dump(package_list, json_file, ensure_ascii=False)
-        # json_file.write("\n")
-        package_list.clear()  # clear list to remove from memory
-
-    def remove_punctuation(self, string):
-        # Replace specific punctuation characters
-        for char in self.punctuations:
-            string = string.replace(char, "")
-        return string
-
-    def remove_emoji(self, string):
-        # self.emoji_pattern.sub(r"", string)
-        dem = demoji.findall(string)
-        for item in dem.keys():
-            string = string.replace(item, "")
-        return string
 
     def prepreprocesse_ds(self, path: str, outpath: str = None):
         json_file = open(path, "r", encoding="utf-8")
@@ -190,13 +127,6 @@ class DataProcessPipeline:
         json.dump(dev_ds, dev_file, ensure_ascii=False, indent=4)
         json.dump(test_ds, test_file, ensure_ascii=False, indent=4)
 
-    def check_ds_lang(self, path):
-        json_file = open(path, "r", encoding="utf-8")
-        dataset = json.load(json_file)
-
-        for point in dataset:
-            lang = detect(point["reviewText"])
-            print(lang)
 
     def apsect_extraction(self, path: str = None, outpath: str = None):
         dataset = json.load(open(path, "r", encoding="utf-8"))

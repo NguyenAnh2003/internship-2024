@@ -23,7 +23,7 @@ model:
   train:
     # train paramters
     out_dir: ???
-    epoch: 8
+    epochs: 8
     batch_size: 8
     train_dir: ???
     log_steps: 100

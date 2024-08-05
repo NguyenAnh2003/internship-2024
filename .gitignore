@@ -177,4 +177,5 @@ data_manipulation/metadata/manifests/temp
 # backup
 backup/
 
-# 
+# lightninglogs
+build/lightning_logs
