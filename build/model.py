@@ -1,7 +1,7 @@
 from transformers import XLMRobertaModel, AutoTokenizer
 from omegaconf import DictConfig, OmegaConf
 from torch.nn import (Module, Sequential, LSTM, Dropout,
-                      BatchNorm1d, Linear)
+                      BatchNorm1d, Linear, LayerNorm)
 import torch.nn as nn
 import torch
 from libs.helper_functions import get_configs
@@ -10,21 +10,19 @@ class RNNModule(Module):
     def __init__(self, input_size, hidden_size):
         super(RNNModule, self).__init__()
         self.lstm = LSTM(input_size, hidden_size, batch_first=True, bidirectional=True)
-        self.norm = BatchNorm1d(num_features=hidden_size * 2)  # For bidirectional
-        self.dropout = Dropout(p=0.1)
+        self.norm = BatchNorm1d(num_features=hidden_size*2)  # For bidirectional
 
     def forward(self, x):
         out, _ = self.lstm(x)
         out = out.permute(0, 2, 1)  # For batch normalization
         out = self.norm(out)
         out = out.permute(0, 2, 1)
-        out = self.dropout(out)
         return out
 
 
 class ABSAModel(Module):
     def __init__(self, conf: DictConfig, input_size = 768,
-                 hidden_size = 256, output_size = 10, *args, **kwargs):
+                 hidden_size = 384, output_size = 10, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.conf = OmegaConf.create(conf)
 
@@ -34,11 +32,18 @@ class ABSAModel(Module):
         # rnn block
         self.rnn_block = RNNModule(input_size=input_size, hidden_size=hidden_size) # in_size, hidden_size
 
+        # norm
+        self.norm = LayerNorm(normalized_shape=hidden_size*2)
+
+        # relu
+        self.relu = nn.ReLU()
+
         # init mlp
-        self.classifier = Sequential(Linear(hidden_size*2, hidden_size),
-                                     nn.ReLU(),
-                                     Dropout(0.1),
-                                     Linear(hidden_size, output_size))
+        self.classifier = Sequential(
+            self.norm,
+            self.relu,
+            Dropout(0.1),
+            Linear(hidden_size*2, output_size))
 
         self.log_softmax = nn.LogSoftmax(dim=-1)
 
@@ -58,11 +63,16 @@ class ABSAModel(Module):
         return sum(params)
 
     def forward(self, input_ids, attention_mask):
-        rep = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
+        with torch.no_grad():
+            rep = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
+
         last_hidden_state = rep.last_hidden_state # B, L, D
         rnn_out = self.rnn_block(last_hidden_state) # B, L, D
+        # Skip conecction
+        rnn_out = rnn_out + last_hidden_state
+        out = self.norm(rnn_out)
         # https://github.com/diya-he/bert_rnn/blob/main/model.py
-        out = self.classifier(rnn_out[:, -1, :])
+        out = self.classifier(out[:, -1, :])
         logtis = self.log_softmax(out)
         return logtis
 

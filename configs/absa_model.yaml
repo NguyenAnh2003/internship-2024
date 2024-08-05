@@ -24,9 +24,9 @@ model:
     # train paramters
     out_dir: ???
     epochs: 8
-    batch_size: 8
+    batch_size: ???
     train_dir: ???
     log_steps: 100
-    lr: 2e-4
+    lr: ???
     weight_decay: 0.01
     warmup_step: 500

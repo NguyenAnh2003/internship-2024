@@ -3,16 +3,21 @@ from modules.absa_light_module import ABSALightningModule
 from libs.helper_functions import get_configs
 from build.model import ABSAModel
 from pytorch_lightning import Trainer
+from pytorch_lightning.callbacks import LearningRateMonitor
 from pytorch_lightning.loggers import WandbLogger
 
 if __name__ == "__main__":
+    lr_monitor = LearningRateMonitor(logging_interval="epoch")
     wandb_logger = WandbLogger(project="absa_", log_model="all")
     # init Trainer
-    trainer = Trainer(default_root_dir="checkpoints", max_epochs=3)
+    trainer = Trainer(default_root_dir="../checkpoints",
+                      max_epochs=30, logger=wandb_logger,
+                      log_every_n_steps=100,
+                      callbacks=[lr_monitor])
 
     conf = get_configs("../configs/absa_model.yaml")
-    conf["model"]["train"]["lr"] = 2e-4
-
+    conf["model"]["train"]["lr"] = 0.0003
+    conf["model"]["train"]["batch_size"] = 16
     conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
     conf["model"]["pretrained"]["freeze"] = True
     conf["model"]["train"][
@@ -26,7 +31,6 @@ if __name__ == "__main__":
     ] = "../data_manipulation/metadata/manifests/test.csv"
 
     model = ABSAModel(conf)
-    wandb_logger.watch(model)  # watch model grad
     tokenizer = model.tokenizer
     module_absa = ABSALightningModule(tokenizer=tokenizer, conf=conf, model=model)
 
