@@ -8,16 +8,16 @@ from pytorch_lightning.loggers import WandbLogger
 
 if __name__ == "__main__":
     lr_monitor = LearningRateMonitor(logging_interval="epoch")
-    wandb_logger = WandbLogger(project="absa_", log_model="all")
+    wandb_logger = WandbLogger(project="absa_")
     # init Trainer
-    trainer = Trainer(default_root_dir="../checkpoints",
+    trainer = Trainer(default_root_dir="./checkpoints",
                       max_epochs=30, logger=wandb_logger,
                       log_every_n_steps=100,
                       callbacks=[lr_monitor])
 
     conf = get_configs("../configs/absa_model.yaml")
-    conf["model"]["train"]["lr"] = 0.0003
-    conf["model"]["train"]["batch_size"] = 16
+    conf["model"]["train"]["lr"] = 0.0005
+    conf["model"]["train"]["batch_size"] = 20
     conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
     conf["model"]["pretrained"]["freeze"] = True
     conf["model"]["train"][

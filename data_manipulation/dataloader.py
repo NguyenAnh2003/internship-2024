@@ -14,10 +14,9 @@ class ABSADataset(Dataset):
 
         # dataset
         self.dataset = self._create_hf_ds(path=self.path)  # create HF dataset
-        self.dataset = self.dataset.train_test_split(test_size=0.2)
 
     def __getitem__(self, index):
-        package = self._transform_sample(self.dataset["train"][index])
+        package = self._transform_sample(self.dataset[index])
         return package
 
     def _transform_sample(self, batch):
@@ -41,7 +40,7 @@ class ABSADataset(Dataset):
         return ds
 
     def __len__(self):
-        return len(self.dataset["train"])
+        return len(self.dataset)
 
 
 class ABSADataloader(DataLoader):
