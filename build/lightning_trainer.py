@@ -9,6 +9,7 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import LearningRateMonitor
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning import LightningModule
+from modules.printing_callback import PrintingCallback
 
 #     tt = Trainer()
 #     tt.test(model=model_checkpoint, dataloaders=test_ds)
@@ -51,6 +52,6 @@ if __name__ == "__main__":
     filtered_state_dict = {k: v for k, v in state_dict.items() if k in module_absa.state_dict()}
     module_absa.load_state_dict(filtered_state_dict, strict=False)
     print(module_absa.state_dict())
-    trainer = Trainer()
+    trainer = Trainer(callbacks=[PrintingCallback()])
     results = trainer.test(model=module_absa, dataloaders=test_ds)
     print(results)
