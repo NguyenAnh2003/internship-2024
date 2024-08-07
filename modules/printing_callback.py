@@ -15,6 +15,6 @@ class PrintingCallback(Callback):
         avg_precision = np.mean(precisions)
         avg_recall = np.mean(recall)
 
-        print(f"Acc: {avg_acc:.4f} F1: {avg_f1:.4f} Precision: {avg_precision:.4f} Recall: {avg_recall:.4f}")
+        print(f"Acc: {avg_acc} F1: {avg_f1} Precision: {avg_precision} Recall: {avg_recall}")
 
         pl_module.testing_step_outputs.clear()
