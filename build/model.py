@@ -18,26 +18,30 @@ class RNNModule(Module):
         return out
 
 
-class ABSAModel(Module):
-    def __init__(self, conf: DictConfig, input_size = 768,
-                 hidden_size = 384, output_size = 10, *args, **kwargs):
+class ABSAModel(nn.Module):
+    def __init__(self, conf: DictConfig, input_size=768,
+                 hidden_size=384, output_size=10, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.conf = OmegaConf.create(conf)
 
-        # init model - encoder
+        # Initialize model - encoder
         self.encoder, self.tokenizer = self._init_pretrained_metadata()
 
-        # rnn block
-        self.rnn_block = RNNModule(input_size=input_size, hidden_size=hidden_size) # in_size, hidden_size
+        # Convolutional layer
+        self.conv1d = nn.Conv1d(in_channels=input_size, out_channels=input_size, kernel_size=3, padding=1)
 
-        # norm
-        self.norm = LayerNorm(normalized_shape=hidden_size*2)
+        # RNN block
+        self.rnn_block = RNNModule(input_size=input_size, hidden_size=hidden_size)  # in_size, hidden_size
 
-        # init mlp
-        self.classifier = Sequential(
+        # Norm
+        self.norm = nn.LayerNorm(normalized_shape=hidden_size * 2)
+
+        # Initialize MLP
+        self.classifier = nn.Sequential(
             nn.SiLU(),
-            Dropout(0.2),
-            Linear(hidden_size*2, output_size))
+            nn.Dropout(0.2),
+            nn.Linear(hidden_size * 2, output_size)
+        )
 
         self.log_softmax = nn.LogSoftmax(dim=-1)
 
@@ -45,28 +49,37 @@ class ABSAModel(Module):
         model = XLMRobertaModel.from_pretrained(self.conf.model.pretrained.name)
         tokenizer = AutoTokenizer.from_pretrained(self.conf.model.pretrained.name)
 
-        if self.conf.model.pretrained.freeze == True:
+        if self.conf.model.pretrained.freeze:
             for params in model.parameters():
                 params.requires_grad = False
 
         return model, tokenizer
 
-    # getting embedding of each input
+    # Getting embedding of each input
     def get_model_params(self):
-        params = [p.nelement() for p in self.pretrained_model.parameters()]
+        params = [p.nelement() for p in self.encoder.parameters()]
         return sum(params)
 
     def forward(self, input_ids, attention_mask):
         rep = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
 
-        last_hidden_state = rep.last_hidden_state # B, L, D
-        rnn_out = self.rnn_block(last_hidden_state) # B, L, D
-        # Skip conecction
-        rnn_out = rnn_out + last_hidden_state
+        last_hidden_state = rep.last_hidden_state  # B, L, D
+
+        # Apply Conv1D layer
+        last_hidden_state = last_hidden_state.permute(0, 2, 1)  # B, D, L
+        conv_out = self.conv1d(last_hidden_state)  # B, D, L
+        conv_out = conv_out.permute(0, 2, 1)  # B, L, D
+
+        # Pass through RNN
+        rnn_out = self.rnn_block(conv_out)  # B, L, D
+
+        # Skip connection
+        rnn_out = rnn_out + conv_out
         out = self.norm(rnn_out)
         out = self.classifier(out[:, -1, :])
         logtis = self.log_softmax(out)
         return logtis
+
 
 if __name__ == "__main__":
     conf = get_configs("../configs/absa_model.yaml")
