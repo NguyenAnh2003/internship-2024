@@ -1,38 +1,34 @@
 model:
- label_aspects: ["Price fairness", "Data availability", 
- "Cleanliness", "Punctuality", "Facilities", "Accessibility", 
- "Satisfactions", "Staff service", "Safety", "Others"]
- 
- # label polarity
- label_polarity: ["positive", "negative", "neutral"]
+  label_aspects: ["Price fairness", "Data availability",
+    "Cleanliness", "Punctuality", "Facilities", "Accessibility",
+    "Satisfactions", "Staff service", "Safety", "Others"]
 
- # using LLM
- llm:
-  type: ???
-  name: ???
+  labels: ["Price fairness", "Cleanliness", "Facilities", "Staff quality", "Convenience",
+    "Punctuality", "Accessibility", "Safety", "Data availability"]
 
- style: "ate"
+  # label polarity
+  label_polarity: ["positive", "negative", "neutral"]
 
- # using pretrained model for fine tuning
- pretrained:
-  bert: True
-  name: "yangheng/deberta-v3-base-absa-v1.1"
-  freeze: ??? # freeze model for finetuning or training
+  # using LLM
+  llm:
+    type: ???
+    name: ???
 
- train:
-  # train paramters
-  out_dir: ???
-  epoch: 8
-  batch_size: 8
-  train_dir: ???
-  log_dir: ???
-  log_strategy: "steps"
-  log_steps: 100
-  lr: 2e-4
-  weight_decay: 0.01
-  warmup_step: 500
-  report_to: "wandb"
-  push_to_hub: True
-  hub_strategy: "every_save"
-  hub_model_id: ??? # setup
-  hub_token: ??? # setup
+  style: "ate"
+
+  pretrained:
+    name: ???
+    freeze: ??? # freeze model for finetuning or training
+
+  train:
+    # train paramters
+    out_dir: ???
+    epochs: 8
+    batch_size: ???
+    train_dir: ???
+    dev_dir: ???
+    test_dir: ???
+    log_steps: 100
+    lr: ???
+    weight_decay: 0.01
+    warmup_step: 500

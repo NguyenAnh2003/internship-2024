@@ -1,96 +1,80 @@
-from torch.utils.data import Dataset, DataLoader
 import pandas as pd
+import torch
+from torch.utils.data import Dataset, DataLoader
+from torch.nn.utils.rnn import pad_sequence
+from transformers import AutoTokenizer
 from datasets import Dataset as HFDataset
-from omegaconf import OmegaConf, DictConfig
-from libs.helper_functions import get_configs
 
 
 class ABSADataset(Dataset):
-    def __init__(self, tokenizer=None, conf: DictConfig = None) -> None:
+    def __init__(self, tokenizer=None, path: str = ""):
         super().__init__()
-        self.conf = OmegaConf.create(conf)
+        self.path = path
         self.tokenizer = tokenizer  # tokenizer as transform
-        self.dataset = self._create_hf_ds(
-            csv_path=self.conf.model.train.train_dir
-        )  # create HF dataset
-        if self.conf.model.style == "ate":
-            self.dataset = self.dataset.map(self._process_hf_ds)  # mapping data
-        elif self.conf.model.style == "instruction_tuning":
-            self.dataset = self.dataset.map(self._processw_instruction_tuning_ds)
 
-        self.dataset = self.dataset.train_test_split(test_size=0.2)
+        # dataset
+        self.dataset = self._create_hf_ds(path=self.path)  # create HF dataset
 
     def __getitem__(self, index):
-        pass
+        package = self._transform_sample(self.dataset[index])
+        return package
 
-    def setup_absa_hf_dataset(self):
-
-        def _tokenize(batch):
-            return self.tokenizer(
-                batch["review"], padding=True, truncation=True, max_length=3000
-            )
-
-        train_dataset = self.dataset["train"]
-        dev_dataset = self.dataset["test"].shard(num_shards=2, index=0)
-        test_dataset = self.dataset["test"].shard(num_shards=2, index=0)
-
-        train_dataset = train_dataset.map(
-            lambda x: _tokenize(x), batched=True, batch_size=8
+    def _transform_sample(self, batch):
+        tokens = self.tokenizer(
+            batch["review"],
+            padding=True,
+            truncation=True,
+            max_length=3000,
+            return_attention_mask=True,
+            return_tensors="pt",
         )
 
-        dev_dataset = dev_dataset.map(
-            lambda x: _tokenize(x), batched=True, batch_size=8
-        )
+        tokens["labels"] = torch.tensor(batch["label"])
 
-        test_dataset = test_dataset.map(
-            lambda x: _tokenize(x), batched=True, batch_size=8
-        )
-
-        train_dataset.set_format(
-            "torch", columns=["input_ids", "attention_mask", "label"]
-        )
-        dev_dataset.set_format(
-            "torch", columns=["input_ids", "attention_mask", "label"]
-        )
-        test_dataset.set_format(
-            "torch", columns=["input_ids", "attention_mask", "label"]
-        )
-
-        return train_dataset, dev_dataset, test_dataset
-
-    def _processw_instruction_tuning_ds(self, batch):
-        # prepare HF dataset
-        review = batch["review"]
-        aspect = batch["aspect"]  # label2index
-        opinion = batch["opinion"]  # tokenize this
-        polarity = batch["polarity"]  # label2index
-        prompt = ""
-        # take review as input and aspect, polarity as output
-        if self.conf.model.instruction_style == "simple":
-            prompt = f"""###Instruct: Follow the given review and the
-            corresponded output try to brainstorm and predict the aspect
-            and polarity of that aspect in the review
-            ###Input: {review}
-            ###Output: aspect: {aspect} polarity: {polarity} opinion: {opinion}
-
-            """
-        # special_symbol = "\n            "  # do not change "\n            "
-        # batch["prompt"] = prompt.replace(special_symbol, " ").strip()
-
-        return batch
-
-    def _process_hf_ds(self, batch):
-        # prepare HF dataset
-        review = batch["review"]
-        aspect = batch["aspect"]
-
-        return batch
+        return tokens
 
     @staticmethod
-    def _create_hf_ds(csv_path: str):
-        train_csv = pd.read_csv(csv_path)
+    def _create_hf_ds(path: str):
+        train_csv = pd.read_csv(path)
         ds = HFDataset.from_pandas(train_csv)
         return ds
 
     def __len__(self):
         return len(self.dataset)
+
+
+class ABSADataloader(DataLoader):
+    def __init__(
+        self,
+        dataset: ABSADataset,
+        batch_size: int = 16,
+        shuffle: bool = True,
+        tokenizer: AutoTokenizer = None,
+    ):
+        super(ABSADataloader, self).__init__(
+            dataset, batch_size=batch_size, shuffle=shuffle
+        )
+        self.collate_fn = self.collate_function
+        self.tokenizer = tokenizer
+
+    def collate_function(self, batch):
+        input_ids = [item["input_ids"].squeeze(0) for item in batch]
+        attention_mask = [item["attention_mask"].squeeze(0) for item in batch]
+        labels = [item["labels"].squeeze(0) for item in batch]
+
+        # Pad sequences
+        input_ids_padded = pad_sequence(
+            input_ids, batch_first=True, padding_value=self.tokenizer.pad_token_id
+        )
+        attention_mask_padded = pad_sequence(
+            attention_mask, batch_first=True, padding_value=0
+        )
+        labels_padded = torch.tensor(
+            labels
+        )  # Assuming labels are already in tensor format and don't need padding
+
+        return {
+            "input_ids": input_ids_padded,
+            "attention_mask": attention_mask_padded,
+            "labels": labels_padded,
+        }
