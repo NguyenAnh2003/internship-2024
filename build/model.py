@@ -9,8 +9,8 @@ from libs.helper_functions import get_configs
 class RNNModule(Module):
     def __init__(self, input_size, hidden_size):
         super(RNNModule, self).__init__()
-        self.lstm = LSTM(input_size, hidden_size*2, batch_first=True, bidirectional=False)
-        self.dropout = nn.Dropout(p=0.5)
+        self.lstm = LSTM(input_size, hidden_size, batch_first=True, bidirectional=True)
+        self.dropout = nn.Dropout(p=0.2)
 
     def forward(self, x):
         out, _ = self.lstm(x)
@@ -36,7 +36,7 @@ class ABSAModel(Module):
         # init mlp
         self.classifier = Sequential(
             nn.SiLU(),
-            Dropout(0.5),
+            Dropout(0.2),
             Linear(hidden_size*2, output_size))
 
         self.log_softmax = nn.LogSoftmax(dim=-1)

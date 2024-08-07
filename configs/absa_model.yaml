@@ -26,6 +26,8 @@ model:
     epochs: 8
     batch_size: ???
     train_dir: ???
+    dev_dir: ???
+    test_dir: ???
     log_steps: 100
     lr: ???
     weight_decay: 0.01
