@@ -84,10 +84,16 @@ class ABSALightningModule(LightningModule):
         predictions = logits.argmax(dim=-1)
         acc = self.acc_metric(predictions, labels)
         acc = acc.cpu().item() # convert from tensor to float : D
+
         p_score = self.precision_metric(predictions, labels)
-        print(p_score)
+        p_score = p_score.cpu().item()
+
         r_score = self.recall_metric(predictions, labels)
+        r_score = r_score.cpu().item()
+
         f_score = self.f1_metric(predictions, labels)
+        f_score = f_score.cpu().item()
+
         self.testing_step_outputs.append({"acc": acc, "f1": f_score,
                                           "precision": p_score, "recall": r_score})
 
