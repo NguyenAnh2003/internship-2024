@@ -28,7 +28,10 @@ class ABSALightningModule(LightningModule):
         self.precision_metric = MulticlassPrecision(num_classes=10, average="macro")
         self.recall_metric = MulticlassRecall(num_classes=10, average="macro")
         self.f1_metric = MulticlassF1Score(num_classes=10, average="macro")
+
         self.testing_step_outputs = []
+        self.training_step_outputs = []
+        self.validating_step_outputs = []
 
     @classmethod
     def load_from_checkpoint(
@@ -43,17 +46,18 @@ class ABSALightningModule(LightningModule):
         labels = batch["labels"]
 
         # logits
-        logits = self.model(input_ids=input_ids, attention_mask=attention_mask)
+        logits = self.forward(x1=input_ids, x2=attention_mask)
         loss = self.loss(logits, labels)
-        print(loss.item())
 
         # take argmax index from each sample
         # distribution on each label so have to take argmax
         predictions = logits.argmax(dim=-1)
         acc = self.acc_metric(predictions, labels)
+        acc = acc.cpu().item()
+
+        self.training_step_outputs.append({"loss": loss.item(), "acc": acc})
 
         # logging result
-        self.log_dict({'train/loss': loss, "train/acc": acc})
         return loss
 
     def validation_step(self, batch, batch_idx):
@@ -62,16 +66,18 @@ class ABSALightningModule(LightningModule):
         labels = batch["labels"]
 
         # logits
-        logits = self.model(input_ids=input_ids, attention_mask=attention_mask)
+        logits = self.forward(x1=input_ids, x2=attention_mask)
         loss = self.loss(logits, labels)
 
         # take argmax index from each sample
         # distribution on each label so have to take argmax
         predictions = logits.argmax(dim=-1)
         acc = self.acc_metric(predictions, labels)
+        acc = acc.cpu().item()
 
-        # logging result
-        self.log_dict({'val/loss': loss, "val/acc": acc})
+        # append result
+        self.validating_step_outputs.append({"loss": loss.item(), "acc": acc})
+
         return loss
 
     def test_step(self, batch, batch_idx):
@@ -107,9 +113,9 @@ class ABSALightningModule(LightningModule):
         return self.model(x1, x2)
 
     def configure_optimizers(self):
-        optimizer = AdamW(self.model.parameters(),
+        optimizer = AdamW(self.parameters(),
                           lr=self.conf.model.train.lr,
-                          weight_decay=0.5)
+                          weight_decay=0.3)
 
         scheduler = lr_scheduler.ExponentialLR(optimizer, gamma=0.8)
         return [optimizer], [{"scheduler": scheduler, "interval": "epoch"}]

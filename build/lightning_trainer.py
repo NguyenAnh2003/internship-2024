@@ -23,8 +23,9 @@ if __name__ == "__main__":
     wandb_logger = WandbLogger(project="absa_")
     # # init Trainer
     trainer = Trainer(default_root_dir="checkpoints",
-                      max_epochs=40, logger=wandb_logger,
+                      max_epochs=8, logger=wandb_logger,
                       log_every_n_steps=100,
+                      precision="32",
                       callbacks=[lr_monitor, PrintingCallback()])
 
     conf = get_configs("../configs/absa_model.yaml")
