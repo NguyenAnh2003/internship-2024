@@ -54,6 +54,7 @@ class ABSADataloader(DataLoader):
         super(ABSADataloader, self).__init__(
             dataset, batch_size=batch_size, shuffle=shuffle
         )
+        self.shuffle = shuffle
         self.collate_fn = self.collate_function
         self.tokenizer = tokenizer
 
