@@ -38,7 +38,6 @@ class ABSAModel(nn.Module):
 
         # Initialize MLP
         self.classifier = nn.Sequential(
-            nn.SiLU(),
             nn.Dropout(0.2),
             nn.Linear(hidden_size * 2, output_size)
         )
