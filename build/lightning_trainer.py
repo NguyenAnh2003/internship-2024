@@ -23,7 +23,7 @@ if __name__ == "__main__":
     wandb_logger = WandbLogger(project="absa_")
     # # init Trainer
     trainer = Trainer(default_root_dir="checkpoints",
-                      max_epochs=8, logger=wandb_logger,
+                      max_epochs=30, logger=wandb_logger,
                       log_every_n_steps=100,
                       precision="32",
                       callbacks=[lr_monitor, PrintingCallback()])
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     conf["model"]["train"]["lr"] = 0.0005
     conf["model"]["train"]["batch_size"] = 16
 
-    conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
+    conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-large"
     conf["model"]["pretrained"]["freeze"] = True
     conf["model"]["train"][
         "train_dir"
@@ -49,11 +49,11 @@ if __name__ == "__main__":
 
     # TRAIN, DEV SET
     train_ds, dev_ds = module_absa.setup_train_dataloader()
-    trainer.fit(module_absa, train_ds, dev_ds)  # train
+    # trainer.fit(module_absa, train_ds, dev_ds)  # train
 
     # TEST SET
-    # test_ds = module_absa.setup_test_dataloader()
+    test_ds = module_absa.setup_test_dataloader()
 
-    # checkpoint_dir = "./absa_/dg4atuk9/checkpoints/epoch=29-step=11820.ckpt"
-    # test_performance(model=module_absa, test_dataloader=test_ds,
-    #                  trainer=trainer, checkpoint_dir=checkpoint_dir)
+    checkpoint_dir = "./absa_/svwxj8o1/checkpoints/epoch=29-step=23610.ckpt"
+    test_performance(model=module_absa, test_dataloader=test_ds,
+                     trainer=trainer, checkpoint_dir=checkpoint_dir)

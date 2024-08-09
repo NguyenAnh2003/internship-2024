@@ -131,6 +131,6 @@ class ABSALightningModule(LightningModule):
 
     def setup_test_dataloader(self):
         test_ds = ABSADataset(tokenizer=self.tokenizer, path=self.conf.model.train.test_dir)
-        test_dataloader = ABSADataloader(test_ds, batch_size=self.conf.model.train.batch_size, shuffle=True,
+        test_dataloader = ABSADataloader(test_ds, batch_size=self.conf.model.train.batch_size, shuffle=False,
                                          tokenizer=self.tokenizer)
         return test_dataloader

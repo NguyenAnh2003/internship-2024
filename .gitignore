@@ -182,3 +182,5 @@ build/lightning_logs
 build/absa_
 build/wandb
 build/checkpoints
+build/glove.840B.300d.zip
+build/glove.840B.300d.txt
