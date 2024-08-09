@@ -2,6 +2,7 @@ from typing import Union, IO, Optional, Any
 from typing_extensions import Self
 from lightning_fabric.utilities.types import _PATH, _MAP_LOCATION_TYPE
 from pytorch_lightning import LightningModule
+import pytorch_lightning as pl
 from torch.nn import Module, CrossEntropyLoss
 from omegaconf import OmegaConf, DictConfig
 from torch.optim import AdamW, Adam, lr_scheduler
@@ -16,6 +17,9 @@ import numpy as np
 class ABSALightningModule(LightningModule):
     def __init__(self, tokenizer, conf: DictConfig = None, model = None):
         super().__init__()
+        pl.seed_everything(1234)
+        self.automatic_optimization = False
+
         self.conf = OmegaConf.create(conf)
         self.tokenizer = tokenizer
         self.model = model
@@ -36,6 +40,9 @@ class ABSALightningModule(LightningModule):
         return model
 
     def training_step(self, batch, batch_idx):
+        opt = self.optimizers()
+        opt = opt.optimizer
+
         input_ids = batch["input_ids"]
         attention_mask = batch["attention_mask"]
         labels = batch["labels"]
@@ -43,6 +50,7 @@ class ABSALightningModule(LightningModule):
         # logits
         logits = self.model(input_ids=input_ids, attention_mask=attention_mask)
         loss = self.loss(logits, labels)
+        opt.zero_grad()
 
         # take argmax index from each sample
         # distribution on each label so have to take argmax
@@ -51,7 +59,10 @@ class ABSALightningModule(LightningModule):
 
         # logging result
         self.log_dict({'train/loss': loss, "train/acc": acc})
-        return loss
+
+        self.manual_backward(loss)
+        self.clip_gradients(optimizer=opt, gradient_clip_val=0.5, gradient_clip_algorithm="norm")
+        opt.step()
 
     def validation_step(self, batch, batch_idx):
         input_ids = batch["input_ids"]
@@ -105,7 +116,8 @@ class ABSALightningModule(LightningModule):
 
     def configure_optimizers(self):
         optimizer = AdamW(self.model.parameters(),
-                          lr=self.conf.model.train.lr)
+                          lr=self.conf.model.train.lr,
+                          weight_decay=0.000015)
 
         scheduler = lr_scheduler.ExponentialLR(optimizer, gamma=0.8)
         return [optimizer], [{"scheduler": scheduler, "interval": "epoch"}]

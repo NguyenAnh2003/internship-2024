@@ -23,13 +23,14 @@ if __name__ == "__main__":
     wandb_logger = WandbLogger(project="absa_")
     # # init Trainer
     trainer = Trainer(default_root_dir="checkpoints",
-                      max_epochs=30, logger=wandb_logger,
+                      max_epochs=40, logger=wandb_logger,
                       log_every_n_steps=100,
                       callbacks=[lr_monitor, PrintingCallback()])
 
     conf = get_configs("../configs/absa_model.yaml")
     conf["model"]["train"]["lr"] = 0.0005
-    conf["model"]["train"]["batch_size"] = 32
+    conf["model"]["train"]["batch_size"] = 16
+
     conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
     conf["model"]["pretrained"]["freeze"] = True
     conf["model"]["train"][
@@ -41,16 +42,17 @@ if __name__ == "__main__":
     conf["model"]["train"]["test_dir"] = "../data_manipulation/metadata/manifests/test.csv"
 
     model = ABSAModel(conf)
+    wandb_logger.watch(model)
     tokenizer = model.tokenizer
     module_absa = ABSALightningModule(tokenizer=tokenizer, conf=conf, model=model)
 
     # TRAIN, DEV SET
     train_ds, dev_ds = module_absa.setup_train_dataloader()
-    # trainer.fit(module_absa, train_ds, dev_ds)  # train
+    trainer.fit(module_absa, train_ds, dev_ds)  # train
 
     # TEST SET
-    test_ds = module_absa.setup_test_dataloader()
+    # test_ds = module_absa.setup_test_dataloader()
 
-    checkpoint_dir = "./absa_/dg4atuk9/checkpoints/epoch=29-step=11820.ckpt"
-    test_performance(model=module_absa, test_dataloader=test_ds,
-                     trainer=trainer, checkpoint_dir=checkpoint_dir)
+    # checkpoint_dir = "./absa_/dg4atuk9/checkpoints/epoch=29-step=11820.ckpt"
+    # test_performance(model=module_absa, test_dataloader=test_ds,
+    #                  trainer=trainer, checkpoint_dir=checkpoint_dir)
