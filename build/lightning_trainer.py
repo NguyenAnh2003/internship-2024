@@ -30,9 +30,9 @@ if __name__ == "__main__":
 
     conf = get_configs("../configs/absa_model.yaml")
     conf["model"]["train"]["lr"] = 0.0005
-    conf["model"]["train"]["batch_size"] = 16
+    conf["model"]["train"]["batch_size"] = 32
 
-    conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-large"
+    conf["model"]["pretrained"]["name"] = "FacebookAI/xlm-roberta-base"
     conf["model"]["pretrained"]["freeze"] = True
     conf["model"]["train"][
         "train_dir"
@@ -49,11 +49,11 @@ if __name__ == "__main__":
 
     # TRAIN, DEV SET
     train_ds, dev_ds = module_absa.setup_train_dataloader()
-    # trainer.fit(module_absa, train_ds, dev_ds)  # train
+    trainer.fit(module_absa, train_ds, dev_ds)  # train
 
     # TEST SET
-    test_ds = module_absa.setup_test_dataloader()
+    # test_ds = module_absa.setup_test_dataloader()
 
-    checkpoint_dir = "./absa_/svwxj8o1/checkpoints/epoch=29-step=23610.ckpt"
-    test_performance(model=module_absa, test_dataloader=test_ds,
-                     trainer=trainer, checkpoint_dir=checkpoint_dir)
+    # checkpoint_dir = "./absa_/g9t0qs1u/checkpoints/epoch=29-step=11820.ckpt"
+    # test_performance(model=module_absa, test_dataloader=test_ds,
+    #                  trainer=trainer, checkpoint_dir=checkpoint_dir)

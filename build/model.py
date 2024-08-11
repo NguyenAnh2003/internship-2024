@@ -25,7 +25,7 @@ class CNNModule(nn.Module):
         super(CNNModule, self).__init__()
         self.conv = nn.Conv1d(in_channels=input_size, out_channels=conv_out_channels, kernel_size=kernel_size, padding=1)
         self.norm = nn.LayerNorm(normalized_shape=conv_out_channels)
-        self.relu = nn.ReLU()
+        self.activation = nn.ReLU()
         self.dropout = nn.Dropout(p=dropout_p)
 
     def forward(self, x):
@@ -36,7 +36,7 @@ class CNNModule(nn.Module):
         x = self.norm(x)  # Apply LayerNorm
         x = x.permute(0, 2, 1)  # Change back to [batch, channels, length]
         # Apply ReLU activation
-        x = self.relu(x)
+        x = self.activation(x)
         # Apply dropout
         x = self.dropout(x)
         return x
@@ -46,6 +46,7 @@ class ABSAModel(nn.Module):
                  hidden_size=384, output_size=10, num_cnn_layers=1, num_rnn_layers=4, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.conf = OmegaConf.create(conf)
+        self.num_cnn_layers = num_cnn_layers
 
         # Initialize model - encoder
         self.encoder, self.tokenizer = self._init_pretrained_metadata()
@@ -54,7 +55,7 @@ class ABSAModel(nn.Module):
         self.cnn_layers = nn.ModuleList([
             CNNModule(input_size=input_size,
                       conv_out_channels=input_size)
-            for i in range(num_cnn_layers)
+            for i in range(self.num_cnn_layers)
         ])
 
         # RNN layers with residual connections
@@ -66,11 +67,14 @@ class ABSAModel(nn.Module):
 
         # Normalization
         self.norm = nn.LayerNorm(normalized_shape=hidden_size * 2)
-
+        self.norm2 = nn.LayerNorm(normalized_shape=hidden_size)
         # Initialize MLP
         self.classifier = nn.Sequential(
+            nn.Linear(input_size, hidden_size, bias=True),
+            nn.SiLU(),
+            self.norm2,
             nn.Dropout(0.2),
-            nn.Linear(hidden_size * 2, output_size)
+            nn.Linear(hidden_size, output_size)
         )
 
         self.log_softmax = nn.LogSoftmax(dim=-1)
@@ -94,7 +98,9 @@ class ABSAModel(nn.Module):
         # Encode the input
         rep = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
         last_hidden_state = rep.last_hidden_state  # Shape: [B, L, D]
+
         res = last_hidden_state
+
         # Apply CNN layers
         cout = last_hidden_state.permute(0, 2, 1)  # Shape: [B, D, L]
         for cnn in self.cnn_layers:
