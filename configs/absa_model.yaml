@@ -1,7 +1,7 @@
 model:
   label_aspects: ["Price fairness", "Data availability",
     "Cleanliness", "Punctuality", "Facilities", "Accessibility",
-    "Satisfactions", "Staff service", "Safety", "Others"]
+    "Convenience", "Staff quality", "Safety"]
 
   labels: ["Price fairness", "Cleanliness", "Facilities", "Staff quality", "Convenience",
     "Punctuality", "Accessibility", "Safety", "Data availability"]
