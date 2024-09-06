@@ -121,7 +121,7 @@ class ABSAModel(nn.Module):
 
         # Apply normalization and classifier
         out = self.norm(out)  # Normalize
-        out = self.classifier(out[:, -1, :])  # Use the last time step's output for classification
+        out = self.classifier(out)  # Use the last time step's output for classification
         logtis = self.log_softmax(out)  # Apply LogSoftmax
 
         return logtis

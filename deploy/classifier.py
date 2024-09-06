@@ -1,16 +1,22 @@
 from transformers import pipeline
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+MODEL_NAME = os.getenv("MODEL_NAME")
+TASK = os.getenv("TASK")
+GEMINI_APIKEY = os.getenv("GEMINI_APIKEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL")
 
-GEMINI_APIKEY = "AIzaSyDg8xag858TyyZrRiIZ4Y3CbWY4gBvWvJA"
 class DataClassifier:
-  def __init__(self, model_name = "facebook/bart-large-mnli",
+  def __init__(self, model_name = MODEL_NAME,
                device = None):
     self.model_name = model_name
     self.device = device
-    self.task = "zero-shot-classification"
+    self.task = TASK
     self.classifier = pipeline(self.task, model=model_name, device=self.device)
-    self.gemini_name = "gemini-1.5-flash"
+    self.gemini_name = GEMINI_MODEL
     api_key = GEMINI_APIKEY
     genai.configure(api_key=api_key)
 

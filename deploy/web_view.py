@@ -4,12 +4,19 @@ from transformers import pipeline
 # Replace this with the path to your DataClassifier module
 from classifier import DataClassifier
 import torch
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+GEMINI_APIKEY = os.getenv("GEMINI_APIKEY")
+MODEL_NAME = os.getenv("MODEL_NAME")
+TASK = os.getenv("TASK")
 
 # Initialize the DataClassifier instance
 # Make sure to replace 'YOUR_API_KEY' with your actual Gemini API key
-GEMINI_APIKEY = "AIzaSyDg8xag858TyyZrRiIZ4Y3CbWY4gBvWvJA"
 device = "cuda" if torch.cuda.is_available() else "cpu"
-classifier = DataClassifier(model_name="facebook/bart-large-mnli", device=device)
+classifier = DataClassifier(model_name=MODEL_NAME, device=device)
 
 # Streamlit app
 def main():
